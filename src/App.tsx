@@ -127,16 +127,10 @@ function Navigation({
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 h-14">
         {/* Brand */}
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-0.5">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="w-0.5 h-3 bg-accent/60 rounded-full" />
-            ))}
-          </div>
-          <span className="text-xs font-medium text-foreground tracking-widest uppercase">
-            {headerConfig.brandMark}
-          </span>
-        </div>
+        {/* Brand */}
+<div className="flex items-center gap-2">
+  <img src="/logo.png" alt="Four Pillars" className="h-6 w-auto" />
+</div>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-1">

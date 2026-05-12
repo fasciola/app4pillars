@@ -115,37 +115,37 @@ export const servicesConfig: ServicesConfig = {
       title: "Cinematic Web Design",
       description: "Immersive, visually stunning websites that tell your brand story through motion, typography, and spatial design. Every pixel is intentional.",
       icon: "Palette",
-      image: "/service-cinematic.jpg",
+      image: "./service-cinematic.jpg",
     },
     {
       title: "Experience Strategy",
       description: "User-centered design thinking that maps customer journeys, identifies touchpoints, and creates seamless interactions that delight and convert.",
       icon: "Compass",
-      image: "/service-strategy.jpg",
+      image: "./service-strategy.jpg",
     },
     {
       title: "Next-Gen Performance",
       description: "Sub-second load times, perfect Lighthouse scores, and fluid 60fps animations. Technical excellence as a foundation, not an afterthought.",
       icon: "Zap",
-      image: "/service-performance.jpg",
+      image: "./service-performance.jpg",
     },
     {
       title: "Brand Guardianship",
       description: "We protect and elevate your brand identity across every digital touchpoint. Consistent, premium, and unmistakably yours.",
       icon: "Shield",
-      image: "/service-brand.jpg",
+      image: "./service-brand.jpg",
     },
     {
       title: "E-Commerce Luxury",
       description: "High-conversion shopping experiences for premium brands. From product presentation to checkout flow, every step feels effortless and elegant.",
       icon: "ShoppingBag",
-      image: "/service-ecommerce.jpg",
+      image: "./service-ecommerce.jpg",
     },
     {
       title: "Conversion Optimization",
       description: "Data-driven refinement of user flows, CTAs, and landing pages. We turn visitors into customers through psychology and precision.",
       icon: "TrendingUp",
-      image: "/service-conversion.jpg",
+      image: "./service-conversion.jpg",
     },
   ],
 }
@@ -175,55 +175,55 @@ export const projects = [
     category: "Luxury Beauty",
     tagline: "Cosmetic Sourcing & Mastery",
     url: "https://four-pillars-cosmetics.netlify.app/",
-    image: "/project-four-pillars.jpg"
+    image: "./project-four-pillars.jpg"
   },
   {
     title: "LUMIÈRE NOIRE",
     category: "Retail / Lifestyle",
     tagline: "Scented Rituals & Elegance",
     url: "https://boisterous-sable-18bb0c.netlify.app/",
-    image: "/project-olivara.jpg"
+    image: "./project-olivara.jpg"
   },
   {
     title: "NOIR ATLAS",
     category: "Brand Concept",
     tagline: "Cinematic Digital Depth",
     url: "https://moonlit-maamoul-cfcdd5.netlify.app/",
-    image: "/project-noir-atlas.jpg"
+    image: "./project-noir-atlas.jpg"
   },
   {
     title: "AURUM AUTOMOTIVE",
     category: "Automotive",
     tagline: "Premier Showroom Experience",
     url: "https://car-care-hub.netlify.app/",
-    image: "/project-carcare.jpg"
+    image: "./project-carcare.jpg"
   },
   {
     title: "THE VERTICAL",
     category: "Industrial / Luxury",
     tagline: "Premium Elevator Systems",
     url: "https://wonderful-nasturtium-105135.netlify.app/",
-    image: "/project-elevators.jpg"
+    image: "./project-elevators.jpg"
   },
   {
     title: "ELITE ESTATES",
     category: "Real Estate",
     tagline: "High-End Dubai Penthouses",
     url: "https://deft-sundae-510258.netlify.app/",
-    image: "/project-elite-estates.jpg"
+    image: "./project-elite-estates.jpg"
   },
   {
     title: "AURUM GEMS",
     category: "Retail / Luxury",
     tagline: "Timeless Fine Jewelry",
     url: "https://papaya-vacherin-fee6b2.netlify.app/",
-    image: "/project-eclat.jpg"
+    image: "./project-eclat.jpg"
   },
   {
     title: "AURUM ENERGY",
     category: "Tech / Infrastructure",
     tagline: "Intelligent Power Analytics",
     url: "https://admirable-custard-0ec2e2.netlify.app/",
-    image: "/project-energylink.jpg"
+    image: "./project-energylink.jpg"
   }
 ];
