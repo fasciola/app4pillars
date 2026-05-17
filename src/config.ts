@@ -158,7 +158,7 @@ export const portfolioConfig: PortfolioConfig = {
 export const contactConfig: ContactConfig = {
   title: "Start a Project",
   subtitle: "Ready to elevate your digital presence? Let's discuss how Four Pillars can transform your brand's online experience.",
-  email: "faisal4pillars@gmail.com",
+  email: "faisal.alamir@4pillarsweb.online",
   phone: "+971567074922",
   cta: "Get in Touch",
 }
