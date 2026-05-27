@@ -5,40 +5,44 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { inspectAttr } from 'kimi-plugin-inspect-react';
 
-// https://vite.dev/config/
 export default defineConfig({
-  // 👇 Required for GitHub Pages – matches your repo name
-    base: '/app4pillars/', 
-  plugins: [
-    devServer({ entry: "api/boot.ts", exclude: [/^\/(?!api\/).*$/] }),
-    inspectAttr(),
-    react()
-  ],
+    // ✅ Use root path since site is at https://4pillarsweb.online
+    base: '/',
 
-  server: {
-    port: 3000,
-    host: "localhost",
-    strictPort: true,
-    hmr: {
-      host: "localhost",
-      port: 3000,
+    plugins: [
+        devServer({
+            entry: "api/boot.ts",
+            exclude: [/^\/(?!api\/).*$/]
+        }),
+        inspectAttr(),
+        react()
+    ],
+
+    server: {
+        port: 3000,
+        host: "localhost",
+        strictPort: true,
+        hmr: {
+            host: "localhost",
+            port: 3000,
+        },
     },
-  },
 
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-      "@contracts": path.resolve(__dirname, "./contracts"),
-      "@db": path.resolve(__dirname, "./db"),
-      "db": path.resolve(__dirname, "./db"),
+    resolve: {
+        alias: {
+            "@": path.resolve(__dirname, "./src"),
+            "@contracts": path.resolve(__dirname, "./contracts"),
+            "@db": path.resolve(__dirname, "./db"),
+            "db": path.resolve(__dirname, "./db"),
+        },
     },
-  },
 
-  envDir: path.resolve(__dirname),
+    envDir: path.resolve(__dirname),
 
-  build: {
-    // Note: your build outputs static files to dist/public
-    outDir: path.resolve(__dirname, "dist/public"),
-    emptyOutDir: true,
-  },
+    build: {
+        outDir: path.resolve(__dirname, "dist/public"),
+        emptyOutDir: true,
+        // ✅ Ensure assets use relative paths for static hosting
+        assetsDir: "assets",
+    },
 });
