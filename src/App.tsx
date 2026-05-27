@@ -129,7 +129,7 @@ function Navigation({
         {/* Brand */}
         {/* Brand */}
 <div className="flex items-center gap-2">
-  <img src="/logo.png" alt="Four Pillars" className="h-6 w-auto" />
+  <img src="/logo.png" alt="Four Pillars" className="h-10 w-auto" />
 </div>
 
         {/* Desktop Nav */}
