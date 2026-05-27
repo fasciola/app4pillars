@@ -152,7 +152,7 @@ export const servicesConfig: ServicesConfig = {
 
 export const portfolioConfig: PortfolioConfig = {
   title: "Selected Works",
-  subtitle: "Eight projects that define our craft. Each one a collaboration with visionary brands pushing the boundaries of their industries.",
+  subtitle: "Seven projects that define our craft. Each one a collaboration with visionary brands pushing the boundaries of their industries.",
 }
 
 export const contactConfig: ContactConfig = {
@@ -170,13 +170,6 @@ export const footerConfig: FooterConfig = {
 
 // Portfolio projects data
 export const projects = [
-  {
-    title: "AURUM BLISS",
-    category: "Luxury Beauty",
-    tagline: "Cosmetic Sourcing & Mastery",
-    url: "https://four-pillars-cosmetics.netlify.app/",
-    image: "./project-four-pillars.jpg"
-  },
   {
     title: "LUMIÈRE NOIRE",
     category: "Retail / Lifestyle",
@@ -199,13 +192,6 @@ export const projects = [
     image: "./project-carcare.jpg"
   },
   {
-    title: "THE VERTICAL",
-    category: "Industrial / Luxury",
-    tagline: "Premium Elevator Systems",
-    url: "https://wonderful-nasturtium-105135.netlify.app/",
-    image: "./project-elevators.jpg"
-  },
-  {
     title: "ELITE ESTATES",
     category: "Real Estate",
     tagline: "High-End Dubai Penthouses",
@@ -220,10 +206,17 @@ export const projects = [
     image: "./project-eclat.jpg"
   },
   {
-    title: "AURUM ENERGY",
-    category: "Tech / Infrastructure",
-    tagline: "Intelligent Power Analytics",
-    url: "https://admirable-custard-0ec2e2.netlify.app/",
-    image: "./project-energylink.jpg"
+    title: "ASIM VISION",
+    category: "Healthcare / Technology",
+    tagline: "Advanced Vision Care Solutions",
+    url: "https://asemvision.com/",
+    image: "./project-asim-vision.jpg"
+  },
+  {
+    title: "ROYAL DAN PERFUMES",
+    category: "Luxury Retail / Fragrance",
+    tagline: "Premium Arabian Fragrances",
+    url: "https://royaldanperfumes.com/",
+    image: "./project-royal-dan.jpg"
   }
 ];
