@@ -8,7 +8,7 @@ import { inspectAttr } from 'kimi-plugin-inspect-react';
 // https://vite.dev/config/
 export default defineConfig({
   // 👇 Required for GitHub Pages – matches your repo name
-  base: './', 
+    base: '/app4pillars/', 
   plugins: [
     devServer({ entry: "api/boot.ts", exclude: [/^\/(?!api\/).*$/] }),
     inspectAttr(),
