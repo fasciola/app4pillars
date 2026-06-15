@@ -9,15 +9,15 @@ interface HeroProps {
 export default function Hero({ onExplore, onServices }: HeroProps) {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-black text-white">
-      {/* Full butterfly artwork layer: object-contain keeps the entire image visible */}
+      {/* Cinematic butterfly artwork layer: object-cover gives the stronger full-bleed hero look */}
       <img
         src="/hero-butterfly.png"
         alt="Luminous gold and peach butterfly on a black cinematic background"
-        className="absolute inset-0 h-full w-full object-contain object-center opacity-95"
+        className="absolute inset-0 h-full w-full object-cover object-center opacity-95"
         loading="eager"
       />
 
-      {/* Dark luxury gradient for text readability without hiding the full artwork */}
+      {/* Dark luxury gradient for text readability */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_58%_48%,rgba(255,177,94,0.08),transparent_34%),linear-gradient(90deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.74)_25%,rgba(0,0,0,0.28)_52%,rgba(0,0,0,0.18)_72%,rgba(0,0,0,0.70)_100%)]" />
 
       {/* Fine grid / premium editorial structure */}
