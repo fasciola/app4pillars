@@ -22,14 +22,12 @@ export default function Hero({ onExplore, onServices }: HeroProps) {
         <source src="/contact.mp4" type="video/mp4" />
       </video>
 
-      {/* Dark luxury gradient for text readability */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_58%_48%,rgba(255,177,94,0.08),transparent_34%),linear-gradient(90deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.74)_25%,rgba(0,0,0,0.28)_52%,rgba(0,0,0,0.18)_72%,rgba(0,0,0,0.70)_100%)]" />
+      {/* Neutral dark gradient for text readability */}
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.74)_25%,rgba(0,0,0,0.28)_52%,rgba(0,0,0,0.18)_72%,rgba(0,0,0,0.70)_100%)]" />
 
       {/* Fine grid / premium editorial structure */}
       <div className="absolute inset-0 opacity-[0.10] bg-[linear-gradient(to_right,rgba(255,255,255,0.22)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.18)_1px,transparent_1px)] bg-[size:25%_25%]" />
 
-      {/* Warm corner light leak */}
-      <div className="absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-[#f2a14a]/25 blur-3xl" />
       <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black via-black/45 to-transparent" />
 
       {/* Content */}
@@ -38,7 +36,7 @@ export default function Hero({ onExplore, onServices }: HeroProps) {
           <div className="max-w-4xl text-left">
             {/* Small editorial label */}
             <div className="inline-flex items-center gap-3 mb-7 rounded-full border border-white/15 bg-black/25 px-5 py-2 backdrop-blur-md">
-              <span className="h-2 w-2 rounded-full bg-[#f3b66b] shadow-[0_0_18px_rgba(243,182,107,0.9)]" />
+              <span className="h-2 w-2 rounded-full bg-white/80 shadow-[0_0_18px_rgba(255,255,255,0.55)]" />
               <span className="text-[10px] sm:text-xs uppercase tracking-[0.28em] text-white/70">
                 Four Pillars Digital Atelier
               </span>
@@ -74,7 +72,7 @@ export default function Hero({ onExplore, onServices }: HeroProps) {
 
       {/* Decorative side note */}
       <div className="hidden xl:block absolute right-12 bottom-24 z-10 max-w-sm border border-white/10 bg-black/20 backdrop-blur-md p-6 text-left shadow-2xl">
-        <p className="text-[10px] uppercase tracking-[0.3em] text-[#f3b66b] mb-3">
+        <p className="text-[10px] uppercase tracking-[0.3em] text-white/60 mb-3">
           Cinematic Presence
         </p>
         <p className="text-sm leading-relaxed text-white/62">
