@@ -1,6 +1,6 @@
 import { useState, useEffect, lazy, Suspense, useCallback } from 'react';
+import { useLocation } from 'react-router';
 import {
-  siteConfig,
   headerConfig,
   backgroundConfig,
   contactConfig,
@@ -10,6 +10,9 @@ import Services from './sections/Services';
 import PracticeCube from './sections/PracticeCube';
 import Portfolio from './sections/Portfolio';
 import Contact from './sections/Contact';
+import WebsiteDesignDubai from './pages/WebsiteDesignDubai';
+import Seo from './components/Seo';
+import { homeSeo, websiteDesignDubaiSeo } from './seo';
 import { Menu, X } from 'lucide-react';
 
 const SilkCascade = lazy(() => import('./components/FlowField'));
@@ -39,6 +42,7 @@ function BackgroundToggle({
         onClick={() => setShowMenu(!showMenu)}
         className="w-8 h-8 rounded-full liquid-glass flex items-center justify-center text-subtle hover:text-foreground transition-colors"
         title="Toggle Background"
+        aria-label="Change background effect"
       >
         <span className="relative z-10 text-xs">&#9680;</span>
       </button>
@@ -127,13 +131,11 @@ function Navigation({
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 h-14">
-        {/* Brand */}
-        <div className="flex items-center gap-2">
-          <img src="/logo.png" alt="Four Pillars" className="h-20 w-auto" />
-        </div>
+        <a href="/" className="flex items-center gap-2" aria-label="Four Pillars Web Design home">
+          <img src="/logo.png" alt="Four Pillars Web Design" className="h-20 w-auto" />
+        </a>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden md:flex items-center gap-1" aria-label="Primary navigation">
           {[
             { label: headerConfig.navServices, id: 'services' },
             { label: headerConfig.navPortfolio, id: 'portfolio' },
@@ -157,7 +159,6 @@ function Navigation({
           </div>
         </nav>
 
-        {/* Mobile Menu Button */}
         <div className="flex md:hidden items-center gap-2">
           <BackgroundToggle
             bg={bg}
@@ -168,13 +169,13 @@ function Navigation({
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="w-8 h-8 flex items-center justify-center text-dim hover:text-foreground transition-colors"
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           >
             {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {mobileOpen && (
         <div className="md:hidden liquid-glass-strong border-t border-white/[0.04] px-6 py-4">
           {[
@@ -197,6 +198,11 @@ function Navigation({
 }
 
 export default function App() {
+  const location = useLocation();
+  const normalizedPath = location.pathname.replace(/\/+$/, '') || '/';
+  const isWebsiteDesignDubai = normalizedPath === '/website-design-dubai';
+  const pageSeo = isWebsiteDesignDubai ? websiteDesignDubaiSeo : homeSeo;
+
   const [bg, setBg] = useState<BgMode>(() => {
     const saved = localStorage.getItem(BG_KEY);
     if (saved === 'black') return 'solid';
@@ -214,15 +220,6 @@ export default function App() {
     localStorage.setItem(BG_COLOR_KEY, bgColor);
   }, [bgColor]);
 
-  useEffect(() => {
-    document.title = siteConfig.title;
-    const metaDescription = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.content = siteConfig.description;
-    }
-    document.documentElement.lang = siteConfig.language;
-  }, []);
-
   const scrollTo = useCallback((id: string) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -233,6 +230,8 @@ export default function App() {
       className="min-h-screen relative"
       style={bg === 'solid' ? { backgroundColor: bgColor } : { background: '#000' }}
     >
+      <Seo config={pageSeo} />
+
       <Suspense fallback={null}>
         {bg === 'silk' && <SilkCascade />}
         {bg === 'moonlit' && <MoonlitRipple />}
@@ -247,14 +246,20 @@ export default function App() {
       />
 
       <main className="relative z-10">
-        <Hero
-          onExplore={() => scrollTo('portfolio')}
-          onServices={() => scrollTo('services')}
-        />
-        <Services />
-        <PracticeCube />
-        <Portfolio />
-        <Contact />
+        {isWebsiteDesignDubai ? (
+          <WebsiteDesignDubai />
+        ) : (
+          <>
+            <Hero
+              onExplore={() => scrollTo('portfolio')}
+              onServices={() => scrollTo('services')}
+            />
+            <Services />
+            <PracticeCube />
+            <Portfolio />
+            <Contact />
+          </>
+        )}
       </main>
 
       <a
@@ -263,6 +268,7 @@ export default function App() {
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] shadow-lg shadow-green-500/20 flex items-center justify-center hover:scale-110 hover:shadow-green-500/40 transition-all duration-300 group text-white font-bold"
         title="Chat on WhatsApp"
+        aria-label="Chat with Four Pillars on WhatsApp"
       >
         WA
         <span className="absolute right-16 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-[#111] border border-white/[0.06] rounded-lg text-xs text-dim whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
