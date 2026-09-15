@@ -115,37 +115,37 @@ export const servicesConfig: ServicesConfig = {
       title: "Cinematic Web Design",
       description: "Immersive, visually stunning websites that tell your brand story through motion, typography, and spatial design. Every pixel is intentional.",
       icon: "Palette",
-      image: "./Cinematic.png",
+      image: "/Cinematic.png",
     },
     {
       title: "Experience Strategy",
       description: "User-centered design thinking that maps customer journeys, identifies touchpoints, and creates seamless interactions that delight and convert.",
       icon: "Compass",
-      image: "./service-strategy.jpg",
+      image: "/service-strategy.jpg",
     },
     {
       title: "Next-Gen Performance",
       description: "Sub-second load times, perfect Lighthouse scores, and fluid 60fps animations. Technical excellence as a foundation, not an afterthought.",
       icon: "Zap",
-      image: "./service-performance.jpg",
+      image: "/service-performance.jpg",
     },
     {
       title: "Brand Guardianship",
       description: "We protect and elevate your brand identity across every digital touchpoint. Consistent, premium, and unmistakably yours.",
       icon: "Shield",
-      image: "./service-brand.jpg",
+      image: "/service-brand.jpg",
     },
     {
       title: "E-Commerce Luxury",
       description: "High-conversion shopping experiences for premium brands. From product presentation to checkout flow, every step feels effortless and elegant.",
       icon: "ShoppingBag",
-      image: "./service-ecommerce.jpg",
+      image: "/service-ecommerce.jpg",
     },
     {
       title: "Conversion Optimization",
       description: "Data-driven refinement of user flows, CTAs, and landing pages. We turn visitors into customers through psychology and precision.",
       icon: "TrendingUp",
-      image: "./service-conversion.jpg",
+      image: "/service-conversion.jpg",
     },
   ],
 }
@@ -175,90 +175,90 @@ export const projects = [
     category: "Retail / Lifestyle",
     tagline: "Scented Rituals & Elegance",
     url: "https://boisterous-sable-18bb0c.netlify.app/",
-    image: "./project-olivara.jpg"
+    image: "/project-olivara.jpg"
   },
   {
     title: "NOIR ATLAS",
     category: "Brand Concept",
     tagline: "Cinematic Digital Depth",
     url: "https://moonlit-maamoul-cfcdd5.netlify.app/",
-    image: "./project-noir-atlas.jpg"
+    image: "/project-noir-atlas.jpg"
   },
   {
     title: "AURUM AUTOMOTIVE",
     category: "Automotive",
     tagline: "Premier Showroom Experience",
     url: "https://car-care-hub.netlify.app/",
-    image: "./project-carcare.jpg"
+    image: "/project-carcare.jpg"
   },
   {
     title: "ELITE ESTATES",
     category: "Real Estate",
     tagline: "High-End Dubai Penthouses",
     url: "https://deft-sundae-510258.netlify.app/",
-    image: "./project-elite-estates.jpg"
+    image: "/project-elite-estates.jpg"
   },
   {
     title: "AURUM GEMS",
     category: "Retail / Luxury",
     tagline: "Timeless Fine Jewelry",
     url: "https://papaya-vacherin-fee6b2.netlify.app/",
-    image: "./project-eclat.jpg"
+    image: "/project-eclat.jpg"
   },
   {
     title: "ASIM VISION",
     category: "Healthcare / Technology",
     tagline: "Advanced Vision Care Solutions",
     url: "https://asemvision.com/",
-    image: "./project-asim-vision.jpg"
+    image: "/project-asim-vision.jpg"
   },
   {
     title: "ROYAL DAN PERFUMES",
     category: "Luxury Retail / Fragrance",
     tagline: "Premium Arabian Fragrances",
     url: "https://royaldanperfumes.com/",
-    image: "./project-royal-dan.png"
+    image: "/project-royal-dan.png"
   },
   {
     title: "NOCTURE",
     category: "Beauty / Luxury Retail",
     tagline: "Beauty Composed After Dark",
     url: "https://amber.faisalmousa86.workers.dev/",
-    image: "./project-nocture.png"
+    image: "/project-nocture.png"
   },
   {
     title: "FLUID STUDIO",
     category: "Creative Studio / Digital Design",
     tagline: "Digital Design, Brand Systems & Motion",
     url: "https://creative-studio-web-app.faisalmousa86.workers.dev/",
-    image: "./project-fluid-studio.png"
+    image: "/project-fluid-studio.png"
   },
   {
     title: "MERIDIAN",
     category: "Corporate / Business Services",
     tagline: "Business Services, End to End",
     url: "https://business-landing-page-brq.pages.dev/",
-    image: "./project-meridian.png"
+    image: "/project-meridian.png"
   },
   {
     title: "FORM & GRAIN",
     category: "Furniture / Product Design",
     tagline: "An Editorial Catalogue for Modern Furniture",
     url: "https://furniture-catalogue-site.pages.dev/",
-    image: "./project-form-grain.png"
+    image: "/project-form-grain.png"
   },
   {
     title: "AL-FAKHIM BUSINESSMEN SERVICES",
     category: "Business / Government Services",
     tagline: "Administrative Solutions for the UAE",
     url: "https://alfakhimbusiness.com/",
-    image: "./project-alfakhim.png"
+    image: "/project-alfakhim.png"
   },
   {
     title: "NOOR",
     category: "Fashion / E-Commerce",
     tagline: "Luxury Abayas & Modest Fashion",
     url: "https://abaya-store.faisal4pillars.workers.dev/",
-    image: "./project-noor-abaya.png"
+    image: "/project-noor-abaya.png"
   }
 ];
