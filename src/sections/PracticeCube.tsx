@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
-import { servicesConfig } from '../config';
+import { projects } from '../config';
 
 const clamp = (value: number, min: number, max: number) =>
   Math.min(max, Math.max(min, value));
@@ -15,7 +15,7 @@ export default function PracticeCube() {
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reducedMotion) {
-      setProgress(0.42);
+      setProgress(0.18);
       return;
     }
 
@@ -43,13 +43,20 @@ export default function PracticeCube() {
     };
   }, []);
 
-  const rotateX = -15 + progress * 9;
-  const rotateY = -45 + progress * 360;
-  const intro = clamp(progress / 0.2, 0, 1);
-  const scale = 0.58 + intro * 0.42;
-  const opacity = 0.35 + intro * 0.65;
+  /* Keep the strong opening angle from the reference for longer, then begin
+   * a slower turn through the rest of the sticky section. */
+  const spinProgress = clamp((progress - 0.18) / 0.82, 0, 1);
+  const rotateX = -15 + spinProgress * 7;
+  const rotateY = -45 + spinProgress * 225;
+  const rotateZ = 0;
 
-  const faces = servicesConfig.items.slice(0, 6);
+  const intro = clamp(progress / 0.16, 0, 1);
+  const scale = 0.72 + intro * 0.28;
+  const opacity = 0.55 + intro * 0.45;
+
+  /* The cube is a six-face object, so use six images directly from the
+   * Selected Works portfolio rather than the service/Expertise artwork. */
+  const faces = projects.slice(0, 6);
   const faceTransforms = [
     'rotateY(0deg) translateZ(calc(var(--cube-size) / 2))',
     'rotateY(180deg) translateZ(calc(var(--cube-size) / 2))',
@@ -71,8 +78,8 @@ export default function PracticeCube() {
   return (
     <section
       ref={sectionRef}
-      aria-label="Six faces of the Four Pillars practice"
-      className="relative min-h-[170vh] bg-[#e5eeea] text-[#10201d]"
+      aria-label="Six faces of selected Four Pillars work"
+      className="relative min-h-[300vh] bg-[#e5eeea] text-[#10201d]"
     >
       <div className="sticky top-0 h-screen min-h-[620px] overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_58%_48%_at_50%_48%,rgba(47,179,164,0.15),transparent_72%)]" />
@@ -86,7 +93,7 @@ export default function PracticeCube() {
           >
             <div
               className="relative h-full w-full [transform-style:preserve-3d] will-change-transform"
-              style={{ transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)` }}
+              style={{ transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)` }}
             >
               {faces.map((face, index) => (
                 <div
@@ -101,7 +108,7 @@ export default function PracticeCube() {
                     className="h-full w-full object-cover"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-black/10" />
+                  <div className="absolute inset-0 bg-black/[0.04]" />
                 </div>
               ))}
             </div>
@@ -110,13 +117,13 @@ export default function PracticeCube() {
 
         <div className="absolute left-6 sm:left-10 bottom-12 sm:bottom-14">
           <p className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.28em] text-[#31524c]">
-            — Six faces of the practice
+            — Six faces of selected work
           </p>
         </div>
 
-        <div className="absolute right-6 sm:right-10 top-24 max-w-[240px] text-right">
+        <div className="absolute right-6 sm:right-10 top-24 max-w-[280px] text-right">
           <p className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.24em] text-[#31524c]/70">
-            Design · Strategy · Performance · Brand · Commerce · Conversion
+            Luxury · Digital · Brand · Commerce · Automotive · Experience
           </p>
         </div>
       </div>
