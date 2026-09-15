@@ -80,24 +80,24 @@ export default function WebsiteDesignDubai() {
     <>
       <section className="relative min-h-screen flex items-center overflow-hidden bg-black text-white">
         <HeroBackgroundVideo />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.55)_30%,rgba(0,0,0,0.22)_60%,rgba(0,0,0,0.45)_100%)]" />
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black via-black/35 to-transparent" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.60)_0%,rgba(0,0,0,0.40)_30%,rgba(0,0,0,0.16)_60%,rgba(0,0,0,0.30)_100%)]" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black/35 via-black/12 to-transparent" />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-24 pb-20">
           <div className="min-h-[72vh] flex items-center">
             <div className="max-w-5xl text-left">
-              <div className="inline-flex items-center gap-3 mb-7 rounded-full border border-white/15 bg-black/20 px-5 py-2 backdrop-blur-md">
+              <div className="inline-flex items-center gap-3 mb-7 rounded-full border border-white/15 bg-black/12 px-5 py-2 backdrop-blur-md">
                 <span className="h-2 w-2 rounded-full bg-white/80" />
-                <span className="text-[10px] sm:text-xs uppercase tracking-[0.28em] text-white/70">
+                <span className="text-[10px] sm:text-xs uppercase tracking-[0.28em] text-white/75">
                   Website Design Dubai · UAE
                 </span>
               </div>
 
-              <h1 className="font-light tracking-[-0.07em] leading-[0.88] text-[clamp(3.8rem,9vw,8rem)] text-white/95 whitespace-pre-line drop-shadow-[0_10px_35px_rgba(0,0,0,0.55)]">
+              <h1 className="font-light tracking-[-0.07em] leading-[0.88] text-[clamp(3.8rem,9vw,8rem)] text-white/95 whitespace-pre-line drop-shadow-[0_10px_35px_rgba(0,0,0,0.42)]">
                 Website Design Dubai{`\n`}Built to Perform
               </h1>
 
-              <p className="mt-7 max-w-2xl text-base sm:text-lg text-white/78 leading-relaxed">
+              <p className="mt-7 max-w-2xl text-base sm:text-lg text-white/82 leading-relaxed drop-shadow-[0_4px_18px_rgba(0,0,0,0.40)]">
                 Four Pillars creates premium, responsive and SEO-ready websites for businesses in Dubai and across the UAE. We combine strategy, design, development and performance to build digital experiences that look distinctive and generate enquiries.
               </p>
 
@@ -111,7 +111,7 @@ export default function WebsiteDesignDubai() {
                 </button>
                 <button
                   onClick={() => scrollTo('portfolio')}
-                  className="px-8 py-4 rounded-full text-sm text-white/75 hover:text-white transition-colors border border-white/15 hover:border-white/30 bg-black/15 backdrop-blur-sm"
+                  className="px-8 py-4 rounded-full text-sm text-white/80 hover:text-white transition-colors border border-white/15 hover:border-white/30 bg-black/[0.08] backdrop-blur-sm"
                 >
                   View Website Portfolio
                 </button>
