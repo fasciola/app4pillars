@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Meridian business services website preview</title>
+  <desc id="desc">A dark corporate website preview with warm gold accents and structured business service cards.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#05070a"/><stop offset="1" stop-color="#0d1420"/></linearGradient>
+    <linearGradient id="gold" x1="0" x2="1"><stop stop-color="#b88a46"/><stop offset=".5" stop-color="#e8c37a"/><stop offset="1" stop-color="#8e632f"/></linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <g opacity=".08" stroke="#e8c37a"><path d="M0 180h1600M0 360h1600M0 540h1600M0 720h1600M0 900h1600"/><path d="M200 0v1000M400 0v1000M600 0v1000M800 0v1000M1000 0v1000M1200 0v1000M1400 0v1000"/></g>
+  <rect x="72" y="66" width="1456" height="868" rx="34" fill="#070a0f" stroke="#e8c37a" stroke-opacity=".2"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="116" y="128" fill="#e8c37a" font-size="22" font-weight="700" letter-spacing="7">MERIDIAN</text>
+    <text x="1452" y="128" text-anchor="end" fill="#8290a2" font-size="13" letter-spacing="4">BUSINESS SERVICES, END TO END</text>
+    <line x1="116" y1="160" x2="1484" y2="160" stroke="#e8c37a" stroke-opacity=".16"/>
+    <text x="120" y="342" fill="#f4f2ed" font-family="Georgia, serif" font-size="80">Paperwork should never</text>
+    <text x="120" y="429" fill="#e8c37a" font-family="Georgia, serif" font-size="80">set the pace of business.</text>
+    <text x="124" y="492" fill="#8d98a8" font-size="18" letter-spacing="1.5">FORMATION · COMPLIANCE · EXPANSION · GOVERNANCE</text>
+  </g>
+  <g font-family="Arial" transform="translate(120 594)">
+    <g><rect width="300" height="190" rx="22" fill="#0d131d" stroke="#e8c37a" stroke-opacity=".22"/><circle cx="42" cy="42" r="18" fill="#e8c37a"/><text x="26" y="48" fill="#071018" font-size="16" font-weight="700">01</text><text x="28" y="104" fill="#f4f2ed" font-size="24">Formation</text><text x="28" y="140" fill="#7f8a99" font-size="14">Structure, licensing & setup</text></g>
+    <g transform="translate(325 0)"><rect width="300" height="190" rx="22" fill="#0d131d" stroke="#e8c37a" stroke-opacity=".22"/><circle cx="42" cy="42" r="18" fill="#e8c37a"/><text x="26" y="48" fill="#071018" font-size="16" font-weight="700">02</text><text x="28" y="104" fill="#f4f2ed" font-size="24">Compliance</text><text x="28" y="140" fill="#7f8a99" font-size="14">Books, tax & good standing</text></g>
+    <g transform="translate(650 0)"><rect width="300" height="190" rx="22" fill="#0d131d" stroke="#e8c37a" stroke-opacity=".22"/><circle cx="42" cy="42" r="18" fill="#e8c37a"/><text x="26" y="48" fill="#071018" font-size="16" font-weight="700">03</text><text x="28" y="104" fill="#f4f2ed" font-size="24">Expansion</text><text x="28" y="140" fill="#7f8a99" font-size="14">Visas, permits & new markets</text></g>
+    <g transform="translate(975 0)"><rect width="300" height="190" rx="22" fill="#0d131d" stroke="#e8c37a" stroke-opacity=".22"/><circle cx="42" cy="42" r="18" fill="#e8c37a"/><text x="26" y="48" fill="#071018" font-size="16" font-weight="700">04</text><text x="28" y="104" fill="#f4f2ed" font-size="24">Governance</text><text x="28" y="140" fill="#7f8a99" font-size="14">Records, audits & control</text></g>
+  </g>
+  <rect x="120" y="526" width="222" height="54" rx="27" fill="url(#gold)"/><text x="231" y="560" text-anchor="middle" fill="#091019" font-family="Arial" font-weight="700" font-size="14" letter-spacing="2">START A COMPANY</text>
+</svg>
