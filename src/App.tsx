@@ -7,6 +7,7 @@ import {
 } from './config';
 import Hero from './sections/Hero';
 import Services from './sections/Services';
+import PracticeCube from './sections/PracticeCube';
 import Portfolio from './sections/Portfolio';
 import Contact from './sections/Contact';
 import { Menu, X } from 'lucide-react';
@@ -251,6 +252,7 @@ export default function App() {
           onServices={() => scrollTo('services')}
         />
         <Services />
+        <PracticeCube />
         <Portfolio />
         <Contact />
       </main>
