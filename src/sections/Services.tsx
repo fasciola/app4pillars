@@ -41,12 +41,13 @@ export default function Services() {
                     alt={service.title}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"
+                    decoding="async"
                   />
-                  {/* Dark overlay */}
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-all duration-500" />
+                  {/* Keep contrast without burying the artwork. */}
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/25 transition-all duration-500" />
                   {/* Icon badge */}
-                  <div className="absolute top-4 left-4 w-10 h-10 rounded-lg bg-accent/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-accent/30 transition-colors duration-300">
-                    {Icon && <Icon className="w-4 h-4 text-accent" />}
+                  <div className="absolute top-4 left-4 w-10 h-10 rounded-lg bg-black/10 border border-white/10 backdrop-blur-sm flex items-center justify-center group-hover:bg-black/15 transition-colors duration-300">
+                    {Icon && <Icon className="w-4 h-4 text-white/90" />}
                   </div>
                 </div>
 
