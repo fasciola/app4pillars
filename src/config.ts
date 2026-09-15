@@ -115,7 +115,7 @@ export const servicesConfig: ServicesConfig = {
       title: "Cinematic Web Design",
       description: "Immersive, visually stunning websites that tell your brand story through motion, typography, and spatial design. Every pixel is intentional.",
       icon: "Palette",
-      image: "./service-cinematic.jpg",
+      image: "./Cinematic.png",
     },
     {
       title: "Experience Strategy",
