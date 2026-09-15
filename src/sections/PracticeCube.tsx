@@ -79,12 +79,14 @@ export default function PracticeCube() {
     <section
       ref={sectionRef}
       aria-label="Six faces of selected Four Pillars work"
-      className="relative min-h-[300vh] bg-[#e5eeea] text-[#10201d]"
+      className="relative min-h-[300vh] bg-transparent text-foreground"
     >
       <div className="sticky top-0 h-screen min-h-[620px] overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_58%_48%_at_50%_48%,rgba(47,179,164,0.15),transparent_72%)]" />
-        <div className="absolute inset-x-0 top-0 h-px bg-black/10" />
-        <div className="absolute inset-x-0 bottom-0 h-px bg-black/10" />
+        {/* Keep this section transparent so the site's active global background
+            continues seamlessly through the cube and into Selected Works. */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_58%_48%_at_50%_48%,rgba(255,255,255,0.035),transparent_72%)]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-white/[0.04]" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-white/[0.04]" />
 
         <div className="absolute inset-0 grid place-items-center px-6">
           <div
@@ -98,7 +100,7 @@ export default function PracticeCube() {
               {faces.map((face, index) => (
                 <div
                   key={face.title}
-                  className="absolute inset-0 overflow-hidden border border-black/15 bg-[#0a1412] shadow-[inset_0_0_30px_rgba(0,0,0,0.35),0_28px_70px_rgba(14,27,24,0.18)] [backface-visibility:hidden]"
+                  className="absolute inset-0 overflow-hidden border border-white/10 bg-[#0a1412] shadow-[inset_0_0_30px_rgba(0,0,0,0.28),0_28px_70px_rgba(0,0,0,0.32)] [backface-visibility:hidden]"
                   style={{ transform: faceTransforms[index] }}
                 >
                   <img
@@ -116,13 +118,13 @@ export default function PracticeCube() {
         </div>
 
         <div className="absolute left-6 sm:left-10 bottom-12 sm:bottom-14">
-          <p className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.28em] text-[#31524c]">
+          <p className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.28em] text-white/55">
             — Six faces of selected work
           </p>
         </div>
 
         <div className="absolute right-6 sm:right-10 top-24 max-w-[280px] text-right">
-          <p className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.24em] text-[#31524c]/70">
+          <p className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.24em] text-white/45">
             Luxury · Digital · Brand · Commerce · Automotive · Experience
           </p>
         </div>
