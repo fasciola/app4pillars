@@ -33,22 +33,29 @@ export default function Hero({ onExplore, onServices }: HeroProps) {
       {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-24 pb-20">
         <div className="min-h-[72vh] flex items-center">
-          <div className="max-w-4xl text-left">
-            {/* Small editorial label */}
+          <div className="max-w-5xl text-left">
             <div className="inline-flex items-center gap-3 mb-7 rounded-full border border-white/15 bg-black/25 px-5 py-2 backdrop-blur-md">
               <span className="h-2 w-2 rounded-full bg-white/80 shadow-[0_0_18px_rgba(255,255,255,0.55)]" />
               <span className="text-[10px] sm:text-xs uppercase tracking-[0.28em] text-white/70">
-                Four Pillars Digital Atelier
+                Dubai · UAE Website Design
               </span>
             </div>
 
-            <h1 className="font-light tracking-[-0.08em] leading-[0.84] text-[clamp(4rem,10vw,9rem)] text-white/95 whitespace-pre-line drop-shadow-[0_10px_35px_rgba(0,0,0,0.65)]">
-              {heroConfig.headline}
+            <h1 className="font-light tracking-[-0.08em] leading-[0.84] text-[clamp(3.6rem,9vw,8.5rem)] text-white/95 whitespace-pre-line drop-shadow-[0_10px_35px_rgba(0,0,0,0.65)]">
+              Website Design in Dubai{`\n`}Crafted to Perform
             </h1>
 
-            <p className="mt-7 max-w-xl text-base sm:text-lg text-white/74 leading-relaxed drop-shadow-[0_4px_18px_rgba(0,0,0,0.65)]">
-              {heroConfig.subheadline}
+            <p className="mt-7 max-w-2xl text-base sm:text-lg text-white/74 leading-relaxed drop-shadow-[0_4px_18px_rgba(0,0,0,0.65)]">
+              Four Pillars creates premium, high-performance websites for businesses in Dubai and across the UAE — combining strategy, design, development and conversion-focused performance.
             </p>
+
+            <a
+              href="/website-design-dubai/"
+              className="mt-5 inline-flex items-center gap-2 text-xs sm:text-sm text-white/65 hover:text-white transition-colors"
+            >
+              Explore our website design services in Dubai
+              <ArrowRight className="w-3.5 h-3.5" />
+            </a>
 
             <div className="mt-9 flex flex-col sm:flex-row items-start gap-4">
               <button
@@ -70,17 +77,15 @@ export default function Hero({ onExplore, onServices }: HeroProps) {
         </div>
       </div>
 
-      {/* Decorative side note */}
       <div className="hidden xl:block absolute right-12 bottom-24 z-10 max-w-sm border border-white/10 bg-black/20 backdrop-blur-md p-6 text-left shadow-2xl">
         <p className="text-[10px] uppercase tracking-[0.3em] text-white/60 mb-3">
-          Cinematic Presence
+          Web Design · Dubai · UAE
         </p>
         <p className="text-sm leading-relaxed text-white/62">
-          A luminous first impression built with atmosphere, depth, elegant typography, and focused conversion paths.
+          Distinctive website design supported by responsive development, performance, SEO foundations and focused conversion paths.
         </p>
       </div>
 
-      {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center gap-2 animate-bounce">
         <span className="text-[10px] text-white/35 uppercase tracking-widest">Scroll</span>
         <ChevronDown className="w-4 h-4 text-white/35" />
