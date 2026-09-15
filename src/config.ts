@@ -217,7 +217,7 @@ export const projects = [
     category: "Luxury Retail / Fragrance",
     tagline: "Premium Arabian Fragrances",
     url: "https://royaldanperfumes.com/",
-    image: "./project-royal-dan.jpg"
+    image: "./project-royal-dan.png"
   },
   {
     title: "NOCTURE",
