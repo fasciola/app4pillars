@@ -7,16 +7,16 @@ export default function Contact() {
   return (
     <>
       <section id="contact" className="relative isolate overflow-hidden py-32 px-6">
-        {/* Butterfly artwork background */}
+        {/* Abstract glass artwork background */}
         <img
-          src="/hero-butterfly.png"
+          src="/footer-background.png"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-center opacity-75"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center opacity-90"
           loading="lazy"
         />
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_62%_48%,rgba(196,137,78,0.16),transparent_30%),linear-gradient(90deg,rgba(0,0,0,0.96)_0%,rgba(0,0,0,0.82)_35%,rgba(0,0,0,0.48)_68%,rgba(0,0,0,0.85)_100%)]" />
-        <div className="absolute inset-0 -z-10 bg-black/20" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_45%,rgba(45,125,255,0.10),transparent_34%),linear-gradient(90deg,rgba(0,0,0,0.88)_0%,rgba(0,0,0,0.58)_32%,rgba(0,0,0,0.46)_50%,rgba(0,0,0,0.58)_68%,rgba(0,0,0,0.88)_100%)]" />
+        <div className="absolute inset-0 -z-10 bg-black/15" />
 
         <div className="max-w-4xl mx-auto text-center">
           {/* Section Header */}
