@@ -1,6 +1,7 @@
 import { ArrowRight, CheckCircle2, Code2, Gauge, Search, ShoppingBag, Smartphone } from 'lucide-react';
 import Portfolio from '../sections/Portfolio';
 import Contact from '../sections/Contact';
+import HeroBackgroundVideo from '../components/HeroBackgroundVideo';
 
 const services = [
   {
@@ -78,17 +79,7 @@ export default function WebsiteDesignDubai() {
   return (
     <>
       <section className="relative min-h-screen flex items-center overflow-hidden bg-black text-white">
-        <video
-          className="absolute inset-0 h-full w-full object-cover object-center opacity-95"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-hidden="true"
-        >
-          <source src="/contact.mp4" type="video/mp4" />
-        </video>
+        <HeroBackgroundVideo />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.55)_30%,rgba(0,0,0,0.22)_60%,rgba(0,0,0,0.45)_100%)]" />
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black via-black/35 to-transparent" />
 
