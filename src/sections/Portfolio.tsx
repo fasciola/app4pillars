@@ -78,17 +78,17 @@ export default function Portfolio() {
         className={
           reducedMotion
             ? 'relative overflow-hidden'
-            : 'sticky top-0 h-screen min-h-[560px] overflow-hidden flex flex-col justify-start pt-[clamp(2.5rem,6vh,4.5rem)]'
+            : 'sticky top-0 h-[100svh] overflow-hidden flex flex-col justify-start pt-[clamp(1.5rem,4vh,3.25rem)] pb-[clamp(1rem,2.5vh,2rem)]'
         }
       >
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_60%_48%_at_50%_48%,rgba(255,255,255,0.025),transparent_72%)]" />
 
-        <div className="relative z-20 px-6 sm:px-10 lg:px-12 mb-[clamp(1.25rem,3vh,2.5rem)] shrink-0">
+        <div className="relative z-20 px-6 sm:px-10 lg:px-12 mb-[clamp(1rem,2vh,1.75rem)] shrink-0">
           <div className="max-w-4xl">
-            <p className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.28em] text-white/50 mb-3 sm:mb-4">
+            <p className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.28em] text-white/50 mb-2 sm:mb-3">
               Portfolio / Selected Work
             </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light uppercase text-foreground tracking-tight mb-4 sm:mb-5 leading-[0.95]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light uppercase text-foreground tracking-tight mb-3 sm:mb-4 leading-[0.95]">
               Selected Fragments
             </h2>
             <p className="text-dim max-w-2xl leading-relaxed text-sm sm:text-base">
@@ -98,18 +98,22 @@ export default function Portfolio() {
         </div>
 
         <div
-          className={reducedMotion ? 'overflow-x-auto pb-6' : 'overflow-visible'}
+          className={
+            reducedMotion
+              ? 'overflow-x-auto pb-6'
+              : 'relative flex-1 min-h-0 overflow-visible'
+          }
           aria-label="Selected portfolio projects"
         >
           <div
             ref={trackRef}
-            className="relative z-10 flex items-start gap-5 sm:gap-8 lg:gap-12 px-6 sm:px-10 lg:px-12 will-change-transform"
+            className="relative z-10 flex h-full items-start gap-5 sm:gap-8 lg:gap-12 px-6 sm:px-10 lg:px-12 pb-4 will-change-transform"
           >
             {projects.map((project, index) => (
               <figure
                 key={project.title}
-                className={`relative flex-none w-[82vw] sm:w-[62vw] lg:w-[min(45vw,60vh)] max-w-[648px] ${
-                  index % 2 === 1 ? 'mt-[clamp(0.75rem,2.5vh,2rem)]' : ''
+                className={`relative flex-none w-[82vw] sm:w-[62vw] lg:w-[min(43vw,58vh)] max-w-[620px] ${
+                  index % 2 === 1 ? 'mt-[clamp(0.4rem,1.5vh,1rem)]' : ''
                 }`}
               >
                 <a
@@ -119,7 +123,7 @@ export default function Portfolio() {
                   aria-label={`View ${project.title} live website`}
                   className="group block"
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/[0.08] bg-black/10 shadow-[0_18px_42px_rgba(0,0,0,0.24)] transition-all duration-500 group-hover:border-white/20 group-hover:shadow-[0_24px_56px_rgba(0,0,0,0.34)]">
+                  <div className="relative h-[clamp(200px,38vh,420px)] overflow-hidden rounded-2xl border border-white/[0.08] bg-black/10 shadow-[0_18px_42px_rgba(0,0,0,0.24)] transition-all duration-500 group-hover:border-white/20 group-hover:shadow-[0_24px_56px_rgba(0,0,0,0.34)]">
                     <img
                       src={project.image}
                       alt={`${project.title} website design project`}
@@ -133,19 +137,21 @@ export default function Portfolio() {
                     </div>
                   </div>
 
-                  <figcaption className="mt-3 sm:mt-4">
-                    <div className="flex items-center justify-between gap-4">
-                      <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.18em] text-white/50 group-hover:text-white/75 transition-colors duration-300">
+                  <figcaption className="mt-2.5 sm:mt-3 pb-2">
+                    <div className="flex items-start justify-between gap-4">
+                      <span className="max-w-[52%] text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.16em] leading-relaxed text-white/50 group-hover:text-white/75 transition-colors duration-300">
                         {String(index + 1).padStart(2, '0')} — Selected Fragment
                       </span>
-                      <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.18em] text-accent/85">
+                      <span className="max-w-[46%] text-right text-[9px] sm:text-[10px] uppercase tracking-[0.16em] leading-relaxed text-accent/85">
                         {project.category}
                       </span>
                     </div>
-                    <h3 className="mt-2 text-xl sm:text-2xl font-light text-foreground tracking-tight">
+                    <h3 className="mt-1.5 text-lg sm:text-xl lg:text-2xl leading-tight font-light text-foreground tracking-tight break-words">
                       {project.title}
                     </h3>
-                    <p className="mt-1 text-sm text-dim">{project.tagline}</p>
+                    <p className="mt-1 text-xs sm:text-sm leading-snug text-dim break-words">
+                      {project.tagline}
+                    </p>
                   </figcaption>
                 </a>
               </figure>
