@@ -1,10 +1,7 @@
-import { useState } from 'react';
 import { portfolioConfig, projects } from '../config';
 import { ExternalLink, Eye } from 'lucide-react';
 
 export default function Portfolio() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
     <section id="portfolio" className="relative py-32 px-6">
       <div className="max-w-7xl mx-auto">
@@ -27,11 +24,9 @@ export default function Portfolio() {
             return (
               <div
                 key={project.title}
-                className={`group relative overflow-hidden rounded-2xl liquid-glass cursor-pointer ${
+                className={`group relative overflow-hidden rounded-2xl liquid-glass ${
                   isTallCard ? 'md:row-span-2' : ''
                 } ${isRoyalDan ? 'md:col-span-2' : ''}`}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
               >
                 {/* Project Image */}
                 <div className={`relative overflow-hidden ${
@@ -49,8 +44,8 @@ export default function Portfolio() {
                   {/* Dark overlay */}
                   <div className="absolute inset-0 bg-black/50 group-hover:bg-black/70 transition-all duration-500" />
 
-                  {/* Hover content */}
-                  <div className="absolute inset-0 flex flex-col justify-end p-8">
+                  {/* Project content */}
+                  <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8">
                     {/* Category badge */}
                     <span className="relative z-10 inline-block self-start text-[10px] uppercase tracking-widest text-accent bg-accent/10 px-3 py-1 rounded-full mb-3">
                       {project.category}
@@ -66,20 +61,13 @@ export default function Portfolio() {
                       {project.tagline}
                     </p>
 
-                    {/* View button - appears on hover */}
-                    <div
-                      className={`relative z-10 flex items-center gap-3 transition-all duration-500 ${
-                        hoveredIndex === index
-                          ? 'opacity-100 translate-y-0'
-                          : 'opacity-0 translate-y-4'
-                      }`}
-                    >
+                    {/* Live-site link stays visible on desktop and touch devices */}
+                    <div className="relative z-10 flex items-center gap-3">
                       <a
                         href={project.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent/20 text-accent text-xs font-medium hover:bg-accent/30 transition-colors"
-                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent/20 text-accent text-xs font-medium hover:bg-accent/30 transition-all duration-300 hover:-translate-y-0.5"
                       >
                         <Eye className="w-3.5 h-3.5" />
                         View Live Site
@@ -89,7 +77,7 @@ export default function Portfolio() {
                   </div>
 
                   {/* Corner accent */}
-                  <div className="absolute top-4 right-4 w-8 h-8 border border-white/10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute top-4 right-4 w-8 h-8 border border-white/10 rounded-full flex items-center justify-center opacity-60 group-hover:opacity-100 transition-opacity duration-300">
                     <ExternalLink className="w-3 h-3 text-white/50" />
                   </div>
                 </div>
