@@ -5,25 +5,26 @@ export default function Contact() {
   const whatsappUrl = `https://wa.me/${contactConfig.phone.replace(/\+/g, '')}`;
 
   return (
-    <>
-      <section id="contact" className="relative isolate overflow-hidden py-32 px-6">
-        {/* Abstract glass artwork background */}
-        <img
-          src="/footer-background.png"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-center opacity-90"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_45%,rgba(45,125,255,0.10),transparent_34%),linear-gradient(90deg,rgba(0,0,0,0.88)_0%,rgba(0,0,0,0.58)_32%,rgba(0,0,0,0.46)_50%,rgba(0,0,0,0.58)_68%,rgba(0,0,0,0.88)_100%)]" />
-        <div className="absolute inset-0 -z-10 bg-black/15" />
+    <div className="relative isolate overflow-hidden">
+      {/* One continuous artwork layer behind the contact CTA and footer. */}
+      <img
+        src="/footer-background.png"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 -z-30 h-full w-full object-cover object-center opacity-100"
+        loading="lazy"
+        decoding="async"
+      />
+      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_50%_42%,rgba(45,125,255,0.14),transparent_38%),linear-gradient(90deg,rgba(0,0,0,0.54)_0%,rgba(0,0,0,0.27)_30%,rgba(0,0,0,0.14)_50%,rgba(0,0,0,0.27)_70%,rgba(0,0,0,0.54)_100%)]" />
+      <div className="absolute inset-x-0 top-0 h-24 -z-10 bg-gradient-to-b from-black/18 to-transparent" />
 
+      <section id="contact" className="relative py-32 px-6">
         <div className="max-w-4xl mx-auto text-center">
           {/* Section Header */}
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-light text-foreground tracking-tight mb-6">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-light text-foreground tracking-tight mb-6 drop-shadow-[0_6px_22px_rgba(0,0,0,0.45)]">
             {contactConfig.title}
           </h2>
-          <p className="text-dim max-w-xl mx-auto leading-relaxed mb-12">
+          <p className="text-white/70 max-w-xl mx-auto leading-relaxed mb-12 drop-shadow-[0_4px_16px_rgba(0,0,0,0.45)]">
             {contactConfig.subtitle}
           </p>
 
@@ -44,7 +45,7 @@ export default function Contact() {
 
             <a
               href={`mailto:${contactConfig.email}`}
-              className="inline-flex items-center gap-3 px-10 py-5 rounded-full text-dim hover:text-foreground text-base font-medium tracking-wide border border-white/10 hover:border-white/20 hover:scale-105 transition-all duration-300 group"
+              className="inline-flex items-center gap-3 px-10 py-5 rounded-full text-white/70 hover:text-white text-base font-medium tracking-wide border border-white/15 hover:border-white/25 bg-black/[0.08] backdrop-blur-sm hover:scale-105 transition-all duration-300 group"
             >
               <Mail className="w-5 h-5 text-accent" />
               <span>Email Us</span>
@@ -53,12 +54,12 @@ export default function Contact() {
 
           {/* Contact details */}
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-subtle hover:text-foreground transition-colors">
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-white/65 hover:text-white transition-colors">
               <Phone className="w-3.5 h-3.5 text-accent" />
               <span className="font-mono tracking-wide">{contactConfig.phone}</span>
             </a>
-            <span className="hidden sm:block w-px h-4 bg-white/10" />
-            <a href={`mailto:${contactConfig.email}`} className="flex items-center gap-2 text-sm text-subtle hover:text-foreground transition-colors">
+            <span className="hidden sm:block w-px h-4 bg-white/15" />
+            <a href={`mailto:${contactConfig.email}`} className="flex items-center gap-2 text-sm text-white/65 hover:text-white transition-colors">
               <Mail className="w-3.5 h-3.5 text-accent" />
               <span className="font-mono tracking-wide">{contactConfig.email}</span>
             </a>
@@ -66,29 +67,28 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="relative py-12 px-6 border-t border-white/[0.04]">
+      {/* Footer shares the same background so the artwork continues to the bottom edge. */}
+      <footer className="relative py-12 px-6 border-t border-white/[0.08] bg-black/[0.05] backdrop-blur-[1px]">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            {/* Four pillars icon */}
             <div className="flex items-center gap-1">
               {[1, 2, 3, 4].map((i) => (
                 <div
                   key={i}
-                  className="w-0.5 h-4 bg-accent/50 rounded-full"
+                  className="w-0.5 h-4 bg-accent/60 rounded-full"
                 />
               ))}
             </div>
-            <span className="text-xs text-subtle tracking-wider">
+            <span className="text-xs text-white/55 tracking-wider">
               {footerConfig.copyright}
             </span>
           </div>
 
-          <p className="text-[10px] text-muted tracking-widest uppercase">
+          <p className="text-[10px] text-white/45 tracking-widest uppercase">
             {footerConfig.tagline}
           </p>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
