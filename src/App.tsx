@@ -117,6 +117,10 @@ function Navigation({
   }, []);
 
   const scrollTo = useCallback((id: string) => {
+    if (id === 'services') {
+      window.location.assign('/services/');
+      return;
+    }
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -221,6 +225,10 @@ export default function App() {
   }, [bgColor]);
 
   const scrollTo = useCallback((id: string) => {
+    if (id === 'services') {
+      window.location.assign('/services/');
+      return;
+    }
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   }, []);
