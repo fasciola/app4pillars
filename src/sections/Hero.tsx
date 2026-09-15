@@ -1,5 +1,6 @@
 import { heroConfig } from '../config';
 import { ArrowRight, ChevronDown } from 'lucide-react';
+import HeroBackgroundVideo from '../components/HeroBackgroundVideo';
 
 interface HeroProps {
   onExplore: () => void;
@@ -9,18 +10,7 @@ interface HeroProps {
 export default function Hero({ onExplore, onServices }: HeroProps) {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-black text-white">
-      {/* Full-screen hero video from public/contact.mp4 */}
-      <video
-        className="absolute inset-0 h-full w-full object-cover object-center opacity-95"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        aria-hidden="true"
-      >
-        <source src="/contact.mp4" type="video/mp4" />
-      </video>
+      <HeroBackgroundVideo />
 
       {/* Neutral dark gradient for text readability */}
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.74)_25%,rgba(0,0,0,0.28)_52%,rgba(0,0,0,0.18)_72%,rgba(0,0,0,0.70)_100%)]" />
