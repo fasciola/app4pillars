@@ -224,41 +224,41 @@ export const projects = [
     category: "Beauty / Luxury Retail",
     tagline: "Beauty Composed After Dark",
     url: "https://amber.faisalmousa86.workers.dev/",
-    image: "./project-nocture.svg"
+    image: "./project-nocture.png"
   },
   {
     title: "FLUID STUDIO",
     category: "Creative Studio / Digital Design",
     tagline: "Digital Design, Brand Systems & Motion",
     url: "https://creative-studio-web-app.faisalmousa86.workers.dev/",
-    image: "./project-fluid-studio.svg"
+    image: "./project-fluid-studio.png"
   },
   {
     title: "MERIDIAN",
     category: "Corporate / Business Services",
     tagline: "Business Services, End to End",
     url: "https://business-landing-page-brq.pages.dev/",
-    image: "./project-meridian.svg"
+    image: "./project-meridian.png"
   },
   {
     title: "FORM & GRAIN",
     category: "Furniture / Product Design",
     tagline: "An Editorial Catalogue for Modern Furniture",
     url: "https://furniture-catalogue-site.pages.dev/",
-    image: "./project-form-grain.svg"
+    image: "./project-form-grain.png"
   },
   {
     title: "AL-FAKHIM BUSINESSMEN SERVICES",
     category: "Business / Government Services",
     tagline: "Administrative Solutions for the UAE",
     url: "https://alfakhimbusiness.com/",
-    image: "./project-alfakhim.svg"
+    image: "./project-alfakhim.png"
   },
   {
     title: "NOOR",
     category: "Fashion / E-Commerce",
     tagline: "Luxury Abayas & Modest Fashion",
     url: "https://abaya-store.faisal4pillars.workers.dev/",
-    image: "./project-noor-abaya.svg"
+    image: "./project-noor-abaya.png"
   }
 ];
