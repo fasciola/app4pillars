@@ -152,7 +152,7 @@ export const servicesConfig: ServicesConfig = {
 
 export const portfolioConfig: PortfolioConfig = {
   title: "Selected Works",
-  subtitle: "Seven projects that define our craft. Each one a collaboration with visionary brands pushing the boundaries of their industries.",
+  subtitle: "A curated selection of digital experiences across luxury retail, business services, healthcare, automotive, real estate, creative studios, furniture, and fashion.",
 }
 
 export const contactConfig: ContactConfig = {
@@ -218,5 +218,47 @@ export const projects = [
     tagline: "Premium Arabian Fragrances",
     url: "https://royaldanperfumes.com/",
     image: "./project-royal-dan.jpg"
+  },
+  {
+    title: "NOCTURE",
+    category: "Beauty / Luxury Retail",
+    tagline: "Beauty Composed After Dark",
+    url: "https://amber.faisalmousa86.workers.dev/",
+    image: "./project-nocture.svg"
+  },
+  {
+    title: "FLUID STUDIO",
+    category: "Creative Studio / Digital Design",
+    tagline: "Digital Design, Brand Systems & Motion",
+    url: "https://creative-studio-web-app.faisalmousa86.workers.dev/",
+    image: "./project-fluid-studio.svg"
+  },
+  {
+    title: "MERIDIAN",
+    category: "Corporate / Business Services",
+    tagline: "Business Services, End to End",
+    url: "https://business-landing-page-brq.pages.dev/",
+    image: "./project-meridian.svg"
+  },
+  {
+    title: "FORM & GRAIN",
+    category: "Furniture / Product Design",
+    tagline: "An Editorial Catalogue for Modern Furniture",
+    url: "https://furniture-catalogue-site.pages.dev/",
+    image: "./project-form-grain.svg"
+  },
+  {
+    title: "AL-FAKHIM BUSINESSMEN SERVICES",
+    category: "Business / Government Services",
+    tagline: "Administrative Solutions for the UAE",
+    url: "https://alfakhimbusiness.com/",
+    image: "./project-alfakhim.svg"
+  },
+  {
+    title: "NOOR",
+    category: "Fashion / E-Commerce",
+    tagline: "Luxury Abayas & Modest Fashion",
+    url: "https://abaya-store.faisal4pillars.workers.dev/",
+    image: "./project-noor-abaya.svg"
   }
 ];
