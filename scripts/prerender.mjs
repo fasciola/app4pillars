@@ -1,10 +1,30 @@
+// Runs after `vite build` and `build-ssr.mjs`. Injects real, crawlable page
+// content into the shipped HTML (replacing the previous approach of shipping
+// an empty <div id="root"> and only swapping <head> meta tags). Replaces the
+// old scripts/generate-seo-pages.mjs, which only handled meta tags.
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { renderHome, renderWebsiteDesignDubai } from '../dist/server/entry-server.js';
 
 const dist = path.resolve('dist/public');
-const rootIndex = path.join(dist, 'index.html');
-const rootHtml = await readFile(rootIndex, 'utf8');
+const rootIndexPath = path.join(dist, 'index.html');
+const rootHtml = await readFile(rootIndexPath, 'utf8');
 
+const ROOT_DIV = '<div id="root"></div>';
+if (!rootHtml.includes(ROOT_DIV)) {
+  throw new Error(
+    'Expected to find <div id="root"></div> in the built index.html — the Vite output shape may have changed.',
+  );
+}
+
+// 1. Home page: inject the real Hero/Services/PracticeCube/Portfolio/Contact
+// markup into the existing (already-correct) homepage <head> meta.
+const homeHtml = rootHtml.replace(ROOT_DIV, `<div id="root">${renderHome()}</div>`);
+await writeFile(rootIndexPath, homeHtml, 'utf8');
+
+// 2. /website-design-dubai/: same content-injection technique, plus its own
+// title/description/canonical/OG/Twitter/schema so it's a real, independently
+// indexable page rather than a meta-only shell.
 const landing = {
   title: 'Website Design Dubai | Professional Web Design Services | Four Pillars',
   description:
@@ -64,16 +84,13 @@ const landing = {
   },
 };
 
-let html = rootHtml
+let landingHtml = rootHtml
   .replace(/<title>[\s\S]*?<\/title>/i, `<title>${landing.title}</title>`)
   .replace(
     /<meta name="description" content="[^"]*" \/>/i,
     `<meta name="description" content="${landing.description}" />`,
   )
-  .replace(
-    /<link rel="canonical" href="[^"]*" \/>/i,
-    `<link rel="canonical" href="${landing.canonical}" />`,
-  )
+  .replace(/<link rel="canonical" href="[^"]*" \/>/i, `<link rel="canonical" href="${landing.canonical}" />`)
   .replace(/<meta property="og:title" content="[^"]*" \/>/i, `<meta property="og:title" content="${landing.title}" />`)
   .replace(
     /<meta property="og:description" content="[^"]*" \/>/i,
@@ -90,10 +107,11 @@ let html = rootHtml
   .replace(
     /<script id="seo-schema" type="application\/ld\+json">[\s\S]*?<\/script>/i,
     `<script id="seo-schema" type="application/ld+json">${JSON.stringify(landing.schema)}</script>`,
-  );
+  )
+  .replace(ROOT_DIV, `<div id="root">${renderWebsiteDesignDubai()}</div>`);
 
 const routeDir = path.join(dist, 'website-design-dubai');
 await mkdir(routeDir, { recursive: true });
-await writeFile(path.join(routeDir, 'index.html'), html, 'utf8');
+await writeFile(path.join(routeDir, 'index.html'), landingHtml, 'utf8');
 
-console.log('Generated SEO entry: /website-design-dubai/');
+console.log('Prerendered: / (home) and /website-design-dubai/');

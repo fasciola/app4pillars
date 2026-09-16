@@ -116,11 +116,10 @@ function Navigation({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Portfolio/Contact are in-page anchors; Services/Website Design Dubai are
+  // now real <a href> links (see the nav item lists below) so they're
+  // crawlable, not JS-only navigation.
   const scrollTo = useCallback((id: string) => {
-    if (id === 'services') {
-      window.location.assign('/services/');
-      return;
-    }
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -141,18 +140,29 @@ function Navigation({
 
         <nav className="hidden md:flex items-center gap-1" aria-label="Primary navigation">
           {[
-            { label: headerConfig.navServices, id: 'services' },
+            { label: headerConfig.navServices, id: 'services', href: '/services/' },
+            { label: headerConfig.navWebDesign, id: 'website-design-dubai', href: '/website-design-dubai/' },
             { label: headerConfig.navPortfolio, id: 'portfolio' },
             { label: headerConfig.navContact, id: 'contact' },
-          ].map((item) => (
-            <button
-              key={item.id}
-              onClick={() => scrollTo(item.id)}
-              className="px-4 py-1.5 text-xs text-dim hover:text-foreground transition-colors rounded-md hover:bg-white/[0.04]"
-            >
-              {item.label}
-            </button>
-          ))}
+          ].map((item) =>
+            item.href ? (
+              <a
+                key={item.id}
+                href={item.href}
+                className="px-4 py-1.5 text-xs text-dim hover:text-foreground transition-colors rounded-md hover:bg-white/[0.04]"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className="px-4 py-1.5 text-xs text-dim hover:text-foreground transition-colors rounded-md hover:bg-white/[0.04]"
+              >
+                {item.label}
+              </button>
+            ),
+          )}
           <div className="ml-2">
             <BackgroundToggle
               bg={bg}
@@ -183,18 +193,29 @@ function Navigation({
       {mobileOpen && (
         <div className="md:hidden liquid-glass-strong border-t border-white/[0.04] px-6 py-4">
           {[
-            { label: headerConfig.navServices, id: 'services' },
+            { label: headerConfig.navServices, id: 'services', href: '/services/' },
+            { label: headerConfig.navWebDesign, id: 'website-design-dubai', href: '/website-design-dubai/' },
             { label: headerConfig.navPortfolio, id: 'portfolio' },
             { label: headerConfig.navContact, id: 'contact' },
-          ].map((item) => (
-            <button
-              key={item.id}
-              onClick={() => scrollTo(item.id)}
-              className="block w-full text-left px-4 py-3 text-sm text-dim hover:text-foreground transition-colors rounded-lg hover:bg-white/[0.04]"
-            >
-              {item.label}
-            </button>
-          ))}
+          ].map((item) =>
+            item.href ? (
+              <a
+                key={item.id}
+                href={item.href}
+                className="block w-full text-left px-4 py-3 text-sm text-dim hover:text-foreground transition-colors rounded-lg hover:bg-white/[0.04]"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className="block w-full text-left px-4 py-3 text-sm text-dim hover:text-foreground transition-colors rounded-lg hover:bg-white/[0.04]"
+              >
+                {item.label}
+              </button>
+            ),
+          )}
         </div>
       )}
     </header>

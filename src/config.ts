@@ -9,6 +9,7 @@ export interface SiteConfig {
 export interface HeaderConfig {
   brandMark: string
   navServices: string
+  navWebDesign: string
   navPortfolio: string
   navContact: string
   loginLabel: string
@@ -77,6 +78,7 @@ export const siteConfig: SiteConfig = {
 export const headerConfig: HeaderConfig = {
   brandMark: "FOUR PILLARS",
   navServices: "Services",
+  navWebDesign: "Web Design Dubai",
   navPortfolio: "Portfolio",
   navContact: "Contact",
   loginLabel: "Login",
