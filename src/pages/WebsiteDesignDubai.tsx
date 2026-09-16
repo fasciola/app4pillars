@@ -1,6 +1,7 @@
 import { ArrowRight, CheckCircle2, Code2, Gauge, Search, ShoppingBag, Smartphone } from 'lucide-react';
 import Portfolio from '../sections/Portfolio';
 import Contact from '../sections/Contact';
+import PracticeCube from '../sections/PracticeCube';
 import HeroBackgroundVideo from '../components/HeroBackgroundVideo';
 
 const services = [
@@ -200,6 +201,8 @@ export default function WebsiteDesignDubai() {
           </div>
         </div>
       </section>
+
+      <PracticeCube />
 
       <Portfolio />
 

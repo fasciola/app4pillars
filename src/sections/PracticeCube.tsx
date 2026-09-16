@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import type { CSSProperties } from 'react';
 import { projects } from '../config';
+
+const CubeSparks = lazy(() => import('../components/CubeSparks'));
 
 const clamp = (value: number, min: number, max: number) =>
   Math.min(max, Math.max(min, value));
@@ -79,7 +81,6 @@ export default function PracticeCube() {
   ];
 
   const sceneStyle = {
-    '--cube-size': 'min(39.6vw, 64.8vh)',
     width: 'var(--cube-size)',
     height: 'var(--cube-size)',
     perspective: 'calc(var(--cube-size) * 5)',
@@ -99,32 +100,46 @@ export default function PracticeCube() {
         <div className="absolute inset-x-0 top-0 h-px bg-white/[0.04]" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-white/[0.04]" />
 
-        <div className="absolute inset-0 grid place-items-center px-6">
+        <div
+          className="absolute inset-0 grid place-items-center px-6"
+          style={{ '--cube-size': 'min(39.6vw, 64.8vh)' } as CSSProperties}
+        >
           <div
-            className="relative will-change-transform transition-opacity duration-200"
-            style={sceneStyle}
+            className="relative flex items-center justify-center"
+            style={{ width: 'calc(var(--cube-size) * 2)', height: 'calc(var(--cube-size) * 2)' }}
           >
+            <Suspense fallback={null}>
+              <div className="absolute inset-0 -z-10">
+                <CubeSparks />
+              </div>
+            </Suspense>
+
             <div
-              className="relative h-full w-full [transform-style:preserve-3d] will-change-transform"
-              style={{ transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)` }}
+              className="relative z-10 will-change-transform transition-opacity duration-200"
+              style={sceneStyle}
             >
-              {faces.map((face, index) => (
-                <div
-                  key={face.title}
-                  className="absolute inset-0 overflow-hidden border border-white/10 bg-[#0a1412] shadow-[inset_0_0_30px_rgba(0,0,0,0.24),0_28px_70px_rgba(0,0,0,0.30)] [backface-visibility:hidden]"
-                  style={{ transform: faceTransforms[index] }}
-                >
-                  <img
-                    src={face.image}
-                    alt=""
-                    aria-hidden="true"
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div className="absolute inset-0 bg-black/[0.02]" />
-                </div>
-              ))}
+              <div
+                className="relative h-full w-full [transform-style:preserve-3d] will-change-transform"
+                style={{ transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)` }}
+              >
+                {faces.map((face, index) => (
+                  <div
+                    key={face.title}
+                    className="absolute inset-0 overflow-hidden border border-white/10 bg-[#0a1412] shadow-[inset_0_0_30px_rgba(0,0,0,0.24),0_28px_70px_rgba(0,0,0,0.30)] [backface-visibility:hidden]"
+                    style={{ transform: faceTransforms[index] }}
+                  >
+                    <img
+                      src={face.image}
+                      alt=""
+                      aria-hidden="true"
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div className="absolute inset-0 bg-black/[0.02]" />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
