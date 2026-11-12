@@ -9,6 +9,7 @@ import Hero from './sections/Hero';
 import Services from './sections/Services';
 import PracticeCube from './sections/PracticeCube';
 import Portfolio from './sections/Portfolio';
+import BettaGlass from './sections/BettaGlass';
 import Contact from './sections/Contact';
 import WebsiteDesignDubai from './pages/WebsiteDesignDubai';
 import Seo from './components/Seo';
@@ -285,6 +286,7 @@ export default function App() {
             />
             <Services />
             <PracticeCube />
+            <BettaGlass />
             <Portfolio />
             <Contact />
           </>
