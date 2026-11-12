@@ -1,0 +1,457 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>3D Betta Fish</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,500&family=Figtree:wght@400;500;600&family=Syncopate:wght@400;700&display=swap">
+<style>
+/* Layout: one full-height underwater scene; copy held to the left third, the fish swims in the open water to the right (below the copy on phones). Single dark look by choice. */
+:root{
+  color-scheme: dark;
+  --abyss:#030d18;
+  --deep:#07263b;
+  --shallows:#1b6c8c;
+  --foam:#e8f6f8;
+  --mist:#9fc3cf;
+  --line:rgba(190,230,240,.22);
+  --glow:#d7f25a;
+  --display:"Bodoni Moda","Didot","Times New Roman",serif;
+  --label:"Syncopate","Avenir Next","Segoe UI",sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,sans-serif;
+}
+html,body{height:100%}
+body{
+  background:var(--abyss);
+  color:var(--foam);
+  font-family:var(--body);
+  font-size:1rem;
+  line-height:1.55;
+}
+.hero{
+  position:relative;
+  min-height:100%;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  background:
+    radial-gradient(120% 85% at 72% -12%, var(--shallows) 0%, var(--deep) 46%, var(--abyss) 100%);
+}
+.shafts{
+  position:absolute; inset:-20% -10% 0 -10%;
+  background:repeating-linear-gradient(104deg, rgba(180,235,245,0) 0 7%, rgba(180,235,245,.07) 9% 11%, rgba(180,235,245,0) 14% 21%);
+  -webkit-mask-image:linear-gradient(to bottom, #000 0%, transparent 72%);
+          mask-image:linear-gradient(to bottom, #000 0%, transparent 72%);
+  pointer-events:none;
+}
+canvas#sea{position:absolute; inset:0; width:100%; height:100%; display:block; touch-action:pan-y}
+.wrap{
+  position:relative;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:2rem;
+  padding-block:1.5rem 2rem;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  width:100%;
+  max-width:78rem;
+  margin-inline:auto;
+  box-sizing:border-box;
+  pointer-events:none;
+}
+.wrap > *{pointer-events:auto}
+.bar{
+  display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:.5rem 1.5rem;
+  font-family:var(--label); font-size:.68rem; letter-spacing:.34em; text-transform:uppercase; color:var(--mist);
+}
+.bar strong{color:var(--foam); font-weight:700}
+.copy{
+  margin-block:auto;
+  max-width:26rem;
+  display:flex; flex-direction:column; gap:1.1rem;
+}
+.eyebrow{
+  font-family:var(--label); font-size:.72rem; letter-spacing:.55em; text-transform:uppercase; color:var(--glow);
+}
+h1{
+  margin:0;
+  font-family:var(--display); font-weight:500;
+  font-size:clamp(2.5rem, 6vw, 4.5rem);
+  line-height:.98; letter-spacing:-.01em;
+  text-wrap:balance;
+}
+h1 em{font-style:italic; color:var(--mist)}
+.copy p{margin:0; color:var(--mist); max-width:24rem}
+.facts{
+  display:flex; flex-wrap:wrap; gap:.4rem 1.6rem; margin:0; padding:.9rem 0 0;
+  border-top:1px solid var(--line);
+  font-size:.82rem; color:var(--mist);
+}
+.facts div{display:flex; gap:.5rem; align-items:baseline}
+.facts dt{font-family:var(--label); font-size:.58rem; letter-spacing:.28em; text-transform:uppercase}
+.facts dd{margin:0; color:var(--foam); font-variant-numeric:tabular-nums}
+.morphs{display:flex; flex-wrap:wrap; gap:.5rem; align-items:center}
+.morphs button{
+  display:inline-flex; align-items:center; gap:.55rem;
+  font:500 .85rem var(--body); color:var(--foam);
+  background:rgba(3,13,24,.35); border:1px solid var(--line); border-radius:999px;
+  padding:.45rem .9rem .45rem .55rem; cursor:pointer;
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+  transition:border-color .2s, background .2s;
+}
+.morphs button:hover{border-color:var(--mist)}
+.morphs button[aria-pressed="true"]{border-color:var(--foam); background:rgba(232,246,248,.12)}
+.morphs button:focus-visible{outline:2px solid var(--glow); outline-offset:2px}
+.dot{width:1rem; height:1rem; border-radius:50%; background:linear-gradient(135deg, var(--a), var(--b) 60%, var(--c))}
+.hint{font-size:.8rem; color:var(--mist); opacity:.8}
+.fallback{padding:1rem; border:1px solid var(--line); border-radius:.5rem; color:var(--foam); max-width:24rem}
+@media (max-width:760px){
+  .copy{margin-block:0 auto}
+  .hero{min-height:max(100%, 44rem)}
+}
+</style>
+
+<section class="hero">
+  <div class="shafts" aria-hidden="true"></div>
+  <canvas id="sea" aria-label="Animated 3D betta fish with flowing fins"></canvas>
+  <div class="wrap">
+    <div class="bar"><strong>Betta</strong><span>Betta splendens</span></div>
+    <div class="copy">
+      <div class="eyebrow">Ocean</div>
+      <h1>Siamese <em>fighting</em> fish</h1>
+      <p>A halfmoon betta, modelled and animated in real time. The tail opens to a full 180° and every fin ripples with the stroke of the body.</p>
+      <dl class="facts">
+        <div><dt>Length</dt><dd>6–7 cm</dd></div>
+        <div><dt>Water</dt><dd>24–28 °C</dd></div>
+        <div><dt>Origin</dt><dd>Mekong basin</dd></div>
+      </dl>
+      <div class="morphs" role="group" aria-label="Colour morph">
+        <button type="button" id="morph-royal" data-morph="royal" aria-pressed="true"><span class="dot" style="--a:#1433b8;--b:#19b8d8;--c:#d7f25a"></span>Royal blue</button>
+        <button type="button" id="morph-ember" data-morph="ember" aria-pressed="false"><span class="dot" style="--a:#a3122a;--b:#ff5a36;--c:#ffd27a"></span>Ember</button>
+        <button type="button" id="morph-orchid" data-morph="orchid" aria-pressed="false"><span class="dot" style="--a:#5a23b5;--b:#c58cff;--c:#ffd9ef"></span>Orchid</button>
+      </div>
+      <div class="hint" id="hint">Move the pointer, or drag on touch, to turn the fish.</div>
+      <div class="fallback" id="fallback" hidden>This browser could not start WebGL, so the 3D fish cannot be shown here.</div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var canvas = document.getElementById('sea');
+  var hero = canvas.parentElement;
+  var renderer;
+  try{
+    if(!window.THREE) throw new Error('three missing');
+    renderer = new THREE.WebGLRenderer({canvas:canvas, alpha:true, antialias:true});
+  }catch(e){
+    document.getElementById('fallback').hidden = false;
+    document.getElementById('hint').hidden = true;
+    return;
+  }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setClearColor(0x000000, 0);
+
+  var FOV = 35, CAM_Z = 7;
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(FOV, 1, 0.1, 50);
+  camera.position.set(0, 0, CAM_Z);
+
+  /* ---------- palettes ---------- */
+  var MORPHS = {
+    royal:  {deep:'#0a2380', bright:'#1fc4e8', fBase:'#1433b8', fMid:'#19b8d8', fTip:'#d7f25a'},
+    ember:  {deep:'#6d0c18', bright:'#ff7a45', fBase:'#a3122a', fMid:'#ff5a36', fTip:'#ffd27a'},
+    orchid: {deep:'#35176f', bright:'#c58cff', fBase:'#5a23b5', fMid:'#c58cff', fTip:'#ffd9ef'}
+  };
+  var KEYS = ['deep','bright','fBase','fMid','fTip'];
+  var cur = {}, target = {};
+  KEYS.forEach(function(k){ cur[k] = new THREE.Color(MORPHS.royal[k]); target[k] = new THREE.Color(MORPHS.royal[k]); });
+
+  var uTime = {value:0};
+
+  var BEND = [
+    'uniform float uTime;',
+    'float bend(float x){',
+    '  float e = clamp((0.65 - x)/1.5, 0.0, 1.5);',
+    '  e = e*e;',
+    '  return 0.16*e*sin(uTime*2.4 + x*2.2);',
+    '}'
+  ].join('\n');
+
+  /* ---------- body ---------- */
+  function bodyR(s){
+    var a = 0.34*Math.pow(Math.max(Math.sin(Math.PI*Math.pow(s,0.62)),0),0.8);
+    var t = Math.min(Math.max((s-0.6)/0.4,0),1); t = t*t*(3-2*t);
+    var h = Math.min(s/0.28,1); h = h*h*(3-2*h);
+    return a*(0.55+0.45*h) + 0.1*t;
+  }
+  function bodyY(s){
+    var h = Math.min(s/0.3,1); h = h*h*(3-2*h);
+    return -0.02*Math.sin(Math.PI*s) + 0.05*(1-h);
+  }
+  function rAtX(x){ return bodyR(Math.min(Math.max((0.9-x)/1.5,0),1)); }
+
+  function makeBody(){
+    var M = 56, N = 32, pos = [], uv = [], idx = [];
+    for(var i=0;i<=M;i++){
+      var s = i/M, x = 0.9 - 1.5*s, ry = bodyR(s), rz = ry*(0.55-0.2*s);
+      for(var j=0;j<=N;j++){
+        var a = j/N*Math.PI*2;
+        pos.push(x, Math.cos(a)*ry + bodyY(s), Math.sin(a)*rz);
+        uv.push(s, j/N);
+      }
+    }
+    for(i=0;i<M;i++) for(j=0;j<N;j++){
+      var A = i*(N+1)+j, B = A+N+1, C = A+1, D = B+1;
+      idx.push(A,B,C, B,D,C);
+    }
+    var g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos,3));
+    g.setAttribute('uv', new THREE.Float32BufferAttribute(uv,2));
+    g.setIndex(idx);
+    g.computeVertexNormals();
+    var m = new THREE.ShaderMaterial({
+      uniforms:{uTime:uTime, cDeep:{value:cur.deep}, cBright:{value:cur.bright}, cTip:{value:cur.fTip}},
+      vertexShader:[
+        BEND,
+        'varying vec2 vUv; varying vec3 vN; varying vec3 vV;',
+        'void main(){',
+        '  vUv = uv; vec3 p = position; p.z += bend(p.x);',
+        '  vec4 mv = modelViewMatrix*vec4(p,1.0);',
+        '  vN = normalize(normalMatrix*normal); vV = normalize(-mv.xyz);',
+        '  gl_Position = projectionMatrix*mv;',
+        '}'
+      ].join('\n'),
+      fragmentShader:[
+        'uniform vec3 cDeep; uniform vec3 cBright; uniform vec3 cTip;',
+        'varying vec2 vUv; varying vec3 vN; varying vec3 vV;',
+        'void main(){',
+        '  vec3 n = normalize(vN); vec3 L = normalize(vec3(0.35,0.8,0.6));',
+        '  vec2 g = vUv*vec2(38.0,26.0); g.y += step(1.0, mod(g.x,2.0))*0.5;',
+        '  float d = length(fract(g)-0.5);',
+        '  float scale = smoothstep(0.52,0.18,d)*smoothstep(0.2,0.32,vUv.x);',
+        '  float side = abs(sin(vUv.y*6.2832));',
+        '  vec3 col = mix(cDeep, cBright, 0.25 + 0.55*scale*side + 0.2*vUv.x);',
+        '  float ca = cos(vUv.y*6.2832);',
+        '  float head = smoothstep(0.26,0.12,vUv.x);',
+        '  col = mix(col, mix(cDeep,cBright,0.5 - 0.25*ca), head*0.7);',
+        '  float gx = vUv.x - 0.17 - 0.06*side;',
+        '  float gill = smoothstep(0.014,0.0,abs(gx))*smoothstep(0.25,0.7,side);',
+        '  col = mix(col, cDeep*0.55, gill*0.5);',
+        '  float mouth = smoothstep(0.11,0.03,abs(ca - 0.12 + vUv.x*7.0))*smoothstep(0.06,0.04,vUv.x)*smoothstep(0.0,0.012,vUv.x);',
+        '  col = mix(col, vec3(0.02,0.02,0.05), mouth*0.85);',
+        '  float diff = max(dot(n,L),0.0);',
+        '  float fres = pow(1.0 - max(dot(n,vV),0.0), 2.5);',
+        '  float spec = pow(max(dot(reflect(-L,n),vV),0.0), 28.0);',
+        '  col = col*(0.35 + 0.85*diff) + cBright*fres*0.55 + cTip*spec*0.35*(0.4+scale);',
+        '  gl_FragColor = vec4(col,1.0);',
+        '}'
+      ].join('\n')
+    });
+    return new THREE.Mesh(g,m);
+  }
+
+  /* ---------- fins ---------- */
+  function makeFin(o){
+    var NU = o.nu || 26, NV = o.nv || 40, pos = [], uv = [], idx = [];
+    for(var j=0;j<=NV;j++){
+      var v = j/NV, b = o.base(v), a = o.dir(v);
+      var rag = 1 - 0.05*(0.5+0.5*Math.sin(v*61+o.seed)) - 0.04*(0.5+0.5*Math.sin(v*23+o.seed*3));
+      var L = o.len(v)*rag;
+      for(var i=0;i<=NU;i++){
+        var u = i/NU, curl = (o.curl||0)*u*u;
+        pos.push(b[0]+Math.cos(a+curl)*L*u, b[1]+Math.sin(a+curl)*L*u, 0);
+        uv.push(u,v);
+      }
+    }
+    for(j=0;j<NV;j++) for(i=0;i<NU;i++){
+      var A = j*(NU+1)+i, B = A+1, C = A+NU+1, D = C+1;
+      idx.push(A,B,C, B,D,C);
+    }
+    var g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos,3));
+    g.setAttribute('uv', new THREE.Float32BufferAttribute(uv,2));
+    g.setIndex(idx);
+    var m = new THREE.ShaderMaterial({
+      transparent:true, depthWrite:false, side:THREE.DoubleSide,
+      extensions:{derivatives:true},
+      uniforms:{
+        uTime:uTime, uBend:{value:o.bend==null?1:o.bend}, uFlutter:{value:o.flutter||0.12},
+        uSpeed:{value:o.speed||1}, uSeed:{value:o.seed}, uRays:{value:o.rays||18},
+        cBase:{value:cur.fBase}, cMid:{value:cur.fMid}, cTip:{value:cur.fTip}
+      },
+      vertexShader:[
+        BEND,
+        'uniform float uBend; uniform float uFlutter; uniform float uSpeed; uniform float uSeed;',
+        'varying vec2 vUv; varying vec3 vPos;',
+        'void main(){',
+        '  vUv = uv; vec3 p = position; float u = uv.x; float t = uTime*uSpeed;',
+        '  p.z += uBend*bend(p.x);',
+        '  float w = sin(t*2.6 - u*5.0 + uv.y*5.0 + uSeed)*0.6 + sin(t*1.7 - u*8.0 - uv.y*3.0 + uSeed*2.0)*0.3;',
+        '  p.z += w*uFlutter*pow(u,1.4);',
+        '  p.y += sin(t*1.3 + uSeed + u*3.0)*0.03*u;',
+        '  vec4 mv = modelViewMatrix*vec4(p,1.0); vPos = mv.xyz;',
+        '  gl_Position = projectionMatrix*mv;',
+        '}'
+      ].join('\n'),
+      fragmentShader:[
+        'uniform vec3 cBase; uniform vec3 cMid; uniform vec3 cTip; uniform float uSeed; uniform float uRays;',
+        'varying vec2 vUv; varying vec3 vPos;',
+        'void main(){',
+        '  float u = vUv.x; float v = vUv.y;',
+        '  vec3 col = mix(cBase, cMid, smoothstep(0.0,0.6,u));',
+        '  col = mix(col, cTip, smoothstep(0.55,1.0,u)*(0.55+0.45*sin(v*9.0+uSeed)));',
+        '  float ray = pow(0.5+0.5*cos(v*uRays*6.2832), 5.0);',
+        '  vec3 n = normalize(cross(dFdx(vPos), dFdy(vPos)));',
+        '  float l = abs(dot(n, normalize(vec3(0.3,0.6,0.7))));',
+        '  col *= 0.45 + 0.85*l;',
+        '  col += ray*0.22*cMid + pow(l,6.0)*0.22*cTip;',
+        '  float a = mix(0.94,0.5,u)*smoothstep(1.0,0.85,u)*(0.72+0.28*ray);',
+        '  gl_FragColor = vec4(col,a);',
+        '}'
+      ].join('\n')
+    });
+    return new THREE.Mesh(g,m);
+  }
+
+  var PI = Math.PI, deg = PI/180;
+  var fish = new THREE.Group();
+  var body = makeBody(); fish.add(body);
+
+  var tail = makeFin({seed:1.3, rays:26, flutter:0.2, nv:64, nu:32,
+    base:function(v){return [-0.58,(0.5-v)*0.2];},
+    dir:function(v){return PI + (v-0.5)*2.7;},
+    len:function(v){return 1.25*(0.8+0.2*Math.sin(PI*v));}});
+  var dorsal = makeFin({seed:4.1, rays:16, flutter:0.14, curl:0.35,
+    base:function(v){var x=0.02-0.58*v; return [x, rAtX(x)*0.9-0.01];},
+    dir:function(v){return (100+62*v)*deg;},
+    len:function(v){return 0.28+0.68*Math.sin(v*PI*0.55);}});
+  var anal = makeFin({seed:7.7, rays:20, flutter:0.15, curl:-0.3,
+    base:function(v){var x=0.22-0.8*v; return [x, -rAtX(x)*0.9-0.03];},
+    dir:function(v){return -(96+66*v)*deg;},
+    len:function(v){return 0.42+0.62*Math.sin(v*PI*0.55);}});
+  tail.renderOrder = 1; dorsal.renderOrder = 2; anal.renderOrder = 2;
+  fish.add(tail, dorsal, anal);
+
+  [1,-1].forEach(function(sgn){
+    var ventral = makeFin({seed:2.2+sgn, rays:5, flutter:0.1, bend:0, nv:10, curl:-0.5,
+      base:function(){return [0,0];},
+      dir:function(v){return -(104+16*v)*deg;},
+      len:function(v){return 0.82*(0.55+0.45*Math.sin(PI*v));}});
+    ventral.position.set(0.36, -rAtX(0.36)*0.88, sgn*0.04);
+    ventral.rotation.x = sgn*0.3; ventral.renderOrder = 3;
+    var pect = makeFin({seed:5.5+sgn, rays:9, flutter:0.09, bend:0, speed:2.6, nv:16, nu:12,
+      base:function(v){return [0,(0.5-v)*0.06];},
+      dir:function(v){return PI + (v-0.5)*1.3;},
+      len:function(v){return 0.32*(0.7+0.3*Math.sin(PI*v));}});
+    pect.position.set(0.47, -0.05, sgn*0.15);
+    pect.rotation.y = sgn*0.75; pect.renderOrder = 4;
+    fish.add(ventral, pect);
+
+    var iris = new THREE.Mesh(new THREE.SphereGeometry(0.06,24,16), new THREE.MeshBasicMaterial({color:0xe9d9a0}));
+    var ex = 0.655, es = (0.9-ex)/1.5, ey = bodyY(es) + 0.055, er = bodyR(es);
+    var ez = er*(0.55-0.2*es)*Math.sqrt(1 - Math.pow((ey-bodyY(es))/er,2));
+    iris.scale.z = 0.5; iris.position.set(ex, ey, sgn*(ez-0.006));
+    var pupil = new THREE.Mesh(new THREE.SphereGeometry(0.041,24,16), new THREE.MeshBasicMaterial({color:0x05080d}));
+    pupil.scale.z = 0.5; pupil.position.set(ex+0.004, ey, sgn*(ez+0.008));
+    var glint = new THREE.Mesh(new THREE.SphereGeometry(0.009,8,8), new THREE.MeshBasicMaterial({color:0xffffff}));
+    glint.position.set(ex+0.016, ey+0.016, sgn*(ez+0.026));
+    fish.add(iris, pupil, glint);
+  });
+
+  var rig = new THREE.Group(); rig.add(fish); scene.add(rig);
+
+  /* ---------- drifting particles ---------- */
+  var PN = 260, pp = new Float32Array(PN*3);
+  for(var i=0;i<PN;i++){ pp[i*3]=(Math.random()-0.5)*14; pp[i*3+1]=(Math.random()-0.5)*8; pp[i*3+2]=(Math.random()-0.5)*8-1; }
+  var pg = new THREE.BufferGeometry(); pg.setAttribute('position', new THREE.BufferAttribute(pp,3));
+  var motes = new THREE.Points(pg, new THREE.PointsMaterial({color:0xbfe9f2, size:0.035, transparent:true, opacity:0.45, depthWrite:false}));
+  scene.add(motes);
+
+  /* ---------- layout ---------- */
+  var home = new THREE.Vector3(), baseScale = 1;
+  function layout(){
+    var w = hero.clientWidth, h = hero.clientHeight;
+    if(!w || !h) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w/h; camera.updateProjectionMatrix();
+    var visH = 2*CAM_Z*Math.tan(FOV*deg/2), visW = visH*camera.aspect;
+    if(camera.aspect > 1.15){
+      baseScale = Math.min(1.15, visW*0.5/2.9);
+      home.set(visW*0.2 + 0.5*baseScale, -0.05, 0);
+    }else{
+      baseScale = Math.min(1, visW*0.9/2.9);
+      home.set(0.5*baseScale, -visH*0.24, 0);
+    }
+    rig.scale.setScalar(baseScale);
+  }
+  layout();
+  if(window.ResizeObserver) new ResizeObserver(layout).observe(hero); else window.addEventListener('resize', layout);
+
+  /* ---------- interaction ---------- */
+  var px = 0, py = 0, sx = 0, sy = 0;
+  window.addEventListener('pointermove', function(e){
+    var r = hero.getBoundingClientRect();
+    px = ((e.clientX - r.left)/r.width)*2 - 1;
+    py = ((e.clientY - r.top)/r.height)*2 - 1;
+  }, {passive:true});
+
+  var buttons = document.querySelectorAll('[data-morph]');
+  Array.prototype.forEach.call(buttons, function(b){
+    b.addEventListener('click', function(){
+      var m = MORPHS[b.getAttribute('data-morph')];
+      KEYS.forEach(function(k){ target[k].set(m[k]); });
+      Array.prototype.forEach.call(buttons, function(o){ o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+    });
+  });
+
+  // Parent section controls render suspension without discarding the WebGL scene.
+  var playing = true;
+  function setPlaying(next) {
+    next = Boolean(next) && !document.hidden;
+    if (next === playing) return;
+    playing = next;
+    if (playing) { last = performance.now(); requestAnimationFrame(frame); }
+  }
+  window.addEventListener('message', function(event) {
+    if (event.source === window.parent && event.data && event.data.type === 'fourpillars-betta-visibility') {
+      setPlaying(event.data.visible);
+    }
+  });
+  document.addEventListener('visibilitychange', function() {
+    setPlaying(!document.hidden);
+  });
+  var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rate = calm ? 0.3 : 1, last = performance.now(), t = 0;
+  function frame(now){
+    var dt = Math.min((now - last)/1000, 0.05); last = now;
+    t += dt*rate; uTime.value = t;
+    KEYS.forEach(function(k){ cur[k].lerp(target[k], Math.min(1, dt*3)); });
+    sx += (px - sx)*Math.min(1, dt*2.5); sy += (py - sy)*Math.min(1, dt*2.5);
+    rig.position.set(home.x + Math.sin(t*0.45)*0.1*baseScale, home.y + Math.sin(t*0.8)*0.07*baseScale, 0);
+    rig.rotation.y = -0.32 + sx*0.75 + Math.sin(t*0.5)*0.08;
+    rig.rotation.x = sy*0.3;
+    rig.rotation.z = Math.sin(t*0.8 + 1)*0.035;
+    fish.rotation.y = Math.sin(t*2.4 + 1.6)*0.05;
+    var a = pg.attributes.position.array;
+    for(var i=0;i<PN;i++){
+      a[i*3+1] += dt*rate*(0.05 + (i%7)*0.012);
+      a[i*3] += Math.sin(t*0.6 + i)*dt*0.02;
+      if(a[i*3+1] > 4) a[i*3+1] = -4;
+    }
+    pg.attributes.position.needsUpdate = true;
+    renderer.render(scene, camera);
+    if (playing) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+
+<style>
+/* Embedded visual-only mode: preserve the original procedural fish and its shaders. */
+html, body, .hero { width:100%; height:100%; min-height:0; overflow:hidden; }
+.hero { background:radial-gradient(ellipse at 65% 16%,#10445b 0%,#07263b 47%,#030d18 100%); }
+.wrap { display:none !important; }
+canvas#sea { cursor:grab; }
+canvas#sea:active { cursor:grabbing; }
+</style>
+</body></html>
