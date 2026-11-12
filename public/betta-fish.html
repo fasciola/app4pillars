@@ -416,6 +416,11 @@ h1 em{font-style:italic; color:var(--mist)}
     if (event.source === window.parent && event.data && event.data.type === 'fourpillars-betta-visibility') {
       setPlaying(event.data.visible);
     }
+    // The parent forwards pointer movement over the glass panels that cover this frame.
+    if (event.source === window.parent && event.data && event.data.type === 'fourpillars-betta-pointer') {
+      px = Math.max(-1, Math.min(1, Number(event.data.x) || 0));
+      py = Math.max(-1, Math.min(1, Number(event.data.y) || 0));
+    }
   });
   document.addEventListener('visibilitychange', function() {
     setPlaying(!document.hidden);
