@@ -7,7 +7,6 @@ import {
 } from './config';
 import Hero from './sections/Hero';
 import Services from './sections/Services';
-import PracticeCube from './sections/PracticeCube';
 import Portfolio from './sections/Portfolio';
 import BettaGlass from './sections/BettaGlass';
 import Contact from './sections/Contact';
@@ -285,7 +284,6 @@ export default function App() {
               onServices={() => scrollTo('services')}
             />
             <Services />
-            <PracticeCube />
             <BettaGlass />
             <Portfolio />
             <Contact />
