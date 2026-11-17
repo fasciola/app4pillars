@@ -172,11 +172,25 @@ export const showcaseItems = [
     tint: 'from-[#5f6b4c]/50',
   },
   {
+    id: 'fashion-example',
+    title: 'Fashion brand',
+    note: 'Looks step back in depth as the next one arrives.',
+    image: '/fashion/model-blush.webp',
+    tint: 'from-[#c9a3b0]/45',
+  },
+  {
     id: 'fresh-food-example',
     title: 'Fresh food brand',
     note: 'Bowls, citrus and leaves that roll into place.',
     image: '/freshfood/berry-bowl.webp',
     tint: 'from-[#f28c1b]/35',
+  },
+  {
+    id: 'tech-example',
+    title: 'Tech product',
+    note: 'Colour, product and background change together.',
+    image: '/tech/headphones-coral.webp',
+    tint: 'from-[#e9825e]/45',
   },
   {
     id: 'iced-drinks-example',

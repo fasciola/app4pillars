@@ -3,6 +3,8 @@ import SkinRitual from '../../sections/SkinRitual';
 import FreshBowl from '../../sections/FreshBowl';
 import IcedMenu from '../../sections/IcedMenu';
 import BettaGlass from '../../sections/BettaGlass';
+import FashionDepth from '../../sections/FashionDepth';
+import TechColors from '../../sections/TechColors';
 import { showcaseItems } from '../../content/site';
 
 /** Showcase: the interactive concept builds, each on the same dark stage. */
@@ -16,7 +18,7 @@ export default function ShowcasePage() {
             Motion, <span className="text-white/45">made to scroll</span>
           </>
         }
-        intro="Concept sections we design to show what a page can do. Product cut-outs that assemble, scenes that change as you scroll and a real-time 3D fish. Every one is built with real text, so it stays fast and readable by search engines."
+        intro="Concept sections we design to show what a page can do. Product cut-outs that assemble, a fashion depth carousel, a colour-changing product hero, scenes that change as you scroll and a real-time 3D fish. Every one is built with real text, so it stays fast and readable by search engines."
         aside={
           <nav aria-label="Builds on this page">
             <ol className="grid gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-white/55">
@@ -34,7 +36,9 @@ export default function ShowcasePage() {
       />
       <div className="pt-16 sm:pt-20">
         <SkinRitual />
+        <FashionDepth />
         <FreshBowl />
+        <TechColors />
         <IcedMenu />
         <BettaGlass />
       </div>

@@ -1,0 +1,142 @@
+.fashion-showcase {
+  --fx-ink: #1d2230;
+  --fx-mist: #5d6575;
+  --fx-display: "Bodoni Moda", "Didot", "Bodoni MT", "Times New Roman", serif;
+  --fx-body: "Jost", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --fx-ease: cubic-bezier(.22, .8, .24, 1);
+  position: relative;
+  isolation: isolate;
+  padding: 0 clamp(1rem, 4vw, 4rem) clamp(4rem, 8vw, 7.5rem);
+  background: #030508;
+}
+
+.fashion-showcase__caption {
+  max-width: 1320px; margin-inline: auto; display: flex; justify-content: space-between; gap: 1rem; padding-bottom: 1.2rem;
+  font: 500 .62rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .22em; text-transform: uppercase; color: #8a8f80;
+}
+.fashion-showcase__caption h2 { margin: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; }
+.fashion-showcase__note {
+  max-width: 1320px; margin: .9rem auto 0;
+  font: 400 .7rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .06em; color: #6b6f66;
+}
+
+.fashion-showcase__frame {
+  container-type: inline-size;
+  position: relative;
+  max-width: 1320px;
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: clamp(20px, 2.6vw, 34px);
+  color: var(--fx-ink);
+  font-family: var(--fx-body);
+  background: #eef1f7;
+  box-shadow: 0 50px 120px rgba(0, 0, 0, .6);
+}
+.fashion-showcase__frame p,
+.fashion-showcase__frame h3 { margin: 0; }
+.fashion-showcase__frame img { display: block; max-width: none; }
+.fashion-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* Mock nav */
+.fashion-nav {
+  position: absolute; z-index: 5; inset: 0 0 auto; display: flex; align-items: center; gap: 3cqw; padding: 2.4cqw 4cqw;
+  font-size: clamp(.62rem, .95cqw, .78rem); letter-spacing: .14em; text-transform: uppercase; color: var(--fx-mist);
+}
+.fashion-nav__brand { margin-right: auto; font-family: var(--fx-display); font-size: clamp(1rem, 1.9cqw, 1.6rem); letter-spacing: .04em; text-transform: none; color: var(--fx-ink); }
+.fashion-nav__links { display: flex; gap: 2.6cqw; }
+.fashion-nav__bag { width: 1.4cqw; min-width: 16px; height: auto; color: var(--fx-ink); }
+
+/* Copy, left */
+.fashion-copy { position: absolute; z-index: 4; left: 4cqw; top: 26%; width: 25cqw; display: grid; gap: 1.2cqw; }
+.fashion-copy > * { animation: fx-rise .7s var(--fx-ease) both; }
+.fashion-copy > :nth-child(2) { animation-delay: .06s; }
+.fashion-copy > :nth-child(3) { animation-delay: .12s; }
+.fashion-copy > :nth-child(4) { animation-delay: .18s; }
+@keyframes fx-rise { from { opacity: 0; transform: translate3d(0, 1.2rem, 0); } to { opacity: 1; transform: none; } }
+.fashion-copy__eyebrow { font-size: clamp(.6rem, .9cqw, .74rem); font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--fx-mist); }
+.fashion-copy h3 { font-family: var(--fx-display); font-weight: 500; font-size: clamp(1.8rem, 4.6cqw, 4rem); line-height: .98; letter-spacing: -.01em; }
+.fashion-copy__text { font-size: clamp(.82rem, 1.15cqw, 1rem); line-height: 1.6; color: var(--fx-mist); max-width: 21rem; }
+.fashion-copy__count { margin-top: 1.5cqw; font-family: var(--fx-display); font-size: clamp(1.2rem, 2.2cqw, 1.9rem); }
+.fashion-copy__count span { color: #9aa1ae; font-size: .6em; }
+
+/* Models: same box for every look, transformed by depth slot */
+.fashion-stage { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.fashion-model {
+  position: absolute; left: 0; bottom: 5%; height: 86%; width: auto;
+  transform-origin: 50% 100%;
+  transition: transform .9s var(--fx-ease), filter .9s var(--fx-ease), opacity .9s var(--fx-ease);
+  will-change: transform, filter, opacity;
+  filter: drop-shadow(0 1.4cqw 1.2cqw rgba(40, 50, 70, .16));
+}
+/* left edge of the 357/900 image box sits at (slot x - half its width) */
+.fashion-model[data-depth="0"] { z-index: 3; transform: translateX(calc(60cqw - 50%)) scale(1); opacity: 1; }
+.fashion-model[data-depth="1"] { z-index: 2; transform: translateX(calc(44cqw - 50%)) scale(.72); opacity: .92; filter: blur(2.5px) drop-shadow(0 1cqw 1cqw rgba(40, 50, 70, .1)); }
+.fashion-model[data-depth="2"] { z-index: 1; transform: translateX(calc(32cqw - 50%)) scale(.5); opacity: .55; filter: blur(6px); }
+
+/* Product card, right */
+.fashion-card {
+  position: absolute; z-index: 4; right: 4cqw; top: 22%; width: 17cqw; min-width: 150px;
+  display: grid; gap: .9cqw; padding: 1.1cqw;
+  border-radius: 1.4cqw; background: rgba(255, 255, 255, .55); border: 1px solid rgba(255, 255, 255, .8);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1.6cqw 3cqw rgba(40, 50, 70, .12);
+}
+.fashion-card__media { position: relative; aspect-ratio: 1; border-radius: 1cqw; background: rgba(255, 255, 255, .6); overflow: hidden; }
+.fashion-card__media img {
+  position: absolute; inset: 6%; width: 88%; height: 88%; object-fit: contain;
+  opacity: 0; transform: translate3d(0, 6%, 0) scale(.94);
+  transition: opacity .6s ease, transform .8s var(--fx-ease);
+}
+.fashion-card__media img.is-active { opacity: 1; transform: none; transition-delay: .12s; }
+.fashion-card__body { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem; animation: fx-rise .6s var(--fx-ease) both; }
+.fashion-card__name { font-size: clamp(.72rem, 1cqw, .9rem); font-weight: 500; }
+.fashion-card__price { font-size: clamp(.7rem, .95cqw, .85rem); color: var(--fx-mist); white-space: nowrap; }
+.fashion-card__cta {
+  font: inherit; font-size: clamp(.6rem, .85cqw, .74rem); letter-spacing: .16em; text-transform: uppercase; cursor: default;
+  padding: .9cqw; border: 0; border-radius: 999px; color: #fff; background: var(--fx-ink);
+}
+
+/* Controls, bottom right */
+.fashion-controls { position: absolute; z-index: 5; right: 4cqw; bottom: 5%; display: flex; align-items: center; gap: 1.2cqw; }
+.fashion-controls > button {
+  display: grid; place-items: center; width: clamp(34px, 3.4cqw, 46px); aspect-ratio: 1; border-radius: 50%; cursor: pointer;
+  border: 1px solid rgba(29, 34, 48, .25); background: rgba(255, 255, 255, .5); color: var(--fx-ink);
+  transition: background .2s ease, border-color .2s ease;
+}
+.fashion-controls > button:hover { background: #fff; border-color: rgba(29, 34, 48, .5); }
+.fashion-controls svg { width: 45%; height: 45%; }
+.fashion-dots { display: flex; gap: .5rem; }
+.fashion-dots button {
+  width: 8px; height: 8px; padding: 0; border-radius: 999px; border: 0; cursor: pointer; background: rgba(29, 34, 48, .25);
+  transition: width .4s var(--fx-ease), background .3s ease;
+}
+.fashion-dots button[aria-pressed="true"] { width: 26px; background: var(--fx-ink); }
+.fashion-showcase__frame button:focus-visible { outline: 2px solid var(--fx-ink); outline-offset: 3px; }
+
+/* Narrow frame: taller stage, one look in front, copy above and card below */
+@container (max-width: 760px) {
+  .fashion-nav__links { display: none; }
+  .fashion-nav { padding: 5cqw 6cqw; }
+  .fashion-nav__bag { width: 18px; }
+  .fashion-copy { left: 6cqw; right: 6cqw; top: 15cqw; width: auto; gap: 2cqw; }
+  .fashion-copy h3 { font-size: 9cqw; }
+  .fashion-copy__text { font-size: .85rem; max-width: 26rem; }
+  .fashion-copy__count { display: none; }
+  .fashion-model { height: 62%; bottom: 17cqw; }
+  .fashion-model[data-depth="0"] { transform: translateX(calc(64cqw - 50%)) scale(1); }
+  .fashion-model[data-depth="1"] { transform: translateX(calc(36cqw - 50%)) scale(.74); }
+  .fashion-model[data-depth="2"] { transform: translateX(calc(16cqw - 50%)) scale(.52); }
+  .fashion-card { display: none; }
+  .fashion-controls { left: 6cqw; right: 6cqw; bottom: 5cqw; justify-content: space-between; }
+}
+@media (max-width: 820px) {
+  .fashion-showcase { padding: 0 .75rem 4rem; }
+  .fashion-showcase__frame { aspect-ratio: 3 / 4.6; }
+  .fashion-showcase__caption { font-size: .54rem; letter-spacing: .1em; }
+  .fashion-showcase__caption span:last-child { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fashion-model, .fashion-card__media img, .fashion-dots button { transition: none; }
+  .fashion-copy > *, .fashion-card__body { animation: none; }
+}

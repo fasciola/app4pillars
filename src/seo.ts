@@ -214,7 +214,7 @@ export const workSeo: SeoPageConfig = {
 };
 
 const showcaseDescription =
-  'Interactive website concept builds by Four Pillars: scroll-assembled product scenes, scroll-driven menus and a real-time 3D fish, all built with real text.';
+  'Interactive website concept builds by Four Pillars: scroll-assembled product scenes, a fashion depth carousel, a colour-changing tech product hero, scroll-driven menus and a real-time 3D fish.';
 
 export const showcaseSeo: SeoPageConfig = {
   title: 'Interactive Website Showcase | Scroll & 3D Concepts | Four Pillars',

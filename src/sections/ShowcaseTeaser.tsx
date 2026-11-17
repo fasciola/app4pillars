@@ -11,15 +11,15 @@ export default function ShowcaseTeaser() {
           id="showcase-teaser-heading"
           eyebrow="Showcase / Concept builds"
           title="Motion, made to scroll"
-          intro="Interactive concept sections we design to show what a page can do: cut-outs that assemble, scenes that change as you scroll, and a real-time 3D fish."
+          intro="Interactive concept sections we design to show what a page can do: cut-outs that assemble, carousels with depth and colour, scenes that change as you scroll, and a real-time 3D fish."
           action={<ArrowLink href="/showcase/">Open the showcase</ArrowLink>}
         />
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {showcaseItems.map((item, index) => (
             <li key={item.id}>
               <a
                 href={`/showcase/#${item.id}`}
-                className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-2xl border border-white/10 bg-[#0b0b0b] p-6 outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+                className="group relative flex aspect-[4/5] flex-col sm:aspect-[5/4] justify-end overflow-hidden rounded-2xl border border-white/10 bg-[#0b0b0b] p-6 outline-none focus-visible:ring-2 focus-visible:ring-white/60"
               >
                 <div
                   className={`absolute inset-0 bg-gradient-to-b ${item.tint} to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100`}
