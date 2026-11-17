@@ -9,6 +9,9 @@ import Hero from './sections/Hero';
 import Services from './sections/Services';
 import Portfolio from './sections/Portfolio';
 import BettaGlass from './sections/BettaGlass';
+import SkinRitual from './sections/SkinRitual';
+import FreshBowl from './sections/FreshBowl';
+import IcedMenu from './sections/IcedMenu';
 import Contact from './sections/Contact';
 import WebsiteDesignDubai from './pages/WebsiteDesignDubai';
 import Seo from './components/Seo';
@@ -284,8 +287,11 @@ export default function App() {
               onServices={() => scrollTo('services')}
             />
             <Services />
-            <BettaGlass />
+            <SkinRitual />
+            <FreshBowl />
+            <IcedMenu />
             <Portfolio />
+            <BettaGlass />
             <Contact />
           </>
         )}

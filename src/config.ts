@@ -154,7 +154,7 @@ export const servicesConfig: ServicesConfig = {
 
 export const portfolioConfig: PortfolioConfig = {
   title: "Selected Works",
-  subtitle: "A curated selection of digital experiences across luxury retail, business services, healthcare, automotive, real estate, creative studios, furniture, and fashion.",
+  subtitle: "A curated selection of digital experiences across luxury retail, business setup, healthcare, real estate, food, creative studios, furniture, and fashion.",
 }
 
 export const contactConfig: ContactConfig = {
@@ -177,90 +177,83 @@ export const projects = [
     category: "Retail / Lifestyle",
     tagline: "Scented Rituals & Elegance",
     url: "https://boisterous-sable-18bb0c.netlify.app/",
-    image: "/project-olivara.jpg"
-  },
-  {
-    title: "NOIR ATLAS",
-    category: "Brand Concept",
-    tagline: "Cinematic Digital Depth",
-    url: "https://moonlit-maamoul-cfcdd5.netlify.app/",
-    image: "/project-noir-atlas.jpg"
-  },
-  {
-    title: "AURUM AUTOMOTIVE",
-    category: "Automotive",
-    tagline: "Premier Showroom Experience",
-    url: "https://car-care-hub.netlify.app/",
-    image: "/project-carcare.jpg"
+    image: "/portfolio/olivara.webp"
   },
   {
     title: "ELITE ESTATES",
     category: "Real Estate",
     tagline: "High-End Dubai Penthouses",
     url: "https://deft-sundae-510258.netlify.app/",
-    image: "/project-elite-estates.jpg"
+    image: "/portfolio/elite-estates.webp"
   },
   {
     title: "AURUM GEMS",
     category: "Retail / Luxury",
     tagline: "Timeless Fine Jewelry",
     url: "https://papaya-vacherin-fee6b2.netlify.app/",
-    image: "/project-eclat.jpg"
+    image: "/portfolio/eclat.webp"
   },
   {
     title: "ASIM VISION",
     category: "Healthcare / Technology",
     tagline: "Advanced Vision Care Solutions",
     url: "https://asemvision.com/",
-    image: "/project-asim-vision.jpg"
+    image: "/portfolio/asim-vision.webp"
   },
   {
     title: "ROYAL DAN PERFUMES",
     category: "Luxury Retail / Fragrance",
     tagline: "Premium Arabian Fragrances",
     url: "https://royaldanperfumes.com/",
-    image: "/project-royal-dan.png"
-  },
-  {
-    title: "NOCTURE",
-    category: "Beauty / Luxury Retail",
-    tagline: "Beauty Composed After Dark",
-    url: "https://amber.faisalmousa86.workers.dev/",
-    image: "/project-nocture.png"
+    image: "/portfolio/royal-dan.webp"
   },
   {
     title: "FLUID STUDIO",
     category: "Creative Studio / Digital Design",
     tagline: "Digital Design, Brand Systems & Motion",
     url: "https://creative-studio-web-app.faisalmousa86.workers.dev/",
-    image: "/project-fluid-studio.png"
+    image: "/portfolio/fluid-studio.webp"
   },
   {
     title: "MERIDIAN",
     category: "Corporate / Business Services",
     tagline: "Business Services, End to End",
     url: "https://business-landing-page-brq.pages.dev/",
-    image: "/project-meridian.png"
+    image: "/portfolio/meridian.webp"
   },
   {
     title: "FORM & GRAIN",
     category: "Furniture / Product Design",
     tagline: "An Editorial Catalogue for Modern Furniture",
     url: "https://furniture-catalogue-site.pages.dev/",
-    image: "/project-form-grain.png"
-  },
-  {
-    title: "AL-FAKHIM BUSINESSMEN SERVICES",
-    category: "Business / Government Services",
-    tagline: "Administrative Solutions for the UAE",
-    url: "https://alfakhimbusiness.com/",
-    image: "/project-alfakhim.png"
+    image: "/portfolio/form-grain.webp"
   },
   {
     title: "NOOR",
     category: "Fashion / E-Commerce",
     tagline: "Luxury Abayas & Modest Fashion",
     url: "https://abaya-store.faisal4pillars.workers.dev/",
-    image: "/project-noor-abaya.png"
+    image: "/portfolio/noor-abaya.webp"
+  },
+  {
+    title: "CKS BY BUSINESS LAB",
+    category: "Food & Beverage / Business Setup",
+    tagline: "Launch a Cloud Kitchen in the UAE",
+    url: "https://cloudkitchensetup.com/",
+    image: "/portfolio/cloud-kitchen-setup.webp"
+  },
+  {
+    title: "IBRAHIM SETUP",
+    category: "Business Setup / Corporate Services",
+    tagline: "UAE Company Formation, Start to Finish",
+    url: "https://ibrahimsetup.com/",
+    image: "/portfolio/ibrahim-setup.webp"
+  },
+  {
+    title: "ARTUNICA",
+    category: "Creative Workshops / Lifestyle",
+    tagline: "The Art of Making",
+    url: "https://artunica.ae/",
+    image: "/portfolio/artunica.webp"
   }
 ];

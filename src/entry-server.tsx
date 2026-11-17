@@ -7,6 +7,9 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import Hero from './sections/Hero';
 import Services from './sections/Services';
 import PracticeCube from './sections/PracticeCube';
+import SkinRitual from './sections/SkinRitual';
+import FreshBowl from './sections/FreshBowl';
+import IcedMenu from './sections/IcedMenu';
 import Portfolio from './sections/Portfolio';
 import Contact from './sections/Contact';
 import WebsiteDesignDubai from './pages/WebsiteDesignDubai';
@@ -17,6 +20,9 @@ export function renderHome(): string {
       <Hero onExplore={() => {}} onServices={() => {}} />
       <Services />
       <PracticeCube />
+      <SkinRitual />
+      <FreshBowl />
+      <IcedMenu />
       <Portfolio />
       <Contact />
     </>,

@@ -8,11 +8,11 @@ const clamp = (value: number, min: number, max: number) =>
   Math.min(max, Math.max(min, value));
 
 const cubeProjectTitles = [
-  'NOCTURE',
+  'ROYAL DAN PERFUMES',
   'FLUID STUDIO',
   'MERIDIAN',
   'FORM & GRAIN',
-  'AL-FAKHIM BUSINESSMEN SERVICES',
+  'ASIM VISION',
   'NOOR',
 ] as const;
 
