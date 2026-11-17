@@ -1,7 +1,13 @@
 import { contactConfig, footerConfig } from '../config';
+import { footerNav } from '../content/site';
 import { Mail, Phone, ArrowUpRight } from 'lucide-react';
 
-export default function Contact() {
+/**
+ * Closing block shared by every page: the "Start a Project" call to action
+ * and the footer, over one continuous artwork layer. The Contact page passes
+ * showCta={false} because its own content already is the call to action.
+ */
+export default function Contact({ showCta = true }: { showCta?: boolean }) {
   const whatsappUrl = `https://wa.me/${contactConfig.phone.replace(/\+/g, '')}`;
 
   return (
@@ -18,7 +24,8 @@ export default function Contact() {
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_50%_42%,rgba(45,125,255,0.14),transparent_38%),linear-gradient(90deg,rgba(0,0,0,0.54)_0%,rgba(0,0,0,0.27)_30%,rgba(0,0,0,0.14)_50%,rgba(0,0,0,0.27)_70%,rgba(0,0,0,0.54)_100%)]" />
       <div className="absolute inset-x-0 top-0 h-24 -z-10 bg-gradient-to-b from-black/18 to-transparent" />
 
-      <section id="contact" className="relative py-32 px-6">
+      {showCta && (
+      <section id="start-a-project" className="relative py-32 px-6">
         <div className="max-w-4xl mx-auto text-center">
           {/* Section Header */}
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-light text-foreground tracking-tight mb-6 drop-shadow-[0_6px_22px_rgba(0,0,0,0.45)]">
@@ -56,7 +63,7 @@ export default function Contact() {
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-white/65 hover:text-white transition-colors">
               <Phone className="w-3.5 h-3.5 text-accent" />
-              <span className="font-mono tracking-wide">{contactConfig.phone}</span>
+              <span className="font-mono tracking-wide">+971 56 707 4922</span>
             </a>
             <span className="hidden sm:block w-px h-4 bg-white/15" />
             <a href={`mailto:${contactConfig.email}`} className="flex items-center gap-2 text-sm text-white/65 hover:text-white transition-colors">
@@ -66,9 +73,10 @@ export default function Contact() {
           </div>
         </div>
       </section>
+      )}
 
       {/* Footer shares the same background so the artwork continues to the bottom edge. */}
-      <footer className="relative py-12 px-6 border-t border-white/[0.08] bg-black/[0.05] backdrop-blur-[1px]">
+      <footer className={`relative px-6 py-12 ${showCta ? '' : 'pt-40'} border-t border-white/[0.08] bg-black/[0.05] backdrop-blur-[1px]`}>
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1">
@@ -86,13 +94,7 @@ export default function Contact() {
 
           <nav aria-label="Footer">
             <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11px] uppercase tracking-[0.18em] text-white/55">
-              {[
-                { label: 'Home', href: '/' },
-                { label: 'Services', href: '/services/' },
-                { label: 'Website Design Dubai', href: '/website-design-dubai/' },
-                { label: 'Portfolio', href: '/#portfolio' },
-                { label: 'Contact', href: '/#contact' },
-              ].map((link) => (
+              {footerNav.map((link) => (
                 <li key={link.href}>
                   <a href={link.href} className="transition-colors hover:text-white">
                     {link.label}

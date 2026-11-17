@@ -4,12 +4,7 @@
 // old scripts/generate-seo-pages.mjs, which only handled meta tags.
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import {
-  renderHome,
-  renderWebsiteDesignDubai,
-  homeSeo,
-  websiteDesignDubaiSeo,
-} from '../dist/server/entry-server.js';
+import { renderPath, routes, notFoundRoute } from '../dist/server/entry-server.js';
 
 const dist = path.resolve('dist/public');
 const rootIndexPath = path.join(dist, 'index.html');
@@ -46,22 +41,28 @@ function applySeo(html, seo) {
     /<script id="seo-schema" type="application\/ld\+json">[\s\S]*?<\/script>/i,
     `<script id="seo-schema" type="application/ld+json">${JSON.stringify(seo.schema).replace(/</g, '\\u003c')}</script>`,
   );
+  set(
+    /<meta name="robots" content="[^"]*" \/>/i,
+    `<meta name="robots" content="${
+      seo.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+    }" />`,
+  );
   return html;
 }
 
-// 1. Home page: real Hero/Services/showcases/Portfolio/Contact markup.
-const homeHtml = applySeo(rootHtml, homeSeo).replace(ROOT_DIV, `<div id="root">${renderHome()}</div>`);
-await writeFile(rootIndexPath, homeHtml, 'utf8');
+// One static HTML file per page: dist/public/<path>/index.html, plus 404.html
+// (GitHub Pages serves it for any unknown address).
+for (const route of routes) {
+  const html = applySeo(rootHtml, route.seo).replace(ROOT_DIV, `<div id="root">${renderPath(route.path)}</div>`);
+  const dir = path.join(dist, route.path);
+  await mkdir(dir, { recursive: true });
+  await writeFile(path.join(dir, 'index.html'), html, 'utf8');
+}
 
-// 2. /website-design-dubai/: its own head and content, so it is an
-// independently indexable page rather than a meta-only shell.
-const landingHtml = applySeo(rootHtml, websiteDesignDubaiSeo).replace(
+const notFoundHtml = applySeo(rootHtml, notFoundRoute.seo).replace(
   ROOT_DIV,
-  `<div id="root">${renderWebsiteDesignDubai()}</div>`,
+  `<div id="root">${renderPath(notFoundRoute.path)}</div>`,
 );
+await writeFile(path.join(dist, '404.html'), notFoundHtml, 'utf8');
 
-const routeDir = path.join(dist, 'website-design-dubai');
-await mkdir(routeDir, { recursive: true });
-await writeFile(path.join(routeDir, 'index.html'), landingHtml, 'utf8');
-
-console.log('Prerendered: / (home) and /website-design-dubai/');
+console.log(`Prerendered: ${routes.map((route) => route.path).join(' ')} and 404.html`);

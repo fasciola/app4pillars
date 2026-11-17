@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Palette, Compass, Zap, Shield, ShoppingBag, TrendingUp } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { servicesConfig } from '../config';
+import { ArrowLink } from '../components/PageHero';
 
 const iconMap: Record<string, LucideIcon> = {
   Palette,
@@ -21,7 +22,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
  * vertical title. Below the lg breakpoint the panels become a plain stack of
  * cards, each with its own image and text, so nothing depends on hover.
  */
-export default function Services() {
+export default function Services({ linkToPage = false }: { linkToPage?: boolean } = {}) {
   const [active, setActive] = useState(0);
   const items = servicesConfig.items;
 
@@ -49,6 +50,11 @@ export default function Services() {
             <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.22em] text-white/40 sm:text-xs">
               {pad(items.length)} disciplines
             </p>
+            {linkToPage && (
+              <div className="mt-5">
+                <ArrowLink href="/services/">All services in detail</ArrowLink>
+              </div>
+            )}
           </div>
         </header>
 

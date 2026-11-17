@@ -1,38 +1,18 @@
-// Build-time only. Renders the real page content to a static HTML string so
-// crawlers and other non-JS clients get actual markup instead of an empty
-// <div id="root">. The client bundle still hydrates over this on mount via
-// createRoot().render() (not hydrateRoot()), so there is no hydration-mismatch
-// risk — the browser render simply replaces this markup once React loads.
+// Build-time only. Renders each page (header, content, footer) to a static
+// HTML string so crawlers and non-JS clients get real markup and real links
+// instead of an empty <div id="root">. The client still renders over this with
+// createRoot().render(), so there is no hydration-mismatch risk.
 import { renderToStaticMarkup } from 'react-dom/server';
-import Hero from './sections/Hero';
-import Services from './sections/Services';
-import BettaGlass from './sections/BettaGlass';
-import SkinRitual from './sections/SkinRitual';
-import FreshBowl from './sections/FreshBowl';
-import IcedMenu from './sections/IcedMenu';
-import Portfolio from './sections/Portfolio';
-import Contact from './sections/Contact';
-import WebsiteDesignDubai from './pages/WebsiteDesignDubai';
+import { StaticRouter } from 'react-router';
+import App from './App';
+import { notFoundRoute, routes } from './routes';
 
-export { homeSeo, websiteDesignDubaiSeo } from './seo';
+export { routes, notFoundRoute };
 
-// Keep this list in the same order as the homepage in App.tsx, so the static
-// HTML crawlers read is the same page visitors see.
-export function renderHome(): string {
+export function renderPath(path: string): string {
   return renderToStaticMarkup(
-    <>
-      <Hero onExplore={() => {}} onServices={() => {}} />
-      <Services />
-      <SkinRitual />
-      <FreshBowl />
-      <IcedMenu />
-      <Portfolio />
-      <BettaGlass />
-      <Contact />
-    </>,
+    <StaticRouter location={path}>
+      <App />
+    </StaticRouter>,
   );
-}
-
-export function renderWebsiteDesignDubai(): string {
-  return renderToStaticMarkup(<WebsiteDesignDubai />);
 }

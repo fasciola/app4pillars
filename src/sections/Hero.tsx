@@ -2,12 +2,7 @@ import { heroConfig } from '../config';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import HeroBackgroundVideo from '../components/HeroBackgroundVideo';
 
-interface HeroProps {
-  onExplore: () => void;
-  onServices: () => void;
-}
-
-export default function Hero({ onExplore, onServices }: HeroProps) {
+export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-black text-white">
       <HeroBackgroundVideo />
@@ -48,20 +43,20 @@ export default function Hero({ onExplore, onServices }: HeroProps) {
             </a>
 
             <div className="mt-9 flex flex-col sm:flex-row items-start gap-4">
-              <button
-                onClick={onExplore}
+              <a
+                href="/work/"
                 className="liquid-glass-strong px-8 py-4 rounded-full text-foreground text-sm font-medium tracking-wide hover:scale-105 transition-transform duration-300 flex items-center gap-2 group"
               >
                 <span className="relative z-10">{heroConfig.ctaPrimary}</span>
                 <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </a>
 
-              <button
-                onClick={onServices}
+              <a
+                href="/services/"
                 className="px-8 py-4 rounded-full text-sm text-white/78 hover:text-white transition-colors duration-300 border border-white/15 hover:border-white/30 bg-black/10 backdrop-blur-sm"
               >
                 {heroConfig.ctaSecondary}
-              </button>
+              </a>
             </div>
           </div>
         </div>

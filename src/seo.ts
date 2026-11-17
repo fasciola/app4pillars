@@ -1,5 +1,6 @@
 import { servicesConfig } from './config';
 import { websiteDesignDubaiFaqs } from './content/websiteDesignDubaiFaqs';
+import { serviceDetails } from './content/site';
 
 export interface SeoPageConfig {
   title: string;
@@ -8,6 +9,8 @@ export interface SeoPageConfig {
   image: string;
   imageAlt: string;
   schema: Record<string, unknown>;
+  /** Keep this page out of search results (used by the 404 page). */
+  noindex?: boolean;
 }
 
 const organization = {
@@ -130,4 +133,128 @@ export const websiteDesignDubaiSeo: SeoPageConfig = {
       },
     ],
   },
+};
+
+const SITE = 'https://4pillarsweb.online';
+
+/** WebPage + breadcrumb for an inner page, plus any extra graph nodes. */
+function innerPage(
+  path: string,
+  name: string,
+  description: string,
+  type: string,
+  extra: Record<string, unknown>[] = [],
+): Record<string, unknown> {
+  const url = `${SITE}${path}`;
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      organization,
+      {
+        '@type': type,
+        '@id': `${url}#webpage`,
+        url,
+        name,
+        description,
+        isPartOf: { '@id': `${SITE}/#website` },
+        about: { '@id': `${SITE}/#organization` },
+        inLanguage: 'en-AE',
+      },
+      ...extra,
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+          { '@type': 'ListItem', position: 2, name, item: url },
+        ],
+      },
+    ],
+  };
+}
+
+const servicesDescription =
+  'Website design and development, e-commerce, SEO and performance, experience strategy, brand design and conversion optimization for businesses in Dubai and the UAE.';
+
+export const servicesSeo: SeoPageConfig = {
+  title: 'Web Design & Digital Services in Dubai | Four Pillars',
+  description: servicesDescription,
+  canonical: `${SITE}/services/`,
+  image: `${SITE}/og-image.jpg`,
+  imageAlt: 'Four Pillars Web Design services for Dubai and UAE businesses',
+  schema: innerPage('/services/', 'Services', servicesDescription, 'WebPage', [
+    {
+      '@type': 'ItemList',
+      name: 'Four Pillars services',
+      itemListElement: serviceDetails.map((service, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'Service',
+          name: service.title,
+          description: service.body,
+          url: `${SITE}/services/#${service.id}`,
+          provider: { '@id': `${SITE}/#organization` },
+          areaServed: { '@type': 'Country', name: 'United Arab Emirates' },
+        },
+      })),
+    },
+  ]),
+};
+
+const workDescription =
+  'Selected website design projects by Four Pillars for brands in luxury retail, business setup, healthcare, real estate, food, creative studios, furniture and fashion.';
+
+export const workSeo: SeoPageConfig = {
+  title: 'Website Design Portfolio | Dubai & UAE Projects | Four Pillars',
+  description: workDescription,
+  canonical: `${SITE}/work/`,
+  image: `${SITE}/og-website-design-dubai.jpg`,
+  imageAlt: 'A website designed by Four Pillars, shown on a desktop monitor',
+  schema: innerPage('/work/', 'Work', workDescription, 'CollectionPage'),
+};
+
+const showcaseDescription =
+  'Interactive website concept builds by Four Pillars: scroll-assembled product scenes, scroll-driven menus and a real-time 3D fish, all built with real text.';
+
+export const showcaseSeo: SeoPageConfig = {
+  title: 'Interactive Website Showcase | Scroll & 3D Concepts | Four Pillars',
+  description: showcaseDescription,
+  canonical: `${SITE}/showcase/`,
+  image: `${SITE}/og-image.jpg`,
+  imageAlt: 'Four Pillars interactive website concept builds',
+  schema: innerPage('/showcase/', 'Showcase', showcaseDescription, 'CollectionPage'),
+};
+
+const aboutDescription =
+  'Four Pillars is a Dubai web design studio combining strategy, design, development and performance to build websites that look distinctive and win enquiries.';
+
+export const aboutSeo: SeoPageConfig = {
+  title: 'About Four Pillars | Web Design Studio in Dubai',
+  description: aboutDescription,
+  canonical: `${SITE}/about/`,
+  image: `${SITE}/og-image.jpg`,
+  imageAlt: 'About Four Pillars Web Design, Dubai',
+  schema: innerPage('/about/', 'About', aboutDescription, 'AboutPage'),
+};
+
+const contactDescription =
+  'Start a website project with Four Pillars in Dubai. Message us on WhatsApp at +971 56 707 4922 or email faisal.alamir@4pillarsweb.online.';
+
+export const contactSeo: SeoPageConfig = {
+  title: 'Contact Four Pillars | Start a Website Project in Dubai',
+  description: contactDescription,
+  canonical: `${SITE}/contact/`,
+  image: `${SITE}/og-image.jpg`,
+  imageAlt: 'Contact Four Pillars Web Design',
+  schema: innerPage('/contact/', 'Contact', contactDescription, 'ContactPage'),
+};
+
+export const notFoundSeo: SeoPageConfig = {
+  title: 'Page not found | Four Pillars Web Design',
+  description: 'This page does not exist. Explore Four Pillars web design services, work and showcase.',
+  canonical: `${SITE}/`,
+  image: `${SITE}/og-image.jpg`,
+  imageAlt: 'Four Pillars Web Design',
+  noindex: true,
+  schema: { '@context': 'https://schema.org', '@graph': [organization] },
 };

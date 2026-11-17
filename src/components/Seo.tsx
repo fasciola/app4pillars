@@ -17,8 +17,9 @@ export default function Seo({ config }: { config: SeoPageConfig }) {
     document.documentElement.lang = 'en-AE';
 
     ensureMeta('meta[name="description"]', 'name', 'description').content = config.description;
-    ensureMeta('meta[name="robots"]', 'name', 'robots').content =
-      'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+    ensureMeta('meta[name="robots"]', 'name', 'robots').content = config.noindex
+      ? 'noindex, follow'
+      : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 
     let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (!canonical) {

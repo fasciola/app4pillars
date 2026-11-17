@@ -1,9 +1,9 @@
 import { ArrowRight, CheckCircle2, Code2, Gauge, Search, ShoppingBag, Smartphone } from 'lucide-react';
 import Portfolio from '../sections/Portfolio';
-import Contact from '../sections/Contact';
 import PracticeCube from '../sections/PracticeCube';
 import HeroBackgroundVideo from '../components/HeroBackgroundVideo';
 import { websiteDesignDubaiFaqs } from '../content/websiteDesignDubaiFaqs';
+import { processSteps, strengths } from '../content/site';
 
 const services = [
   {
@@ -38,12 +38,6 @@ const services = [
   },
 ];
 
-const process = [
-  ['01', 'Discovery', 'We define your audience, services, positioning, competitors and the actions you want visitors to take.'],
-  ['02', 'Structure & Design', 'We create the page hierarchy, content flow and visual direction before refining the responsive interface.'],
-  ['03', 'Build & Optimize', 'We develop the experience, optimize performance and prepare the technical SEO foundations for launch.'],
-  ['04', 'Launch & Improve', 'We publish, test the live experience and continue refining pages based on business priorities and real visitor behaviour.'],
-];
 
 export default function WebsiteDesignDubai() {
   const scrollTo = (id: string) => {
@@ -77,7 +71,7 @@ export default function WebsiteDesignDubai() {
 
               <div className="mt-9 flex flex-col sm:flex-row items-start gap-4">
                 <button
-                  onClick={() => scrollTo('contact')}
+                  onClick={() => scrollTo('start-a-project')}
                   className="liquid-glass-strong px-8 py-4 rounded-full text-foreground text-sm font-medium tracking-wide hover:scale-105 transition-transform duration-300 flex items-center gap-2 group"
                 >
                   Start Your Website Project
@@ -134,14 +128,7 @@ export default function WebsiteDesignDubai() {
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4">
-            {[
-              'Responsive design for desktop, tablet and mobile',
-              'SEO-friendly information architecture and metadata',
-              'Clear enquiry and WhatsApp conversion paths',
-              'Performance-conscious front-end implementation',
-              'Design systems that stay consistent as the site grows',
-              'Experience across luxury, services, healthcare, retail and e-commerce',
-            ].map((item) => (
+            {strengths.map((item) => (
               <div key={item} className="liquid-glass rounded-xl p-5 flex gap-3 items-start">
                 <CheckCircle2 className="w-4 h-4 text-accent mt-1 shrink-0" />
                 <p className="text-sm text-dim leading-relaxed">{item}</p>
@@ -164,7 +151,7 @@ export default function WebsiteDesignDubai() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {process.map(([number, title, body]) => (
+            {processSteps.map(({ number, title, body }) => (
               <article key={number} className="liquid-glass rounded-2xl p-7 min-h-[260px] flex flex-col">
                 <span className="font-mono text-xs tracking-[0.22em] text-accent">{number}</span>
                 <h3 className="text-2xl font-light text-foreground mt-8 mb-4">{title}</h3>
@@ -199,7 +186,6 @@ export default function WebsiteDesignDubai() {
         </div>
       </section>
 
-      <Contact />
     </>
   );
 }

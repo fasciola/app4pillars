@@ -86,7 +86,7 @@ export const headerConfig: HeaderConfig = {
 }
 
 export const backgroundConfig: BackgroundConfig = {
-  defaultMode: 'moonlit',
+  defaultMode: 'solid',
   defaultSolidColor: '#000000',
   options: [
     { id: 'moonlit', label: "Moonlit" },
