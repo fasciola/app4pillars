@@ -111,9 +111,9 @@ export default function SkinRitual() {
   };
 
   return (
-    <section className="skin-showcase" id="skincare-example" aria-labelledby="skin-heading">
+    <section className="skin-showcase" id="skincare-example" aria-labelledby="skin-example-heading">
       <div className="skin-showcase__caption">
-        <span>Example build / Skincare brand</span>
+        <h2 id="skin-example-heading">Example build / Skincare brand website</h2>
         <span>Layered cut-outs, real text, no flat banner image</span>
       </div>
 
@@ -168,10 +168,10 @@ export default function SkinRitual() {
           </div>
 
           <div className="skin-showcase__copy">
-            <h2 id="skin-heading">
+            <h3 id="skin-heading">
               <span className="skin-showcase__script">Daily</span>
               Skin Ritual
-            </h2>
+            </h3>
             <span className="skin-showcase__rule" aria-hidden="true" />
             <p>
               Healthy skin is not an overnight process. It&rsquo;s a daily ritual. Consistency is the real secret.

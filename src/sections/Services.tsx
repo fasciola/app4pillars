@@ -60,7 +60,7 @@ export default function Services() {
             return (
               <li
                 key={service.title}
-                className="relative min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition-[flex-grow,border-color] duration-700 ease-[cubic-bezier(0.2,0.8,0.2,1)] motion-reduce:transition-none"
+                className="relative min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition-[flex-grow,border-color] duration-700 [transition-timing-function:cubic-bezier(0.2,0.8,0.2,1)] motion-reduce:transition-none"
                 style={{ flexGrow: isActive ? 5.2 : 1, flexBasis: 0 }}
                 onPointerEnter={(event) => {
                   if (event.pointerType !== 'touch') setActive(index);
@@ -168,9 +168,15 @@ export default function Services() {
                   </span>
                 </div>
                 <div className="p-5 sm:p-6">
-                  <h3 className="text-xl font-light uppercase leading-tight tracking-tight text-foreground">
+                  {/* role=heading keeps this a heading for screen readers on small screens
+                      without repeating the six <h3>s of the desktop panels in the HTML. */}
+                  <p
+                    role="heading"
+                    aria-level={3}
+                    className="text-xl font-light uppercase leading-tight tracking-tight text-foreground"
+                  >
                     {service.title}
-                  </h3>
+                  </p>
                   <p className="mt-2 text-sm leading-relaxed text-dim">{service.description}</p>
                 </div>
               </li>

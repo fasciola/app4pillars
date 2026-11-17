@@ -6,7 +6,7 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import Hero from './sections/Hero';
 import Services from './sections/Services';
-import PracticeCube from './sections/PracticeCube';
+import BettaGlass from './sections/BettaGlass';
 import SkinRitual from './sections/SkinRitual';
 import FreshBowl from './sections/FreshBowl';
 import IcedMenu from './sections/IcedMenu';
@@ -14,16 +14,20 @@ import Portfolio from './sections/Portfolio';
 import Contact from './sections/Contact';
 import WebsiteDesignDubai from './pages/WebsiteDesignDubai';
 
+export { homeSeo, websiteDesignDubaiSeo } from './seo';
+
+// Keep this list in the same order as the homepage in App.tsx, so the static
+// HTML crawlers read is the same page visitors see.
 export function renderHome(): string {
   return renderToStaticMarkup(
     <>
       <Hero onExplore={() => {}} onServices={() => {}} />
       <Services />
-      <PracticeCube />
       <SkinRitual />
       <FreshBowl />
       <IcedMenu />
       <Portfolio />
+      <BettaGlass />
       <Contact />
     </>,
   );

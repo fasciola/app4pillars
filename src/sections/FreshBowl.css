@@ -15,6 +15,7 @@
     #030508;
 }
 
+.food-showcase__caption h2 { margin: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; }
 .food-showcase__caption {
   max-width: 1320px; margin-inline: auto; display: flex; justify-content: space-between; gap: 1rem; padding-bottom: 1.2rem;
   font: 500 .62rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .22em; text-transform: uppercase; color: #8a8f80;
@@ -35,7 +36,6 @@
   box-shadow: 0 50px 120px rgba(0, 0, 0, .6);
 }
 .food-showcase__frame p,
-.food-showcase__frame h2,
 .food-showcase__frame h3,
 .food-showcase__frame ul { margin: 0; }
 .food-showcase__frame ul { padding: 0; list-style: none; }
@@ -50,7 +50,7 @@
 }
 
 .food-eyebrow { font-size: clamp(.66rem, 1.05cqw, .78rem); font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--food-orange); }
-.food-showcase__frame h2 { font-size: clamp(2.4rem, 5.6cqw, 4.6rem); font-weight: 600; line-height: 1.02; letter-spacing: -.02em; }
+.food-showcase__frame .food-hero__title { font-size: clamp(2.4rem, 5.6cqw, 4.6rem); font-weight: 600; line-height: 1.02; letter-spacing: -.02em; }
 .food-showcase__frame h3 { font-size: clamp(1.6rem, 3cqw, 2.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -.015em; text-wrap: balance; }
 .food-band p:not(.food-eyebrow) { font-size: clamp(.95rem, 1.3cqw, 1.08rem); line-height: 1.7; color: var(--food-mist); }
 

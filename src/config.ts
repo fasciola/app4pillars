@@ -166,7 +166,7 @@ export const contactConfig: ContactConfig = {
 }
 
 export const footerConfig: FooterConfig = {
-  copyright: "© 2025 Four Pillars Web Design. All rights reserved.",
+  copyright: `© ${new Date().getFullYear()} Four Pillars Web Design. All rights reserved.`,
   tagline: "Crafted with precision. Built to perform.",
 }
 

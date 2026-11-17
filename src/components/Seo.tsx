@@ -36,7 +36,9 @@ export default function Seo({ config }: { config: SeoPageConfig }) {
       'og:description': config.description,
       'og:url': config.canonical,
       'og:image': config.image,
-      'og:image:alt': 'Four Pillars Web Design digital experience',
+      'og:image:alt': config.imageAlt,
+      'og:image:width': '1200',
+      'og:image:height': '630',
     };
 
     Object.entries(ogValues).forEach(([property, content]) => {

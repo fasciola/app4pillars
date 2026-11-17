@@ -11,6 +11,7 @@
   background: #030508;
 }
 
+.iced-showcase__caption h2 { margin: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; }
 .iced-showcase__caption {
   max-width: 1320px; margin-inline: auto; display: flex; justify-content: space-between; gap: 1rem; padding-bottom: 1.2rem;
   font: 500 .62rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .22em; text-transform: uppercase; color: #8a8f80;
@@ -30,7 +31,7 @@
   box-shadow: 0 50px 120px rgba(0, 0, 0, .6);
 }
 .iced-showcase__frame p,
-.iced-showcase__frame h2 { margin: 0; }
+.iced-showcase__frame h3 { margin: 0; }
 .iced-showcase__frame img { display: block; max-width: none; }
 
 /* Background glow per drink */
@@ -88,7 +89,7 @@
 .iced-copy > :nth-child(2) { animation-delay: .1s; }
 .iced-copy > :nth-child(3) { animation-delay: .2s; }
 @keyframes iced-rise { from { opacity: 0; transform: translate3d(0, 1.6rem, 0); } to { opacity: 1; transform: none; } }
-.iced-copy h2 { font-family: var(--iced-display); font-weight: 500; font-size: clamp(1.7rem, 3.2cqw, 2.7rem); line-height: 1.1; letter-spacing: -.01em; white-space: nowrap; }
+.iced-copy h3 { font-family: var(--iced-display); font-weight: 500; font-size: clamp(1.7rem, 3.2cqw, 2.7rem); line-height: 1.1; letter-spacing: -.01em; white-space: nowrap; }
 .iced-copy p { max-width: 24rem; font-size: clamp(.9rem, 1.2cqw, 1.02rem); line-height: 1.7; color: var(--iced-mist); }
 .iced-cta {
   font: inherit; font-size: .8rem; font-weight: 500; letter-spacing: .06em; cursor: pointer; white-space: nowrap;

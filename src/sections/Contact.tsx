@@ -8,7 +8,7 @@ export default function Contact() {
     <div className="relative isolate overflow-hidden">
       {/* One continuous artwork layer behind the contact CTA and footer. */}
       <img
-        src="/footer-background.png"
+        src="/footer-background.webp"
         alt=""
         aria-hidden="true"
         className="absolute inset-0 -z-30 h-full w-full object-cover object-center opacity-100"
@@ -69,7 +69,7 @@ export default function Contact() {
 
       {/* Footer shares the same background so the artwork continues to the bottom edge. */}
       <footer className="relative py-12 px-6 border-t border-white/[0.08] bg-black/[0.05] backdrop-blur-[1px]">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1">
               {[1, 2, 3, 4].map((i) => (
@@ -83,6 +83,24 @@ export default function Contact() {
               {footerConfig.copyright}
             </span>
           </div>
+
+          <nav aria-label="Footer">
+            <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[11px] uppercase tracking-[0.18em] text-white/55">
+              {[
+                { label: 'Home', href: '/' },
+                { label: 'Services', href: '/services/' },
+                { label: 'Website Design Dubai', href: '/website-design-dubai/' },
+                { label: 'Portfolio', href: '/#portfolio' },
+                { label: 'Contact', href: '/#contact' },
+              ].map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} className="transition-colors hover:text-white">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
           <p className="text-[10px] text-white/45 tracking-widest uppercase">
             {footerConfig.tagline}

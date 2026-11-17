@@ -154,12 +154,12 @@ export default function IcedMenu() {
     <section
       className="iced-showcase"
       id="iced-drinks-example"
-      aria-labelledby="iced-heading"
+      aria-labelledby="iced-example-heading"
     >
       <div className="iced-pin" ref={pinRef}>
         <div className="iced-pin__sticky" ref={stickyRef}>
           <div className="iced-showcase__caption">
-            <span>Example build / Iced drinks brand</span>
+            <h2 id="iced-example-heading">Example build / Iced drinks brand website</h2>
             <span>Scroll to change the drink</span>
           </div>
 
@@ -239,11 +239,11 @@ export default function IcedMenu() {
             <div className="iced-body">
               {/* key forces the copy to re-mount, which replays its entrance */}
               <div className="iced-copy" key={drink.id} aria-live="polite">
-                <h2 id="iced-heading">
+                <h3 id="iced-heading">
                   {drink.title[0]}
                   <br />
                   {drink.title[1]}
-                </h2>
+                </h3>
                 <p>{drink.text}</p>
                 <button
                   type="button"

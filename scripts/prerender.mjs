@@ -4,7 +4,12 @@
 // old scripts/generate-seo-pages.mjs, which only handled meta tags.
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { renderHome, renderWebsiteDesignDubai } from '../dist/server/entry-server.js';
+import {
+  renderHome,
+  renderWebsiteDesignDubai,
+  homeSeo,
+  websiteDesignDubaiSeo,
+} from '../dist/server/entry-server.js';
 
 const dist = path.resolve('dist/public');
 const rootIndexPath = path.join(dist, 'index.html');
@@ -17,98 +22,43 @@ if (!rootHtml.includes(ROOT_DIV)) {
   );
 }
 
-// 1. Home page: inject the real Hero/Services/PracticeCube/Portfolio/Contact
-// markup into the existing (already-correct) homepage <head> meta.
-const homeHtml = rootHtml.replace(ROOT_DIV, `<div id="root">${renderHome()}</div>`);
+// Writes one page's title, description, canonical, Open Graph, Twitter and
+// JSON-LD into the shipped <head>. The values come from src/seo.ts, the same
+// file the client uses at runtime, so the static and live heads always agree.
+const attr = (value) => String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+function applySeo(html, seo) {
+  const set = (pattern, replacement) => {
+    if (!pattern.test(html)) throw new Error(`prerender: no match for ${pattern}`);
+    html = html.replace(pattern, replacement);
+  };
+  set(/<title>[\s\S]*?<\/title>/i, `<title>${seo.title}</title>`);
+  set(/<meta name="description" content="[^"]*" \/>/i, `<meta name="description" content="${attr(seo.description)}" />`);
+  set(/<link rel="canonical" href="[^"]*" \/>/i, `<link rel="canonical" href="${seo.canonical}" />`);
+  set(/<meta property="og:title" content="[^"]*" \/>/i, `<meta property="og:title" content="${attr(seo.title)}" />`);
+  set(/<meta property="og:description" content="[^"]*" \/>/i, `<meta property="og:description" content="${attr(seo.description)}" />`);
+  set(/<meta property="og:url" content="[^"]*" \/>/i, `<meta property="og:url" content="${seo.canonical}" />`);
+  set(/<meta property="og:image" content="[^"]*" \/>/i, `<meta property="og:image" content="${seo.image}" />`);
+  set(/<meta property="og:image:alt" content="[^"]*" \/>/i, `<meta property="og:image:alt" content="${attr(seo.imageAlt)}" />`);
+  set(/<meta name="twitter:title" content="[^"]*" \/>/i, `<meta name="twitter:title" content="${attr(seo.title)}" />`);
+  set(/<meta name="twitter:description" content="[^"]*" \/>/i, `<meta name="twitter:description" content="${attr(seo.description)}" />`);
+  set(/<meta name="twitter:image" content="[^"]*" \/>/i, `<meta name="twitter:image" content="${seo.image}" />`);
+  set(
+    /<script id="seo-schema" type="application\/ld\+json">[\s\S]*?<\/script>/i,
+    `<script id="seo-schema" type="application/ld+json">${JSON.stringify(seo.schema).replace(/</g, '\\u003c')}</script>`,
+  );
+  return html;
+}
+
+// 1. Home page: real Hero/Services/showcases/Portfolio/Contact markup.
+const homeHtml = applySeo(rootHtml, homeSeo).replace(ROOT_DIV, `<div id="root">${renderHome()}</div>`);
 await writeFile(rootIndexPath, homeHtml, 'utf8');
 
-// 2. /website-design-dubai/: same content-injection technique, plus its own
-// title/description/canonical/OG/Twitter/schema so it's a real, independently
-// indexable page rather than a meta-only shell.
-const landing = {
-  title: 'Website Design Dubai | Professional Web Design Services | Four Pillars',
-  description:
-    'Website design in Dubai for ambitious UAE businesses. Four Pillars creates premium, responsive, SEO-ready websites, e-commerce stores and conversion-focused digital experiences.',
-  canonical: 'https://4pillarsweb.online/website-design-dubai/',
-  image: 'https://4pillarsweb.online/project-fluid-studio.png',
-  schema: {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': ['Organization', 'ProfessionalService'],
-        '@id': 'https://4pillarsweb.online/#organization',
-        name: 'Four Pillars Web Design',
-        url: 'https://4pillarsweb.online/',
-        logo: 'https://4pillarsweb.online/logo.png',
-        email: 'faisal.alamir@4pillarsweb.online',
-        telephone: '+971567074922',
-        areaServed: [
-          { '@type': 'City', name: 'Dubai' },
-          { '@type': 'Country', name: 'United Arab Emirates' },
-        ],
-      },
-      {
-        '@type': 'WebPage',
-        '@id': 'https://4pillarsweb.online/website-design-dubai/#webpage',
-        url: 'https://4pillarsweb.online/website-design-dubai/',
-        name: 'Website Design Dubai | Four Pillars',
-        description: 'Professional website design services for businesses in Dubai and across the UAE.',
-        about: { '@id': 'https://4pillarsweb.online/#organization' },
-        inLanguage: 'en-AE',
-      },
-      {
-        '@type': 'Service',
-        '@id': 'https://4pillarsweb.online/website-design-dubai/#service',
-        name: 'Website Design Dubai',
-        serviceType: 'Website design and web development',
-        provider: { '@id': 'https://4pillarsweb.online/#organization' },
-        areaServed: [
-          { '@type': 'City', name: 'Dubai' },
-          { '@type': 'Country', name: 'United Arab Emirates' },
-        ],
-        url: 'https://4pillarsweb.online/website-design-dubai/',
-      },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://4pillarsweb.online/' },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'Website Design Dubai',
-            item: 'https://4pillarsweb.online/website-design-dubai/',
-          },
-        ],
-      },
-    ],
-  },
-};
-
-let landingHtml = rootHtml
-  .replace(/<title>[\s\S]*?<\/title>/i, `<title>${landing.title}</title>`)
-  .replace(
-    /<meta name="description" content="[^"]*" \/>/i,
-    `<meta name="description" content="${landing.description}" />`,
-  )
-  .replace(/<link rel="canonical" href="[^"]*" \/>/i, `<link rel="canonical" href="${landing.canonical}" />`)
-  .replace(/<meta property="og:title" content="[^"]*" \/>/i, `<meta property="og:title" content="${landing.title}" />`)
-  .replace(
-    /<meta property="og:description" content="[^"]*" \/>/i,
-    `<meta property="og:description" content="${landing.description}" />`,
-  )
-  .replace(/<meta property="og:url" content="[^"]*" \/>/i, `<meta property="og:url" content="${landing.canonical}" />`)
-  .replace(/<meta property="og:image" content="[^"]*" \/>/i, `<meta property="og:image" content="${landing.image}" />`)
-  .replace(/<meta name="twitter:title" content="[^"]*" \/>/i, `<meta name="twitter:title" content="${landing.title}" />`)
-  .replace(
-    /<meta name="twitter:description" content="[^"]*" \/>/i,
-    `<meta name="twitter:description" content="${landing.description}" />`,
-  )
-  .replace(/<meta name="twitter:image" content="[^"]*" \/>/i, `<meta name="twitter:image" content="${landing.image}" />`)
-  .replace(
-    /<script id="seo-schema" type="application\/ld\+json">[\s\S]*?<\/script>/i,
-    `<script id="seo-schema" type="application/ld+json">${JSON.stringify(landing.schema)}</script>`,
-  )
-  .replace(ROOT_DIV, `<div id="root">${renderWebsiteDesignDubai()}</div>`);
+// 2. /website-design-dubai/: its own head and content, so it is an
+// independently indexable page rather than a meta-only shell.
+const landingHtml = applySeo(rootHtml, websiteDesignDubaiSeo).replace(
+  ROOT_DIV,
+  `<div id="root">${renderWebsiteDesignDubai()}</div>`,
+);
 
 const routeDir = path.join(dist, 'website-design-dubai');
 await mkdir(routeDir, { recursive: true });

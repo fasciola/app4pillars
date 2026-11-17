@@ -61,9 +61,9 @@ export default function FreshBowl() {
   };
 
   return (
-    <section className="food-showcase" id="fresh-food-example" aria-labelledby="food-heading">
+    <section className="food-showcase" id="fresh-food-example" aria-labelledby="food-example-heading">
       <div className="food-showcase__caption">
-        <span>Example build / Fresh food brand</span>
+        <h2 id="food-example-heading">Example build / Fresh food brand website</h2>
         <span>Four cut-outs, two sections, assembled on scroll</span>
       </div>
 
@@ -83,11 +83,11 @@ export default function FreshBowl() {
 
           <div className="food-hero__copy food-rise">
             <p className="food-eyebrow">Fresh bowls, made daily</p>
-            <h2 id="food-heading">
+            <h3 id="food-heading" className="food-hero__title">
               Feel good.
               <br />
               Eat fresh.
-            </h2>
+            </h3>
             <p>
               Seasonal fruit, crisp greens and nothing you can&rsquo;t pronounce. Bowls built to order and ready in
               minutes.

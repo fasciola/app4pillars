@@ -17,6 +17,7 @@
     #030508;
 }
 
+.skin-showcase__caption h2 { margin: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; }
 .skin-showcase__caption {
   max-width: 1320px; margin-inline: auto; display: flex; justify-content: space-between; gap: 1rem; padding-bottom: 1.2rem;
   font: 500 .62rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .22em; text-transform: uppercase; color: #8a8f80;
@@ -49,7 +50,7 @@
   box-shadow: 0 50px 120px rgba(0, 0, 0, .6), inset 0 1px rgba(255, 255, 255, .8);
 }
 .skin-showcase__frame p,
-.skin-showcase__frame h2,
+.skin-showcase__frame h3,
 .skin-showcase__frame ul { margin: 0; }
 
 .skin-showcase__top,
@@ -150,7 +151,7 @@
   justify-self: end; max-width: 19rem; display: grid; justify-items: start; gap: clamp(.8rem, 1.6cqw, 1.3rem);
   padding-bottom: clamp(1rem, 4cqw, 3.5rem);
 }
-.skin-showcase__copy h2 {
+.skin-showcase__copy h3 {
   font-family: var(--skin-display); font-weight: 500; font-size: clamp(1.9rem, 3.5cqw, 2.9rem); line-height: 1.05;
   letter-spacing: .06em; text-transform: uppercase; color: var(--skin-ink);
 }
