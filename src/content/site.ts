@@ -207,3 +207,39 @@ export const showcaseItems = [
     tint: 'from-[#2d7dff]/35',
   },
 ];
+
+/** Full-page homepage concepts shown near the top of the homepage. */
+export const conceptDesigns = [
+  {
+    id: 'ember-oak',
+    name: 'Ember & Oak',
+    industry: 'Specialty coffee · Shop and cafés',
+    domain: 'emberandoak.coffee',
+    thumb: '/concepts/ember-oak-sm.webp',
+    image: '/concepts/ember-oak.webp',
+  },
+  {
+    id: 'aurelune-skin',
+    name: 'Aurelune Skin',
+    industry: 'Beauty · E-commerce storefront',
+    domain: 'aureluneskin.com',
+    thumb: '/concepts/aurelune-skin-sm.webp',
+    image: '/concepts/aurelune-skin.webp',
+  },
+  {
+    id: 'northvale-advisory',
+    name: 'Northvale Advisory',
+    industry: 'Consulting · Corporate website',
+    domain: 'northvale.advisory',
+    thumb: '/concepts/northvale-advisory-sm.webp',
+    image: '/concepts/northvale-advisory.webp',
+  },
+  {
+    id: 'neon-burrow',
+    name: 'Neon Burrow',
+    industry: 'Collectibles · Character brand',
+    domain: 'neonburrow.shop',
+    thumb: '/concepts/neon-burrow-sm.webp',
+    image: '/concepts/neon-burrow.webp',
+  },
+];

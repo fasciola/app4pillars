@@ -158,3 +158,13 @@ body {
   transition: opacity 0.15s;
 }
 .wiki-link:hover { opacity: 0.7; }
+
+/* Homepage concept gallery: hovering a card scrolls the page image inside its
+   window from top to bottom. 100cqh is the window height. */
+.concept-window { container-type: size; }
+.concept-page { transform: translateY(0); transition: transform 1.2s cubic-bezier(.4, 0, .2, 1); will-change: transform; }
+.group:hover .concept-page,
+.group:focus-visible .concept-page { transform: translateY(calc(-100% + 100cqh)); transition-duration: 6s; transition-timing-function: linear; }
+@media (prefers-reduced-motion: reduce) {
+  .concept-page, .group:hover .concept-page, .group:focus-visible .concept-page { transform: none; transition: none; }
+}

@@ -3,6 +3,8 @@ import Services from '../../sections/Services';
 import Portfolio from '../../sections/Portfolio';
 import ShowcaseTeaser from '../../sections/ShowcaseTeaser';
 import ProcessSteps from '../../sections/ProcessSteps';
+import ConceptGallery from '../../sections/ConceptGallery';
+import DigitalMenu from '../../sections/DigitalMenu';
 import { pillars } from '../../content/site';
 
 /** Homepage: a short tour of the site, each block leading to its own page. */
@@ -10,6 +12,8 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <ConceptGallery />
+      <DigitalMenu />
 
       {/* Positioning statement + the four pillars */}
       <section aria-labelledby="pillars-heading" className="relative border-b border-white/[0.06] px-6 py-24 sm:px-10 sm:py-28 lg:px-12">
