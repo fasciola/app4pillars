@@ -14,7 +14,7 @@ export default function AboutPage() {
             A web design studio <span className="text-white/45">in Dubai, built on four pillars</span>
           </>
         }
-        intro="Four Pillars creates premium, high-performance websites for businesses in Dubai and across the UAE, combining strategy, design, development and conversion-focused performance in every project."
+        intro="Four Pillars is a web design brand of Business Lab. We create premium, high-performance websites for businesses in Dubai and across the UAE, combining strategy, design, development and conversion-focused performance in every project."
       />
 
       <section aria-labelledby="pillars-heading" className="px-6 py-24 sm:px-10 sm:py-28 lg:px-12">

@@ -20,7 +20,8 @@ const organization = {
   url: 'https://4pillarsweb.online/',
   logo: 'https://4pillarsweb.online/logo.png',
   image: 'https://4pillarsweb.online/og-image.jpg',
-  email: 'faisal.alamir@4pillarsweb.online',
+  email: 'info@fourpillarsweb.com',
+  parentOrganization: { '@type': 'Organization', name: 'Business Lab' },
   telephone: '+971567074922',
   description:
     'Website design and digital experience services for businesses in Dubai and across the United Arab Emirates.',
@@ -226,7 +227,7 @@ export const showcaseSeo: SeoPageConfig = {
 };
 
 const aboutDescription =
-  'Four Pillars is a Dubai web design studio combining strategy, design, development and performance to build websites that look distinctive and win enquiries.';
+  'Four Pillars, a brand of Business Lab, is a Dubai web design studio combining strategy, design, development and performance to build websites that look distinctive and win enquiries.';
 
 export const aboutSeo: SeoPageConfig = {
   title: 'About Four Pillars | Web Design Studio in Dubai',
@@ -238,7 +239,7 @@ export const aboutSeo: SeoPageConfig = {
 };
 
 const contactDescription =
-  'Start a website project with Four Pillars in Dubai. Message us on WhatsApp at +971 56 707 4922 or email faisal.alamir@4pillarsweb.online.';
+  'Start a website project with Four Pillars in Dubai. Message us on WhatsApp at +971 56 707 4922 or email info@fourpillarsweb.com.';
 
 export const contactSeo: SeoPageConfig = {
   title: 'Contact Four Pillars | Start a Website Project in Dubai',

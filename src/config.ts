@@ -67,6 +67,8 @@ export interface ContactConfig {
 export interface FooterConfig {
   copyright: string
   tagline: string
+  /** Shown under the copyright line in the footer. */
+  parentBrand: string
 }
 
 export const siteConfig: SiteConfig = {
@@ -160,7 +162,7 @@ export const portfolioConfig: PortfolioConfig = {
 export const contactConfig: ContactConfig = {
   title: "Start a Project",
   subtitle: "Ready to elevate your digital presence? Let's discuss how Four Pillars can transform your brand's online experience.",
-  email: "faisal.alamir@4pillarsweb.online",
+  email: "info@fourpillarsweb.com",
   phone: "+971567074922",
   cta: "Get in Touch",
 }
@@ -168,6 +170,7 @@ export const contactConfig: ContactConfig = {
 export const footerConfig: FooterConfig = {
   copyright: `© ${new Date().getFullYear()} Four Pillars Web Design. All rights reserved.`,
   tagline: "Crafted with precision. Built to perform.",
+  parentBrand: "Four Pillars Web Design is a brand of Business Lab.",
 }
 
 // Portfolio projects data
