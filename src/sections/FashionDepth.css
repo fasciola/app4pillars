@@ -66,13 +66,14 @@
   position: absolute; left: 0; bottom: 5%; height: 86%; width: auto;
   transform-origin: 50% 100%;
   transition: transform .9s var(--fx-ease), filter .9s var(--fx-ease), opacity .9s var(--fx-ease);
-  will-change: transform, filter, opacity;
-  filter: drop-shadow(0 1.4cqw 1.2cqw rgba(40, 50, 70, .16));
+  /* No will-change here: on iOS Safari it froze each model's bitmap at its
+     smallest, blurred size and then scaled it up, so the front look came out blurry. */
+  filter: blur(0) drop-shadow(0 1.4cqw 1.2cqw rgba(40, 50, 70, .16));
 }
 /* left edge of the 357/900 image box sits at (slot x - half its width) */
 .fashion-model[data-depth="0"] { z-index: 3; transform: translateX(calc(60cqw - 50%)) scale(1); opacity: 1; }
 .fashion-model[data-depth="1"] { z-index: 2; transform: translateX(calc(44cqw - 50%)) scale(.72); opacity: .92; filter: blur(2.5px) drop-shadow(0 1cqw 1cqw rgba(40, 50, 70, .1)); }
-.fashion-model[data-depth="2"] { z-index: 1; transform: translateX(calc(32cqw - 50%)) scale(.5); opacity: .55; filter: blur(6px); }
+.fashion-model[data-depth="2"] { z-index: 1; transform: translateX(calc(32cqw - 50%)) scale(.5); opacity: .55; filter: blur(6px) drop-shadow(0 1cqw 1cqw rgba(40, 50, 70, 0)); }
 
 /* Product card, right */
 .fashion-card {

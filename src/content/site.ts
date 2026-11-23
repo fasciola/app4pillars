@@ -177,6 +177,8 @@ export const showcaseItems = [
     title: 'Fashion brand',
     note: 'Looks step back in depth as the next one arrives.',
     image: '/fashion/model-blush.webp',
+    /** Looks waiting behind the front one, so the card shows the depth carousel. */
+    stack: ['/fashion/model-trench.webp', '/fashion/model-monochrome.webp'],
     tint: 'from-[#c9a3b0]/45',
   },
   {

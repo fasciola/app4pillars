@@ -25,7 +25,34 @@ export default function ShowcaseTeaser() {
                   className={`absolute inset-0 bg-gradient-to-b ${item.tint} to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100`}
                   aria-hidden="true"
                 />
-                {item.image ? (
+                {item.image && item.stack ? (
+                  <div className="absolute inset-x-0 top-[6%] h-[66%]" aria-hidden="true">
+                    <div
+                      className="absolute left-1/2 top-[58%] h-[38%] w-[70%] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(closest-side,rgba(201,163,176,0.35),transparent)] blur-xl"
+                    />
+                    {item.stack.map((src, i) => (
+                      <img
+                        key={src}
+                        src={src}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        className={`absolute left-1/2 top-[6%] h-[80%] w-auto max-w-none object-contain brightness-[0.55] saturate-[0.8] transition-all duration-700 ease-out motion-reduce:transition-none ${
+                          i === 0
+                            ? '-translate-x-[118%] -rotate-3 opacity-70 group-hover:-translate-x-[140%] group-hover:-rotate-6'
+                            : 'translate-x-[18%] rotate-3 opacity-70 group-hover:translate-x-[40%] group-hover:rotate-6'
+                        }`}
+                      />
+                    ))}
+                    <img
+                      src={item.image}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute left-1/2 top-0 h-full w-auto max-w-none -translate-x-1/2 object-contain drop-shadow-[0_24px_30px_rgba(0,0,0,0.6)] transition-transform duration-700 ease-out group-hover:-translate-y-2 group-hover:scale-[1.04] motion-reduce:transition-none"
+                    />
+                  </div>
+                ) : item.image ? (
                   <img
                     src={item.image}
                     alt=""
