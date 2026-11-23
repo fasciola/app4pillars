@@ -4,6 +4,7 @@ import {
   aboutSeo,
   contactSeo,
   homeSeo,
+  menuDemoSeo,
   notFoundSeo,
   servicesSeo,
   showcaseSeo,
@@ -18,6 +19,7 @@ import AboutPage from './pages/site/AboutPage';
 import ContactPage from './pages/site/ContactPage';
 import NotFoundPage from './pages/site/NotFoundPage';
 import WebsiteDesignDubai from './pages/WebsiteDesignDubai';
+import MenuDemoPage from './pages/site/MenuDemoPage';
 
 export interface SiteRoute {
   /** Always with a trailing slash; the prerender writes <path>index.html. */
@@ -40,6 +42,7 @@ export const routes: SiteRoute[] = [
   { path: '/about/', Page: AboutPage, seo: aboutSeo, closingCta: true },
   { path: '/contact/', Page: ContactPage, seo: contactSeo, closingCta: false },
   { path: '/website-design-dubai/', Page: WebsiteDesignDubai, seo: websiteDesignDubaiSeo, closingCta: true },
+  { path: '/menu-demo/', Page: MenuDemoPage, seo: menuDemoSeo, closingCta: false },
 ];
 
 export const notFoundRoute: SiteRoute = {

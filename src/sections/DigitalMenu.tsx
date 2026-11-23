@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { ArrowUpRight, Check } from 'lucide-react';
 import { contactConfig } from '../config';
+import { demoTables } from '../content/menuDemo';
 
 const points = [
   'Scan the table QR code: no app to download',
@@ -109,6 +110,51 @@ export default function DigitalMenu() {
           <p className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-white/35">
             Scan · open · order
           </p>
+        </div>
+      </div>
+
+      <div className="mx-auto mt-20 max-w-[1320px] border-t border-white/[0.08] pt-14">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-center lg:gap-16">
+          <div>
+            <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-white/50 sm:text-xs">
+              Try it / One code per table
+            </p>
+            <h3 className="text-2xl font-light uppercase leading-tight tracking-tight text-foreground sm:text-3xl">
+              The table number <span className="text-white/45">fills itself in</span>
+            </h3>
+            <p className="mt-5 max-w-md text-sm leading-relaxed text-dim sm:text-base">
+              Every table gets its own QR code, so the menu already knows where the guest is sitting and nobody types a
+              table number. Scan a card with your phone, or tap one to open the demo menu.
+            </p>
+          </div>
+
+          <ul className="-mx-6 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-6 px-6 pb-2 sm:mx-0 sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0">
+            {demoTables.map((t) => (
+              <li key={t.code} className="w-[62%] shrink-0 snap-start sm:w-auto">
+                <a
+                  href={`/menu-demo/?t=${t.code}`}
+                  className="group block overflow-hidden rounded-2xl border border-white/10 transition-transform hover:-translate-y-1"
+                  aria-label={`Open the demo menu for table ${t.table}`}
+                >
+                  <img
+                    src={t.webp}
+                    alt={`QR code card for table ${t.table}`}
+                    width={450}
+                    height={625}
+                    loading="lazy"
+                    decoding="async"
+                    className="block h-auto w-full"
+                  />
+                </a>
+                <div className="mt-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-white/45">
+                  <span>Table {t.table}</span>
+                  <a href={t.png} download className="text-white/60 underline-offset-4 hover:text-white hover:underline">
+                    Download
+                  </a>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
