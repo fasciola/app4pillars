@@ -2,11 +2,11 @@
 
 export const guestFeatures = [
   {
-    title: 'Menus built for phones',
+    title: 'Digital QR menus for restaurants and cafés',
     body: 'A branded menu that opens from the QR code on the table: clear categories, dish photos and prices that read comfortably on a phone, without PDFs to download or pinch-zoom.',
   },
   {
-    title: 'The right branch, first time',
+    title: 'A website page for every location',
     body: 'A page for every location with its own opening hours, map, phone number and menu, so guests land on the branch they are actually visiting.',
   },
   {
@@ -43,6 +43,11 @@ export const restaurantFaqs = [
     question: 'Can the website and menu be in English and Arabic?',
     answer:
       'Yes. Pages and menus can be structured in English and Arabic, with the Arabic version laid out right-to-left.',
+  },
+  {
+    question: 'Can each branch link its website from Google Maps?',
+    answer:
+      'Yes. A dedicated page for each location gives your team a specific URL to use on that branch’s Google Business Profile. Guests can find the address, opening hours and reservation or delivery links for that location.',
   },
   {
     question: 'We only need a QR menu, not a full website. Can you help?',
