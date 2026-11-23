@@ -99,7 +99,7 @@ export default function RestaurantWebsitesPage() {
               For your marketing team
             </p>
             <h2 className="text-3xl font-light uppercase leading-tight tracking-tight text-foreground sm:text-4xl">
-              Built for groups <span className="text-white/45">with more than one branch</span>
+              Websites for multi-location <span className="text-white/45">restaurants and café chains</span>
             </h2>
             <p className="mt-5 max-w-md text-base leading-relaxed text-dim">
               We plan the structure before the design, so each branch and brand has its own place for the details
