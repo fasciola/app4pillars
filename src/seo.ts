@@ -1,4 +1,5 @@
 import { servicesConfig } from './config';
+import { restaurantFaqs } from './content/restaurantWebsites';
 import { websiteDesignDubaiFaqs } from './content/websiteDesignDubaiFaqs';
 import { serviceDetails } from './content/site';
 
@@ -248,6 +249,51 @@ export const contactSeo: SeoPageConfig = {
   image: `${SITE}/og-image.jpg`,
   imageAlt: 'Contact Four Pillars Web Design',
   schema: innerPage('/contact/', 'Contact', contactDescription, 'ContactPage'),
+};
+
+export const restaurantWebsitesSeo: SeoPageConfig = {
+  title: 'Restaurant & Café Website Design Dubai | Four Pillars',
+  description:
+    'Four Pillars designs websites for Dubai restaurants and café groups, with mobile QR menus, reservation links and dedicated pages for every branch.',
+  canonical: `${SITE}/restaurant-website-design-dubai/`,
+  image: `${SITE}/og-image.jpg`,
+  imageAlt: 'Four Pillars restaurant and café website design in Dubai',
+  schema: {
+    '@context': 'https://schema.org',
+    '@graph': [
+      organization,
+      {
+        '@type': 'WebPage',
+        '@id': `${SITE}/restaurant-website-design-dubai/#webpage`,
+        url: `${SITE}/restaurant-website-design-dubai/`,
+        name: 'Restaurant & Café Website Design Dubai | Four Pillars',
+        isPartOf: { '@id': `${SITE}/#website` },
+        about: { '@id': `${SITE}/#organization` },
+        inLanguage: 'en-AE',
+      },
+      {
+        '@type': 'Service',
+        '@id': `${SITE}/restaurant-website-design-dubai/#service`,
+        name: 'Restaurant and café website design',
+        serviceType: 'Restaurant website design, QR menu design',
+        provider: { '@id': `${SITE}/#organization` },
+        areaServed: [
+          { '@type': 'City', name: 'Dubai' },
+          { '@type': 'Country', name: 'United Arab Emirates' },
+        ],
+        url: `${SITE}/restaurant-website-design-dubai/`,
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${SITE}/restaurant-website-design-dubai/#faq`,
+        mainEntity: restaurantFaqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
+      },
+    ],
+  },
 };
 
 export const menuDemoSeo: SeoPageConfig = {

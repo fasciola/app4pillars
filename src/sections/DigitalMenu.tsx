@@ -91,6 +91,15 @@ export default function DigitalMenu() {
               Ask about pricing
             </a>
           </div>
+          <a
+            href="/restaurant-website-design-dubai/"
+            className="group mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-white/70 hover:text-white"
+          >
+            <span className="border-b border-white/30 pb-1 group-hover:border-white">
+              Explore restaurant and café website design
+            </span>
+            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
+          </a>
         </div>
 
         <div className="relative mx-auto w-full max-w-[340px] lg:max-w-[380px]">

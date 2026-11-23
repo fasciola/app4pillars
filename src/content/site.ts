@@ -21,6 +21,7 @@ export const footerNav: NavItem[] = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services/' },
   { label: 'Website Design Dubai', href: '/website-design-dubai/' },
+  { label: 'Restaurant & Café Websites', href: '/restaurant-website-design-dubai/' },
   { label: 'Work', href: '/work/' },
   { label: 'Showcase', href: '/showcase/' },
   { label: 'About', href: '/about/' },

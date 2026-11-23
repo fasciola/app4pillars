@@ -5,6 +5,7 @@ import {
   contactSeo,
   homeSeo,
   menuDemoSeo,
+  restaurantWebsitesSeo,
   notFoundSeo,
   servicesSeo,
   showcaseSeo,
@@ -20,6 +21,7 @@ import ContactPage from './pages/site/ContactPage';
 import NotFoundPage from './pages/site/NotFoundPage';
 import WebsiteDesignDubai from './pages/WebsiteDesignDubai';
 import MenuDemoPage from './pages/site/MenuDemoPage';
+import RestaurantWebsitesPage from './pages/site/RestaurantWebsitesPage';
 
 export interface SiteRoute {
   /** Always with a trailing slash; the prerender writes <path>index.html. */
@@ -42,6 +44,7 @@ export const routes: SiteRoute[] = [
   { path: '/about/', Page: AboutPage, seo: aboutSeo, closingCta: true },
   { path: '/contact/', Page: ContactPage, seo: contactSeo, closingCta: false },
   { path: '/website-design-dubai/', Page: WebsiteDesignDubai, seo: websiteDesignDubaiSeo, closingCta: true },
+  { path: '/restaurant-website-design-dubai/', Page: RestaurantWebsitesPage, seo: restaurantWebsitesSeo, closingCta: true },
   { path: '/menu-demo/', Page: MenuDemoPage, seo: menuDemoSeo, closingCta: false },
 ];
 

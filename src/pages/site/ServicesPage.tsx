@@ -87,6 +87,21 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      <section aria-labelledby="hospitality-heading" className="border-t border-white/[0.06] px-6 py-16 sm:px-10 lg:px-12">
+        <div className="mx-auto flex max-w-[1320px] flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-2xl">
+            <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/50">Restaurants &amp; cafés</p>
+            <h2 id="hospitality-heading" className="mt-4 text-3xl font-light uppercase leading-tight tracking-tight text-foreground sm:text-4xl">
+              Websites for restaurant groups <span className="text-white/45">and cafés</span>
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-dim">
+              Mobile QR menus, reservation and delivery links, and a page for every branch, in English and Arabic.
+            </p>
+          </div>
+          <ArrowLink href="/restaurant-website-design-dubai/">Explore restaurant and café website design</ArrowLink>
+        </div>
+      </section>
+
       <ProcessSteps />
     </>
   );
