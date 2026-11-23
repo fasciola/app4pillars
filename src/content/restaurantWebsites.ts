@@ -37,7 +37,7 @@ export const restaurantFaqs = [
   {
     question: 'Can our menu open from a QR code on the table?',
     answer:
-      'Yes. We design branded, mobile-friendly menus that guests open by scanning a QR code at the table. Each table can have its own code, so the table number is filled in automatically.',
+      'Yes. We design branded, mobile-friendly menus that guests open by scanning a QR code at the table. Each table can have its own code, so the table number is filled in automatically, and guests can send their order on WhatsApp with the table attached.',
   },
   {
     question: 'Can the website and menu be in English and Arabic?',

@@ -4,7 +4,6 @@ import {
   aboutSeo,
   contactSeo,
   homeSeo,
-  menuDemoSeo,
   restaurantWebsitesSeo,
   notFoundSeo,
   servicesSeo,
@@ -20,7 +19,6 @@ import AboutPage from './pages/site/AboutPage';
 import ContactPage from './pages/site/ContactPage';
 import NotFoundPage from './pages/site/NotFoundPage';
 import WebsiteDesignDubai from './pages/WebsiteDesignDubai';
-import MenuDemoPage from './pages/site/MenuDemoPage';
 import RestaurantWebsitesPage from './pages/site/RestaurantWebsitesPage';
 
 export interface SiteRoute {
@@ -45,7 +43,6 @@ export const routes: SiteRoute[] = [
   { path: '/contact/', Page: ContactPage, seo: contactSeo, closingCta: false },
   { path: '/website-design-dubai/', Page: WebsiteDesignDubai, seo: websiteDesignDubaiSeo, closingCta: true },
   { path: '/restaurant-website-design-dubai/', Page: RestaurantWebsitesPage, seo: restaurantWebsitesSeo, closingCta: true },
-  { path: '/menu-demo/', Page: MenuDemoPage, seo: menuDemoSeo, closingCta: false },
 ];
 
 export const notFoundRoute: SiteRoute = {

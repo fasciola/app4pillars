@@ -296,16 +296,6 @@ export const restaurantWebsitesSeo: SeoPageConfig = {
   },
 };
 
-export const menuDemoSeo: SeoPageConfig = {
-  title: 'QR Table Menu Demo | Four Pillars Web Design',
-  description: 'Demo of a branded QR table menu: scan a table code and the menu opens on your phone with the table number filled in.',
-  canonical: `${SITE}/menu-demo/`,
-  image: `${SITE}/og-image.jpg`,
-  imageAlt: 'Four Pillars QR table menu demo',
-  noindex: true,
-  schema: { '@context': 'https://schema.org', '@graph': [organization] },
-};
-
 export const notFoundSeo: SeoPageConfig = {
   title: 'Page not found | Four Pillars Web Design',
   description: 'This page does not exist. Explore Four Pillars web design services, work and showcase.',

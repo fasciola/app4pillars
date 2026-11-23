@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { ArrowUpRight, Check } from 'lucide-react';
 import { contactConfig } from '../config';
-import { demoTables } from '../content/menuDemo';
+import { tableCards } from '../content/tableMenu';
 
 const points = [
   'Scan the table QR code: no app to download',
@@ -126,30 +126,32 @@ export default function DigitalMenu() {
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-center lg:gap-16">
           <div>
             <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-white/50 sm:text-xs">
-              Try it / One code per table
+              Test it yourself / One code per table
             </p>
             <h3 className="text-2xl font-light uppercase leading-tight tracking-tight text-foreground sm:text-3xl">
               The table number <span className="text-white/45">fills itself in</span>
             </h3>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-dim sm:text-base">
               Every table gets its own QR code, so the menu already knows where the guest is sitting and nobody types a
-              table number. Scan a card with your phone, or tap one to open the demo menu.
+              table number. Scan a card with your phone camera, add a few dishes and send the order on WhatsApp.
             </p>
           </div>
 
           <ul className="-mx-6 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-6 px-6 pb-2 sm:mx-0 sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0">
-            {demoTables.map((t) => (
+            {tableCards.map((t) => (
               <li key={t.code} className="w-[62%] shrink-0 snap-start sm:w-auto">
                 <a
-                  href={`/menu-demo/?t=${t.code}`}
+                  href={t.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group block overflow-hidden rounded-2xl border border-white/10 transition-transform hover:-translate-y-1"
-                  aria-label={`Open the demo menu for table ${t.table}`}
+                  aria-label={`Open the live menu as table ${t.table}`}
                 >
                   <img
                     src={t.webp}
                     alt={`QR code card for table ${t.table}`}
                     width={450}
-                    height={625}
+                    height={619}
                     loading="lazy"
                     decoding="async"
                     className="block h-auto w-full"
