@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import PinnedRail from '../components/PinnedRail';
 import { ArrowUpRight, X } from 'lucide-react';
 import { conceptDesigns } from '../content/site';
 
@@ -45,7 +46,7 @@ export default function ConceptGallery() {
           </p>
         </header>
 
-        <ul className="-mx-6 flex snap-x snap-mandatory scroll-px-6 gap-4 sm:scroll-px-10 overflow-x-auto px-6 pb-4 sm:-mx-10 sm:px-10 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+        <PinnedRail label="Concept designs" listClassName="-mx-6 flex snap-x snap-mandatory scroll-px-6 gap-4 sm:scroll-px-10 overflow-x-auto px-6 pb-4 sm:-mx-10 sm:px-10 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
           {conceptDesigns.map((concept, index) => (
             <li key={concept.id} className="w-[72vw] max-w-[320px] shrink-0 snap-start sm:w-[44vw] lg:w-auto lg:max-w-none">
               <button
@@ -88,7 +89,7 @@ export default function ConceptGallery() {
               </button>
             </li>
           ))}
-        </ul>
+        </PinnedRail>
         <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-white/35">
           Concept work. Brands shown are fictional.
         </p>

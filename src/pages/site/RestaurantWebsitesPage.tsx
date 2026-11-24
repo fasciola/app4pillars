@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import PinnedRail from '../../components/PinnedRail';
 import { ArrowUpRight, CalendarCheck, Languages, MapPin, Plus, QrCode, X } from 'lucide-react';
 import { ArrowLink } from '../../components/PageHero';
 import FreshBowl from '../../sections/FreshBowl';
@@ -325,7 +326,7 @@ function ConceptAndClient() {
           </p>
         </header>
 
-        <ul className="-mx-6 mb-12 flex snap-x snap-mandatory scroll-px-6 gap-5 overflow-x-auto px-6 pb-4 sm:-mx-10 sm:scroll-px-10 sm:px-10 lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+        <div className="mb-12"><PinnedRail label="Restaurant concept designs" listClassName="-mx-6 flex snap-x snap-mandatory scroll-px-6 gap-5 overflow-x-auto px-6 pb-4 sm:-mx-10 sm:scroll-px-10 sm:px-10 lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
           {featured.map((concept, index) => (
             <li key={concept.id} className="w-[74vw] max-w-[330px] shrink-0 snap-start sm:w-[44vw] lg:w-auto lg:max-w-none">
               <button
@@ -371,7 +372,7 @@ function ConceptAndClient() {
               </button>
             </li>
           ))}
-        </ul>
+        </PinnedRail></div>
 
         <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
           {/* Ember & Oak: the page scrolls inside the window on hover */}
