@@ -55,3 +55,89 @@ export const restaurantFaqs = [
       'Yes. Tell us your venue name and how many tables or branches you have, and we will recommend either a standalone QR menu or a full restaurant website.',
   },
 ];
+
+export interface RestaurantConcept {
+  id: string;
+  name: string;
+  cuisine: string;
+  domain: string;
+  thumb: string;
+  image: string;
+}
+
+/** Full-page restaurant & café homepage concepts showcased on /restaurant-website-design-dubai/. */
+export const restaurantConcepts: RestaurantConcept[] = [
+  {
+    id: 'date-house',
+    name: 'The Date House',
+    cuisine: 'Khaleeji dining & majlis · Dubai',
+    domain: 'thedatehouse.ae',
+    thumb: '/concepts/date-house-sm.webp',
+    image: '/concepts/date-house.webp',
+  },
+  {
+    id: 'afterglow',
+    name: 'Afterglow',
+    cuisine: 'Late-night lounge & dessert bar · Downtown',
+    domain: 'afterglow.dubai',
+    thumb: '/concepts/afterglow-sm.webp',
+    image: '/concepts/afterglow.webp',
+  },
+  {
+    id: 'ember-tide',
+    name: 'Ember & Tide',
+    cuisine: 'Wood-fired seafood & grill · Marina',
+    domain: 'emberandtide.ae',
+    thumb: '/concepts/ember-tide-sm.webp',
+    image: '/concepts/ember-tide.webp',
+  },
+  {
+    id: 'momo-maple',
+    name: 'Momo & Maple',
+    cuisine: 'Artisanal dumpling bar & teahouse',
+    domain: 'momoandmaple.ae',
+    thumb: '/concepts/momo-maple-sm.webp',
+    image: '/concepts/momo-maple.webp',
+  },
+  {
+    id: 'verdant-table',
+    name: 'Verdant Table',
+    cuisine: 'Seasonal garden plates & botanic kitchen',
+    domain: 'verdanttable.ae',
+    thumb: '/concepts/verdant-table-sm.webp',
+    image: '/concepts/verdant-table.webp',
+  },
+  {
+    id: 'zaatar-stone',
+    name: 'Zaatar & Stone',
+    cuisine: 'Wood-baked Levantine kitchen & mezze',
+    domain: 'zaatarandstone.ae',
+    thumb: '/concepts/zaatar-stone-sm.webp',
+    image: '/concepts/zaatar-stone.webp',
+  },
+  {
+    id: 'pistachio-court',
+    name: 'Pistachio Court',
+    cuisine: 'Artisanal pastry & slow morning café',
+    domain: 'pistachiocourt.ae',
+    thumb: '/concepts/pistachio-court-sm.webp',
+    image: '/concepts/pistachio-court.webp',
+  },
+  {
+    id: 'lime-canopy',
+    name: 'Lime Canopy',
+    cuisine: 'Tropical Thai & Southeast Asian dining',
+    domain: 'limecanopy.ae',
+    thumb: '/concepts/lime-canopy-sm.webp',
+    image: '/concepts/lime-canopy.webp',
+  },
+  {
+    id: 'ember-oak',
+    name: 'Ember & Oak',
+    cuisine: 'Specialty coffee · Roastery & cafés',
+    domain: 'emberandoak.coffee',
+    thumb: '/concepts/ember-oak-sm.webp',
+    image: '/concepts/ember-oak.webp',
+  },
+];
+

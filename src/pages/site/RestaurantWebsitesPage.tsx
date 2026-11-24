@@ -5,7 +5,7 @@ import FreshBowl from '../../sections/FreshBowl';
 import IcedMenu from '../../sections/IcedMenu';
 import { contactConfig } from '../../config';
 import { dishImage, menuDemoHref, tableCards } from '../../content/tableMenu';
-import { guestFeatures, restaurantFaqs, teamFeatures } from '../../content/restaurantWebsites';
+import { guestFeatures, restaurantConcepts, restaurantFaqs, teamFeatures } from '../../content/restaurantWebsites';
 
 const pad = (n: number) => String(n).padStart(2, '0');
 const lg = (id: string) => `/restaurant/dishes/${id}-lg.webp`;
@@ -45,10 +45,10 @@ export default function RestaurantWebsitesPage() {
       <Hero />
       <VenueStrip />
       <Problem />
+      <ConceptAndClient />
       <GuestFeatures />
       <TeamFeatures />
       <FoodBuilds />
-      <ConceptAndClient />
       <QrDemo />
       <Faq />
     </>
@@ -290,72 +290,161 @@ function FoodBuilds() {
 }
 
 function ConceptAndClient() {
-  const [open, setOpen] = useState(false);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   useEffect(() => {
     const d = dialogRef.current;
     if (!d) return;
-    if (open && !d.open) d.showModal();
-    if (!open && d.open) d.close();
-  }, [open]);
+    if (openIndex !== null && !d.open) d.showModal();
+    if (openIndex === null && d.open) d.close();
+  }, [openIndex]);
+
+  const current = openIndex !== null ? restaurantConcepts[openIndex] : null;
+  const featured = restaurantConcepts.slice(0, 8);
+  const emberOakIndex = restaurantConcepts.findIndex((c) => c.id === 'ember-oak');
+  const emberOak = restaurantConcepts[emberOakIndex >= 0 ? emberOakIndex : 0];
 
   return (
-    <section className="px-6 py-24 sm:px-10 lg:px-12">
-      <div className="mx-auto grid max-w-[1320px] gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-        {/* Ember & Oak: the page scrolls inside the window on hover */}
-        <button type="button" onClick={() => setOpen(true)} className="group text-left outline-none" aria-label="View the full Ember & Oak concept design">
-          <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#0c0c0c] shadow-[0_40px_80px_rgba(0,0,0,0.5)] transition-colors group-hover:border-white/25">
-            <div className="flex items-center gap-1.5 border-b border-white/[0.06] px-4 py-2.5">
-              <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-              <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-              <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-              <span className="ml-3 rounded bg-white/[0.05] px-2 py-0.5 font-mono text-[10px] text-white/40">emberandoak.coffee</span>
+    <section aria-labelledby="restaurant-concepts-heading" className="px-6 pb-24 sm:px-10 lg:px-12">
+      <div className="mx-auto max-w-[1320px]">
+        <header className="mb-12 grid gap-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+          <div>
+            <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-[#f3cfa6] sm:text-xs">
+              Concept designs · Restaurants &amp; cafés
+            </p>
+            <h2
+              id="restaurant-concepts-heading"
+              className="text-4xl font-light uppercase leading-[0.95] tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+            >
+              Tailored to every <span className="text-[#e7a86b]">dining concept</span>
+            </h2>
+          </div>
+          <p className="max-w-md text-sm leading-relaxed text-dim sm:text-base lg:text-right">
+            From Khaleeji hospitality and wood-fired grills to late-night lounges and dumpling bars. Hover any window to
+            scroll the homepage, or click to inspect the full layout.
+          </p>
+        </header>
+
+        <ul className="-mx-6 mb-12 flex snap-x snap-mandatory scroll-px-6 gap-5 overflow-x-auto px-6 pb-4 sm:-mx-10 sm:scroll-px-10 sm:px-10 lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+          {featured.map((concept, index) => (
+            <li key={concept.id} className="w-[74vw] max-w-[330px] shrink-0 snap-start sm:w-[44vw] lg:w-auto lg:max-w-none">
+              <button
+                type="button"
+                onClick={() => setOpenIndex(index)}
+                aria-label={`View the full ${concept.name} restaurant concept design`}
+                className="group block w-full text-left outline-none"
+              >
+                <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0c0c0c] shadow-[0_30px_60px_rgba(0,0,0,0.5)] transition-[border-color,transform] duration-500 group-hover:-translate-y-1 group-hover:border-[#e7a86b]/50 group-focus-visible:border-[#e7a86b]">
+                  <div className="flex items-center gap-1.5 border-b border-white/[0.06] px-3.5 py-2.5">
+                    <span className="h-2 w-2 rounded-full bg-white/15" />
+                    <span className="h-2 w-2 rounded-full bg-white/15" />
+                    <span className="h-2 w-2 rounded-full bg-white/15" />
+                    <span className="ml-2 truncate rounded bg-white/[0.05] px-2 py-0.5 font-mono text-[9px] tracking-wide text-white/40">
+                      {concept.domain}
+                    </span>
+                  </div>
+                  <div className="concept-window relative aspect-[4/5] overflow-hidden">
+                    <img
+                      src={concept.thumb}
+                      alt={`${concept.name} restaurant website concept: ${concept.cuisine}`}
+                      width={512}
+                      height={768}
+                      loading="lazy"
+                      decoding="async"
+                      className="concept-page absolute inset-x-0 top-0 h-auto w-full"
+                    />
+                  </div>
+                </div>
+                <div className="mt-4 flex items-start justify-between gap-3">
+                  <div>
+                    <span className="font-mono text-[10px] tracking-[0.2em] text-[#e7a86b]">{pad(index + 1)}</span>
+                    <h3 className="mt-1 text-lg font-light uppercase leading-tight tracking-tight text-foreground">
+                      {concept.name}
+                    </h3>
+                    <p className="mt-1 text-xs text-dim">{concept.cuisine}</p>
+                  </div>
+                  <ArrowUpRight
+                    className="mt-5 h-4 w-4 shrink-0 text-white/40 transition-colors group-hover:text-[#e7a86b]"
+                    aria-hidden="true"
+                  />
+                </div>
+              </button>
+            </li>
+          ))}
+        </ul>
+
+        <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+          {/* Ember & Oak: the page scrolls inside the window on hover */}
+          <button
+            type="button"
+            onClick={() => setOpenIndex(emberOakIndex >= 0 ? emberOakIndex : 0)}
+            className="group text-left outline-none"
+            aria-label="View the full Ember & Oak concept design"
+          >
+            <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#0c0c0c] shadow-[0_40px_80px_rgba(0,0,0,0.5)] transition-colors group-hover:border-white/25">
+              <div className="flex items-center gap-1.5 border-b border-white/[0.06] px-4 py-2.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                <span className="ml-3 rounded bg-white/[0.05] px-2 py-0.5 font-mono text-[10px] text-white/40">
+                  {emberOak.domain}
+                </span>
+              </div>
+              <div className="concept-window relative aspect-[16/11] overflow-hidden">
+                <img
+                  src={emberOak.image}
+                  alt="Ember & Oak specialty coffee website concept"
+                  width={1024}
+                  height={1536}
+                  loading="lazy"
+                  decoding="async"
+                  className="concept-page absolute inset-x-0 top-0 h-auto w-full"
+                />
+              </div>
             </div>
-            <div className="concept-window relative aspect-[16/11] overflow-hidden">
+            <div className="mt-5 flex items-start justify-between gap-4">
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e7a86b]">
+                  Concept design · Specialty coffee
+                </p>
+                <h3 className="mt-2 text-2xl font-light uppercase tracking-tight text-foreground">{emberOak.name}</h3>
+                <p className="mt-1 text-sm text-dim">Hover to scroll the full homepage. Fictional brand.</p>
+              </div>
+              <ArrowUpRight className="mt-6 h-5 w-5 text-white/50 transition-colors group-hover:text-white" aria-hidden="true" />
+            </div>
+          </button>
+
+          <div className="grid gap-6">
+            <a
+              href="https://cloudkitchensetup.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group overflow-hidden rounded-3xl border border-white/10"
+            >
               <img
-                src="/concepts/ember-oak.webp"
-                alt="Ember & Oak specialty coffee website concept"
-                width={1024}
-                height={1536}
+                src="/portfolio/cloud-kitchen-setup.webp"
+                alt="CKS by Business Lab website shown on a desktop monitor"
                 loading="lazy"
                 decoding="async"
-                className="concept-page absolute inset-x-0 top-0 h-auto w-full"
+                className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
               />
-            </div>
-          </div>
-          <div className="mt-5 flex items-start justify-between gap-4">
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#e7a86b]">Concept design · Specialty coffee</p>
-              <h3 className="mt-2 text-2xl font-light uppercase tracking-tight text-foreground">Ember &amp; Oak</h3>
-              <p className="mt-1 text-sm text-dim">Hover to scroll the full homepage. Fictional brand.</p>
-            </div>
-            <ArrowUpRight className="mt-6 h-5 w-5 text-white/50 transition-colors group-hover:text-white" aria-hidden="true" />
-          </div>
-        </button>
-
-        <div className="grid gap-6">
-          <a href="https://cloudkitchensetup.com/" target="_blank" rel="noopener noreferrer" className="group overflow-hidden rounded-3xl border border-white/10">
-            <img
-              src="/portfolio/cloud-kitchen-setup.webp"
-              alt="CKS by Business Lab website shown on a desktop monitor"
-              loading="lazy"
-              decoding="async"
-              className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-            />
-            <div className="flex items-center justify-between gap-4 p-6">
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/50">Client work · Food &amp; beverage</p>
-                <h3 className="mt-2 text-xl font-light text-foreground">CKS by Business Lab</h3>
+              <div className="flex items-center justify-between gap-4 p-6">
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/50">
+                    Client work · Food &amp; beverage
+                  </p>
+                  <h3 className="mt-2 text-xl font-light text-foreground">CKS by Business Lab</h3>
+                </div>
+                <ArrowUpRight className="h-5 w-5 text-white/60" aria-hidden="true" />
               </div>
-              <ArrowUpRight className="h-5 w-5 text-white/60" aria-hidden="true" />
-            </div>
-          </a>
-          <div className="flex flex-col justify-between rounded-3xl border border-white/10 bg-[linear-gradient(160deg,rgba(214,96,48,0.18),rgba(0,0,0,0)_60%)] p-7">
-            <p className="text-lg font-light leading-snug text-white/85">
-              More motion builds for skincare, fashion and tech brands live on our showcase.
-            </p>
-            <div className="mt-6">
-              <ArrowLink href="/showcase/">See the full showcase</ArrowLink>
+            </a>
+            <div className="flex flex-col justify-between rounded-3xl border border-white/10 bg-[linear-gradient(160deg,rgba(214,96,48,0.18),rgba(0,0,0,0)_60%)] p-7">
+              <p className="text-lg font-light leading-snug text-white/85">
+                More motion builds for skincare, fashion and tech brands live on our showcase.
+              </p>
+              <div className="mt-6">
+                <ArrowLink href="/showcase/">See the full showcase</ArrowLink>
+              </div>
             </div>
           </div>
         </div>
@@ -363,23 +452,38 @@ function ConceptAndClient() {
 
       <dialog
         ref={dialogRef}
-        onClose={() => setOpen(false)}
+        onClose={() => setOpenIndex(null)}
         onClick={(e) => {
-          if (e.target === e.currentTarget) setOpen(false);
+          if (e.target === e.currentTarget) setOpenIndex(null);
         }}
-        aria-label="Ember & Oak concept design"
+        aria-label={current ? `${current.name} concept design` : 'Concept design'}
         className="m-auto h-[92dvh] w-[min(92vw,760px)] max-w-none overflow-hidden rounded-2xl border border-white/15 bg-[#0b0b0b] p-0 text-foreground backdrop:bg-black/80 backdrop:backdrop-blur-sm"
       >
-        {open && (
+        {current && (
           <div className="flex h-full flex-col">
             <div className="flex items-center justify-between border-b border-white/10 px-5 py-3">
-              <p className="text-sm uppercase tracking-wide">Ember &amp; Oak</p>
-              <button type="button" onClick={() => setOpen(false)} aria-label="Close" autoFocus className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/70 hover:text-white">
+              <div>
+                <p className="text-sm uppercase tracking-wide">{current.name}</p>
+                <p className="text-xs text-dim">{current.cuisine}</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setOpenIndex(null)}
+                aria-label="Close"
+                autoFocus
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/70 hover:text-white"
+              >
                 <X className="h-4 w-4" />
               </button>
             </div>
             <div className="min-h-0 flex-1 overflow-y-auto">
-              <img src="/concepts/ember-oak.webp" alt="Ember & Oak full homepage concept" width={1024} height={1536} className="block h-auto w-full" />
+              <img
+                src={current.image}
+                alt={`${current.name} full homepage concept`}
+                width={1024}
+                height={1536}
+                className="block h-auto w-full"
+              />
             </div>
           </div>
         )}
