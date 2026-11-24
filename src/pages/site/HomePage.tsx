@@ -5,6 +5,7 @@ import ShowcaseTeaser from '../../sections/ShowcaseTeaser';
 import ProcessSteps from '../../sections/ProcessSteps';
 import ConceptGallery from '../../sections/ConceptGallery';
 import DigitalMenu from '../../sections/DigitalMenu';
+import MotionReel from '../../sections/MotionReel';
 import { pillars } from '../../content/site';
 
 /** Homepage: a short tour of the site, each block leading to its own page. */
@@ -13,6 +14,7 @@ export default function HomePage() {
     <>
       <Hero />
       <ConceptGallery />
+      <MotionReel />
       <DigitalMenu />
 
       {/* Positioning statement + the four pillars */}
