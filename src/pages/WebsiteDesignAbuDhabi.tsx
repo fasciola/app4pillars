@@ -64,10 +64,10 @@ export default function WebsiteDesignAbuDhabi() {
 
   return (
     <>
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-black text-white">
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0d1830] text-white">
         <HeroBackgroundVideo />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.60)_0%,rgba(0,0,0,0.40)_30%,rgba(0,0,0,0.16)_60%,rgba(0,0,0,0.30)_100%)]" />
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black/35 via-black/12 to-transparent" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,12,26,0.60)_0%,rgba(6,12,26,0.40)_30%,rgba(6,12,26,0.16)_60%,rgba(6,12,26,0.30)_100%)]" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#060c1a]/40 via-[#060c1a]/14 to-transparent" />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-24 pb-20">
           <div className="min-h-[72vh] flex items-center">
@@ -173,8 +173,8 @@ export default function WebsiteDesignAbuDhabi() {
           loading="lazy"
           decoding="async"
         />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black via-black/95 to-black/50" />
-        <div className="absolute inset-y-0 right-0 -z-10 w-[45%] bg-gradient-to-t from-black/70 via-transparent to-black/40" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#0d1830] via-[#0d1830]/95 to-[#0d1830]/50" />
+        <div className="absolute inset-y-0 right-0 -z-10 w-[45%] bg-gradient-to-t from-[#0d1830]/70 via-transparent to-[#0d1830]/40" />
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.9fr_1.1fr] gap-16 items-start">
           <div>
             <p className="text-[10px] uppercase tracking-[0.28em] text-accent mb-4">Why Four Pillars</p>

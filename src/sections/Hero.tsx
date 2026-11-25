@@ -4,16 +4,17 @@ import HeroBackgroundVideo from '../components/HeroBackgroundVideo';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-black text-white">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0d1830] text-white">
       <HeroBackgroundVideo />
 
-      {/* Lighter cinematic gradient: preserve text contrast without burying the video. */}
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.62)_0%,rgba(0,0,0,0.44)_28%,rgba(0,0,0,0.18)_55%,rgba(0,0,0,0.10)_75%,rgba(0,0,0,0.35)_100%)]" />
+      {/* Lighter cinematic gradient, tinted indigo-navy instead of flat black
+          so the darkened side of the photo still reads as "Blue Ocean". */}
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,12,26,0.62)_0%,rgba(6,12,26,0.44)_28%,rgba(6,12,26,0.18)_55%,rgba(6,12,26,0.10)_75%,rgba(6,12,26,0.35)_100%)]" />
 
       {/* Fine grid / premium editorial structure */}
       <div className="absolute inset-0 opacity-[0.08] bg-[linear-gradient(to_right,rgba(255,255,255,0.22)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.18)_1px,transparent_1px)] bg-[size:25%_25%]" />
 
-      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black/40 via-black/15 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#060c1a]/45 via-[#060c1a]/16 to-transparent" />
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-24 pb-20">

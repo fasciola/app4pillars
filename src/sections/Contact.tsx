@@ -21,8 +21,20 @@ export default function Contact({ showCta = true }: { showCta?: boolean }) {
         loading="lazy"
         decoding="async"
       />
-      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_50%_42%,rgba(45,125,255,0.14),transparent_38%),linear-gradient(90deg,rgba(0,0,0,0.54)_0%,rgba(0,0,0,0.27)_30%,rgba(0,0,0,0.14)_50%,rgba(0,0,0,0.27)_70%,rgba(0,0,0,0.54)_100%)]" />
-      <div className="absolute inset-x-0 top-0 h-24 -z-10 bg-gradient-to-b from-black/18 to-transparent" />
+      {/* "Drift" bioluminescent creature, bleeding in from the edge as a soft
+          glow rather than a sharp image — the same Blue Ocean motif from the
+          homepage motion strip, carried through to the closing CTA on every
+          page. */}
+      <img
+        src="/motion/glass-creature-poster.webp"
+        alt=""
+        aria-hidden="true"
+        className="absolute -right-[8%] bottom-0 -z-20 h-[115%] w-auto max-w-none opacity-[0.22] mix-blend-screen blur-[1px] sm:opacity-30"
+        loading="lazy"
+        decoding="async"
+      />
+      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_50%_42%,rgba(53,216,240,0.16),transparent_38%),linear-gradient(90deg,rgba(6,12,26,0.6)_0%,rgba(6,12,26,0.32)_30%,rgba(6,12,26,0.16)_50%,rgba(6,12,26,0.32)_70%,rgba(6,12,26,0.6)_100%)]" />
+      <div className="absolute inset-x-0 top-0 h-24 -z-10 bg-gradient-to-b from-[#060c1a]/25 to-transparent" />
 
       {showCta && (
       <section id="start-a-project" className="relative py-32 px-6">

@@ -4,17 +4,38 @@
 
 @layer base {
   :root {
-    --color-base: #000000;
-    --color-foreground: #e0e0e0;
-    --color-dim: #999999;
-    --color-subtle: #555555;
-    --color-muted: #333333;
-    --color-accent: #c8956c;
-    --color-link: #d4a574;
-    --color-success: #7dac5a;
-    --color-danger: #c45a5a;
-    --color-warning: #e0af68;
-    --color-border: #1a1a1a;
+    /* "Blue Ocean" palette, tuned to the "Future Technology" reference: a
+       deep indigo-navy base (legibly BLUE, never flat black) with
+       bioluminescent cyan + violet glow accents, matching the existing
+       Reef/Drift motion clips and the site's cinematic-dark brief. */
+    --color-base: #0d1830;
+    --color-foreground: #e4eef5;
+    --color-dim: #93a6b8;
+    --color-subtle: #4d5e6e;
+    --color-muted: #263340;
+    --color-accent: #35d8f0;
+    --color-link: #6fe3ff;
+    --color-success: #5ac8ac;
+    --color-danger: #e5667a;
+    --color-warning: #e0b768;
+    --color-border: #1c2b47;
+    --color-glow: #35d8f0;
+    --color-glow-rgb: 53, 216, 240;
+    --color-glow-violet-rgb: 168, 120, 255;
+
+    /* Bare HSL-triplet tokens that Tailwind's generated utilities
+       (text-accent, bg-accent, text-foreground, …) actually read via
+       hsl(var(--x)) per tailwind.config.cjs. These were never defined
+       before — text-accent/bg-accent silently fell back to invalid CSS
+       (ignored, so accent elements rendered as plain inherited grey)
+       everywhere they were used across the site. Values mirror the
+       --color-* palette above so both stay in sync. */
+    --accent: 188 86% 57%;
+    --accent-foreground: 196 100% 5%;
+    --foreground: 205 46% 93%;
+    --muted-foreground: 209 21% 65%;
+    --background: 221 57% 12%;
+    --border: 219 43% 19%;
   }
 }
 
@@ -22,8 +43,8 @@
 
 body {
   margin: 0;
-  background: #000;
-  color: #e0e0e0;
+  background: var(--color-base);
+  color: var(--color-foreground);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
 }
 
@@ -32,16 +53,17 @@ body {
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
 
-/* ── Liquid Glass ── */
+/* ── Liquid Glass (Blue Ocean: bioluminescent cyan edge-light) ── */
 .liquid-glass {
-  background: rgba(255, 255, 255, 0.01);
+  background: rgba(53, 216, 240, 0.02);
   background-blend-mode: luminosity;
   backdrop-filter: blur(6px) saturate(140%);
   -webkit-backdrop-filter: blur(6px) saturate(140%);
   border: none;
   box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.1),
-    0 8px 32px rgba(0, 0, 0, 0.15);
+    inset 0 1px 1px rgba(var(--color-glow-rgb), 0.16),
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    0 0 40px -16px rgba(var(--color-glow-rgb), 0.35);
   position: relative;
   overflow: hidden;
 }
@@ -52,15 +74,15 @@ body {
   border-radius: inherit;
   padding: 1.4px;
   background: linear-gradient(180deg,
-    rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.15) 20%,
+    rgba(var(--color-glow-rgb),0.55) 0%, rgba(var(--color-glow-violet-rgb),0.18) 20%,
     rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
-    rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.5) 100%);
+    rgba(var(--color-glow-violet-rgb),0.18) 80%, rgba(var(--color-glow-rgb),0.55) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
   mix-blend-mode: screen;
-  opacity: 0.25;
+  opacity: 0.4;
 }
 .liquid-glass::after {
   content: '';
@@ -68,21 +90,22 @@ body {
   inset: 0;
   border-radius: inherit;
   background:
-    radial-gradient(ellipse 90% 40% at 50% 0%, rgba(255,255,255,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 40% at 50% 0%, rgba(var(--color-glow-rgb),0.16) 0%, transparent 55%),
     radial-gradient(ellipse 60% 35% at 65% 10%, rgba(255,255,255,0.08) 0%, transparent 50%);
   mix-blend-mode: overlay;
   pointer-events: none;
 }
 
 .liquid-glass-strong {
-  background: rgba(255, 255, 255, 0.01);
+  background: rgba(53, 216, 240, 0.02);
   background-blend-mode: luminosity;
   backdrop-filter: blur(40px) saturate(150%);
   -webkit-backdrop-filter: blur(40px) saturate(150%);
   border: none;
   box-shadow:
     4px 4px 4px rgba(0, 0, 0, 0.05),
-    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    inset 0 1px 1px rgba(var(--color-glow-rgb), 0.22),
+    0 0 50px -14px rgba(var(--color-glow-rgb), 0.45);
   position: relative;
   overflow: hidden;
 }
@@ -93,15 +116,15 @@ body {
   border-radius: inherit;
   padding: 1.4px;
   background: linear-gradient(180deg,
-    rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.15) 20%,
+    rgba(var(--color-glow-rgb),0.6) 0%, rgba(var(--color-glow-violet-rgb),0.2) 20%,
     rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
-    rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.5) 100%);
+    rgba(var(--color-glow-violet-rgb),0.2) 80%, rgba(var(--color-glow-rgb),0.6) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
   mix-blend-mode: screen;
-  opacity: 0.3;
+  opacity: 0.45;
 }
 .liquid-glass-strong::after {
   content: '';
@@ -109,7 +132,7 @@ body {
   inset: 0;
   border-radius: inherit;
   background:
-    radial-gradient(ellipse 90% 40% at 50% 0%, rgba(255,255,255,0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 40% at 50% 0%, rgba(var(--color-glow-rgb),0.2) 0%, transparent 55%),
     radial-gradient(ellipse 60% 35% at 65% 10%, rgba(255,255,255,0.1) 0%, transparent 50%);
   mix-blend-mode: overlay;
   pointer-events: none;

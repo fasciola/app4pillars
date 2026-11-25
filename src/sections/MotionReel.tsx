@@ -5,6 +5,9 @@ const clips = [
   { id: 'glass-creature', src: '/motion/glass-creature.mp4', poster: '/motion/glass-creature-poster.webp', label: 'Drift' },
 ];
 
+/** Alternating cyan / violet glow per card, echoing the Blue Ocean palette. */
+const dotColors = ['bg-[#35d8f0]', 'bg-[#a878ff]'];
+
 /**
  * Homepage motion strip: two short looping clips in tall frames. Each video
  * loads and plays only while it is on screen, stays muted, and is skipped
@@ -57,10 +60,10 @@ export default function MotionReel() {
       aria-labelledby="motion-heading"
       className="relative overflow-hidden border-b border-white/[0.06] px-6 py-20 sm:px-10 sm:py-28 lg:px-12"
     >
-      {/* Colour glow taken from the clips */}
+      {/* Bioluminescent cyan/violet glow taken from the clips */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-40 top-1/2 h-[560px] w-[760px] -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(214,92,190,0.22),rgba(96,140,255,0.10)_55%,transparent)] blur-2xl"
+        className="pointer-events-none absolute -right-40 top-1/2 h-[560px] w-[760px] -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(53,216,240,0.24),rgba(168,120,255,0.12)_55%,transparent)] blur-2xl"
       />
 
       <div className="relative mx-auto grid max-w-[1320px] items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
@@ -72,7 +75,7 @@ export default function MotionReel() {
             id="motion-heading"
             className="text-[clamp(2.2rem,4.6vw,4rem)] font-light uppercase leading-[0.95] tracking-tight text-foreground"
           >
-            Make visitors <span className="bg-gradient-to-r from-[#f29ad8] via-[#c9a3ff] to-[#8fd3ff] bg-clip-text text-transparent">stop scrolling</span>
+            Make visitors <span className="bg-gradient-to-r from-[#a878ff] via-[#6fe3ff] to-[#35d8f0] bg-clip-text text-transparent">stop scrolling</span>
           </h2>
           <p className="mt-6 max-w-lg text-base leading-relaxed text-dim">
             A short looping clip sets a mood faster than any headline. We build video into hero sections and showcases so it
@@ -95,13 +98,13 @@ export default function MotionReel() {
               key={clip.id}
               className={`group relative ${index === 1 ? 'translate-y-10 sm:translate-y-16' : ''}`}
             >
-              <div className="relative aspect-[464/688] overflow-hidden rounded-[1.75rem] border border-white/15 bg-[#0b0b0b] shadow-[0_40px_80px_rgba(0,0,0,0.55)] transition-transform duration-700 ease-out group-hover:-translate-y-1.5">
+              <div className="relative aspect-[464/688] overflow-hidden rounded-[1.75rem] border border-[#35d8f0]/25 bg-[#00040a] shadow-[0_40px_80px_rgba(0,0,0,0.55),0_0_60px_-20px_rgba(53,216,240,0.5)] transition-transform duration-700 ease-out group-hover:-translate-y-1.5">
                 <LoopClip src={clip.src} poster={clip.poster} className="transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]" />
-                <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[1.75rem] ring-1 ring-inset ring-white/10" />
-                <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/55 to-transparent" />
+                <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-[1.75rem] ring-1 ring-inset ring-[#35d8f0]/20" />
+                <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/65 to-transparent" />
               </div>
-              <figcaption className="absolute bottom-4 left-4 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-white/80 sm:bottom-5 sm:left-5">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#f29ad8]" aria-hidden="true" />
+              <figcaption className="absolute bottom-4 left-4 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-white/85 sm:bottom-5 sm:left-5">
+                <span className={`h-1.5 w-1.5 animate-pulse rounded-full ${dotColors[index % dotColors.length]}`} aria-hidden="true" />
                 {String(index + 1).padStart(2, '0')} · {clip.label}
               </figcaption>
             </figure>

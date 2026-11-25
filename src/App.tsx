@@ -22,7 +22,7 @@ export default function App() {
   const { Page } = route;
 
   return (
-    <div className="relative min-h-screen bg-black">
+    <div className="relative min-h-screen bg-background">
       <Seo config={route.seo} />
 
       <SiteHeader currentPath={route.path} />

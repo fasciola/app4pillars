@@ -28,7 +28,7 @@ export default function HomePage() {
             <FlowField contained />
           </Suspense>
         </div>
-        <div className="absolute inset-0 -z-10 bg-black/45" aria-hidden="true" />
+        <div className="absolute inset-0 -z-10 bg-[#0d1830]/55" aria-hidden="true" />
         <div className="mx-auto grid max-w-[1320px] gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-20">
           <div>
             <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.28em] text-white/50 sm:text-xs">

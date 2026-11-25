@@ -47,10 +47,10 @@ export default function WebsiteDesignDubai() {
 
   return (
     <>
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-black text-white">
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-[#0d1830] text-white">
         <HeroBackgroundVideo />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.60)_0%,rgba(0,0,0,0.40)_30%,rgba(0,0,0,0.16)_60%,rgba(0,0,0,0.30)_100%)]" />
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black/35 via-black/12 to-transparent" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,12,26,0.60)_0%,rgba(6,12,26,0.40)_30%,rgba(6,12,26,0.16)_60%,rgba(6,12,26,0.30)_100%)]" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#060c1a]/40 via-[#060c1a]/14 to-transparent" />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-24 pb-20">
           <div className="min-h-[72vh] flex items-center">
