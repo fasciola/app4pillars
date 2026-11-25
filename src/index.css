@@ -53,7 +53,15 @@ body {
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
 
-/* ── Liquid Glass (Blue Ocean: bioluminescent cyan edge-light) ── */
+/* ── Liquid Glass (Blue Ocean: bioluminescent cyan edge-light) ──
+   `position` lives in its own zero-specificity :where() rule below so a
+   Tailwind utility like `absolute` always wins when combined with this
+   class — otherwise this plain class selector and Tailwind's `.absolute`
+   have equal (0,1,0) specificity, and whichever comes later in the compiled
+   stylesheet wins regardless of source order in the markup, silently
+   stranding any "liquid-glass absolute ..." element at position: relative. */
+:where(.liquid-glass, .liquid-glass-strong) { position: relative; }
+
 .liquid-glass {
   background: rgba(53, 216, 240, 0.02);
   background-blend-mode: luminosity;
@@ -64,7 +72,6 @@ body {
     inset 0 1px 1px rgba(var(--color-glow-rgb), 0.16),
     0 8px 32px rgba(0, 0, 0, 0.2),
     0 0 40px -16px rgba(var(--color-glow-rgb), 0.35);
-  position: relative;
   overflow: hidden;
 }
 .liquid-glass::before {
@@ -114,7 +121,6 @@ body {
     4px 4px 4px rgba(0, 0, 0, 0.05),
     inset 0 1px 1px rgba(var(--color-glow-rgb), 0.22),
     0 0 50px -14px rgba(var(--color-glow-rgb), 0.45);
-  position: relative;
   overflow: hidden;
 }
 .liquid-glass-strong::before {
@@ -209,6 +215,53 @@ body {
 .hero-kenburns { animation: hero-kenburns 22s ease-out infinite alternate; will-change: transform; }
 @media (prefers-reduced-motion: reduce) {
   .hero-kenburns { animation: none; }
+}
+
+/* ── Immersive capability gem (pure CSS/SVG, no WebGL dependency) ── */
+.gem-spin-stage { perspective: 900px; }
+@keyframes gem-rotate-y {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+.gem-spin {
+  transform-style: preserve-3d;
+  animation: gem-rotate-y 16s linear infinite;
+  will-change: transform;
+}
+@keyframes gem-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+.gem-float { animation: gem-bob 7s ease-in-out infinite; will-change: transform; }
+
+@keyframes gem-orbit-a { from { transform: rotate(10deg); } to { transform: rotate(370deg); } }
+@keyframes gem-orbit-b { from { transform: rotate(210deg); } to { transform: rotate(-150deg); } }
+@keyframes gem-orbit-c { from { transform: rotate(120deg); } to { transform: rotate(480deg); } }
+.gem-orbit--a { animation: gem-orbit-a 18s linear infinite; }
+.gem-orbit--b { animation: gem-orbit-b 24s linear infinite; }
+.gem-orbit--c { animation: gem-orbit-c 13s linear infinite; }
+
+.gem-chip { position: absolute; top: 50%; left: 50%; display: block; pointer-events: none; }
+.gem-chip--ring {
+  width: 20px; height: 20px; margin: -10px 0 0 -10px; border-radius: 9999px;
+  transform: translateX(92px);
+  border: 2px solid rgba(53, 216, 240, 0.75);
+  box-shadow: 0 0 14px rgba(53, 216, 240, 0.55);
+}
+.gem-chip--cube {
+  width: 15px; height: 15px; margin: -7.5px 0 0 -7.5px; border-radius: 4px;
+  transform: translateX(-76px) rotate(45deg);
+  background: linear-gradient(135deg, #e7d7ff, #a878ff);
+  box-shadow: 0 0 16px rgba(168, 120, 255, 0.6);
+}
+.gem-chip--dot {
+  width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px; border-radius: 9999px;
+  transform: translate(70px, 44px);
+  background: #bdeeff;
+  box-shadow: 0 0 12px rgba(53, 216, 240, 0.8);
+}
+@media (prefers-reduced-motion: reduce) {
+  .gem-spin, .gem-float, .gem-orbit--a, .gem-orbit--b, .gem-orbit--c { animation: none; }
 }
 
 /* Restaurant landing page: floating dish cut-outs */

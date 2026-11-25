@@ -7,6 +7,7 @@ import ProcessSteps from '../../sections/ProcessSteps';
 import ConceptGallery from '../../sections/ConceptGallery';
 import DigitalMenu from '../../sections/DigitalMenu';
 import MotionReel from '../../sections/MotionReel';
+import ImmersiveCapability from '../../sections/ImmersiveCapability';
 import { pillars } from '../../content/site';
 
 const FlowField = lazy(() => import('../../components/FlowField'));
@@ -84,6 +85,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      <ImmersiveCapability />
       <Services linkToPage />
       <Portfolio limit={6} />
       <ShowcaseTeaser />
