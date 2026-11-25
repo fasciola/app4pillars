@@ -1,6 +1,7 @@
 import { contactConfig, footerConfig } from '../config';
 import { footerNav } from '../content/site';
 import { Mail, Phone, ArrowUpRight } from 'lucide-react';
+import FooterBackgroundVideo from '../components/FooterBackgroundVideo';
 
 /**
  * Closing block shared by every page: the "Start a Project" call to action
@@ -13,23 +14,23 @@ export default function Contact({ showCta = true }: { showCta?: boolean }) {
   return (
     <div className="relative isolate overflow-hidden">
       {/* One continuous artwork layer behind the contact CTA and footer. */}
-      <img
-        src="/footer-background.webp"
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 -z-30 h-full w-full object-cover object-center opacity-100"
-        loading="lazy"
-        decoding="async"
-      />
-      {/* "Drift" bioluminescent creature, bleeding in from the edge as a soft
-          glow rather than a sharp image — the same Blue Ocean motif from the
-          homepage motion strip, carried through to the closing CTA on every
-          page. */}
+      <FooterBackgroundVideo />
+      {/* "Drift" and "Current", the Blue Ocean bioluminescent creatures,
+          framing the CTA from either edge as a soft blended glow rather than
+          a sharp cutout — carried through to the closing CTA on every page. */}
       <img
         src="/motion/glass-creature-poster.webp"
         alt=""
         aria-hidden="true"
         className="absolute -right-[8%] bottom-0 -z-20 h-[115%] w-auto max-w-none opacity-[0.22] mix-blend-screen blur-[1px] sm:opacity-30"
+        loading="lazy"
+        decoding="async"
+      />
+      <img
+        src="/creatures/current.webp"
+        alt=""
+        aria-hidden="true"
+        className="absolute -left-[10%] top-0 -z-20 h-[85%] w-auto max-w-none -scale-x-100 opacity-[0.16] mix-blend-screen blur-[1px] sm:opacity-20"
         loading="lazy"
         decoding="async"
       />

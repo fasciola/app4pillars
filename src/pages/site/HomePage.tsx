@@ -28,6 +28,24 @@ export default function HomePage() {
             <FlowField contained />
           </Suspense>
         </div>
+        {/* "Echo" and "Pulse", two more Blue Ocean creature cutouts, bleeding
+            in from opposite corners behind the pillars list. */}
+        <img
+          src="/creatures/echo.webp"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-[6%] -top-[8%] -z-20 hidden h-[85%] w-auto max-w-none opacity-[0.22] mix-blend-screen lg:block"
+          loading="lazy"
+          decoding="async"
+        />
+        <img
+          src="/creatures/pulse.webp"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-[14%] -left-[8%] -z-20 hidden h-[70%] w-auto max-w-none opacity-[0.18] mix-blend-screen md:block"
+          loading="lazy"
+          decoding="async"
+        />
         <div className="absolute inset-0 -z-10 bg-[#0d1830]/55" aria-hidden="true" />
         <div className="mx-auto grid max-w-[1320px] gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-20">
           <div>
