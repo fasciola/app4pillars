@@ -8,19 +8,14 @@ const clips = [
 /** Alternating cyan / violet glow per card, echoing the Blue Ocean palette. */
 const dotColors = ['bg-[#35d8f0]', 'bg-[#a878ff]'];
 
-/** Short tagline shown on the frosted glass panel over each clip. */
-const taglines: Record<string, string> = {
-  jellyfish: 'Full-bleed video as the section itself, not a framed thumbnail.',
-  'glass-creature': 'A liquid-glass panel sits on top, so the motion reads straight through it.',
-};
-
 /**
- * Homepage motion strip: two short looping clips, each filling its own
- * full-bleed section as the background, with a frosted liquid-glass panel
- * floating on top so the clip stays visible — blurred, not hidden — behind
- * it. Each video loads and plays only while it is on screen, stays muted,
- * and is skipped (poster only) for visitors who asked for reduced motion or
- * reduced data.
+ * Homepage motion strip: two compact side-by-side cards, Reef and Drift,
+ * each with its clip as the card's own background and the section's actual
+ * copy sitting directly on a soft navy scrim on top of it — same unboxed,
+ * text-on-atmosphere treatment as the "Silk" (FlowField) pillars section,
+ * rather than a framed glass panel. Each clip loads and plays only while on
+ * screen, stays muted, and is skipped (poster only) for visitors who asked
+ * for reduced motion or reduced data.
  */
 function LoopClip({ src, poster, className = '' }: { src: string; poster: string; className?: string }) {
   const ref = useRef<HTMLVideoElement>(null);
@@ -70,34 +65,25 @@ export default function MotionReel() {
       className="relative overflow-hidden border-b border-white/[0.06] px-6 py-20 sm:px-10 sm:py-28 lg:px-12"
     >
       <div className="relative mx-auto max-w-[1320px]">
-        <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.28em] text-white/50 sm:text-xs">
-          Motion / Video on the web
-        </p>
-        <h2
-          id="motion-heading"
-          className="max-w-3xl text-[clamp(2.2rem,4.6vw,4rem)] font-light uppercase leading-[0.95] tracking-tight text-foreground"
-        >
-          Make visitors <span className="bg-gradient-to-r from-[#a878ff] via-[#6fe3ff] to-[#35d8f0] bg-clip-text text-transparent">stop scrolling</span>
-        </h2>
-        <p className="mt-6 max-w-lg text-base leading-relaxed text-dim">
-          A short looping clip sets a mood faster than any headline. We use video as a section's background rather than a
-          framed thumbnail, with the interface living on top in frosted glass — silent, loaded only when it's on screen,
-          never slowing the page down.
-        </p>
-
-        {/* Reef and Drift as backgrounds for two ordinary cards, side by side —
-            not sections of their own. A liquid-glass panel sits on top of
-            each clip, translucent and blurred, so the motion reads straight
-            through it rather than being framed or hidden. */}
-        <div className="mt-12 grid gap-5 sm:mt-14 sm:grid-cols-2 sm:gap-6">
+        {/* Reef and Drift: two compact side-by-side cards, each with its clip
+            as the background and the section's own copy sitting on top in a
+            frosted liquid-glass panel — the video is a backdrop for real
+            content here, not a framed thumbnail next to it. */}
+        <div className="grid gap-5 sm:grid-cols-2 sm:gap-6">
           {clips.map((clip, index) => (
-            <div key={clip.id} className="group relative h-[340px] overflow-hidden rounded-[1.75rem] border border-white/10 sm:h-[400px]">
+            <div key={clip.id} className="group relative h-[440px] overflow-hidden rounded-[1.75rem] border border-white/10 sm:h-[500px]">
               <LoopClip
                 src={clip.src}
                 poster={clip.poster}
                 className="transition-transform duration-[1.6s] ease-out group-hover:scale-[1.04]"
               />
-              <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#060c1a]/80 via-[#060c1a]/15 to-[#060c1a]/30" />
+              {/* Soft navy scrim, same unboxed text-on-atmosphere read as the
+                  "Our approach" / Silk section's flat bg-[#0d1830]/55 tint. A
+                  uniform base layer first, so copy stays legible no matter
+                  how bright a given frame of the clip is, then a gradient on
+                  top for extra depth at the edges where the copy sits. */}
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[#060c1a]/45" />
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#060c1a]/70 via-[#060c1a]/25 to-[#060c1a]/50" />
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0"
@@ -109,28 +95,62 @@ export default function MotionReel() {
                 }}
               />
 
-              {/* Frosted glass panel: translucent + blurred, not an opaque
-                  card — the clip stays visible straight through it. */}
-              <div className="liquid-glass liquid-glass--flat absolute inset-x-5 bottom-5 rounded-2xl p-5 sm:inset-x-6 sm:bottom-6 sm:p-6">
-                <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.24em] text-white/90">
-                  <span className={`h-1.5 w-1.5 animate-pulse rounded-full ${dotColors[index % dotColors.length]}`} aria-hidden="true" />
-                  {String(index + 1).padStart(2, '0')} · {clip.label}
-                </div>
-                <p className="mt-2 text-sm leading-relaxed text-white/75">{taglines[clip.id]}</p>
+              {/* Copy sits directly on the scrim — no glass box, just a
+                  drop-shadow for legibility, matching how the pillars
+                  heading reads straight off the Silk canvas. */}
+              <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-8">
+                {index === 0 ? (
+                  <>
+                    <div>
+                      <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.28em] text-white/60 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] sm:text-xs">
+                        Motion / Video on the web
+                      </p>
+                      <h2
+                        id="motion-heading"
+                        className="text-[clamp(1.9rem,3.6vw,2.9rem)] font-light uppercase leading-[0.98] tracking-tight text-foreground drop-shadow-[0_6px_22px_rgba(0,0,0,0.55)]"
+                      >
+                        Make visitors{' '}
+                        <span className="bg-gradient-to-r from-[#a878ff] via-[#6fe3ff] to-[#35d8f0] bg-clip-text text-transparent">
+                          stop scrolling
+                        </span>
+                      </h2>
+                    </div>
+                    <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.24em] text-white/80 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+                      <span className={`h-1.5 w-1.5 animate-pulse rounded-full ${dotColors[index]}`} aria-hidden="true" />
+                      {String(index + 1).padStart(2, '0')} · {clip.label}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <p className="text-base leading-relaxed text-white/85 drop-shadow-[0_4px_16px_rgba(0,0,0,0.5)]">
+                      A short looping clip sets a mood faster than any headline. We use video as a card's own
+                      background rather than a framed thumbnail, with the copy living right on top — silent, loaded
+                      only when it's on screen, never slowing the page down.
+                    </p>
+                    <div>
+                      <a
+                        href="/showcase/"
+                        className="group/link inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-foreground drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]"
+                      >
+                        <span className="border-b border-white/30 pb-1 group-hover/link:border-white">
+                          See more motion in the showcase
+                        </span>
+                        <span aria-hidden="true" className="transition-transform group-hover/link:translate-x-1">
+                          →
+                        </span>
+                      </a>
+                      <div className="mt-4 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.24em] text-white/80 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+                        <span className={`h-1.5 w-1.5 animate-pulse rounded-full ${dotColors[index]}`} aria-hidden="true" />
+                        {String(index + 1).padStart(2, '0')} · {clip.label}
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           ))}
         </div>
 
-        <a
-          href="/showcase/"
-          className="group mt-10 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-foreground"
-        >
-          <span className="border-b border-white/30 pb-1 group-hover:border-white">See more motion in the showcase</span>
-          <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
-            →
-          </span>
-        </a>
         <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-white/35">
           Concept clips. Shown to illustrate motion on the web.
         </p>
