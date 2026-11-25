@@ -164,17 +164,7 @@ export default function WebsiteDesignAjman() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden py-28 px-6 border-b border-white/[0.04]">
-        <img
-          src="/business-lab/business-lab-office-tower.webp"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-[80%_center]"
-          loading="lazy"
-          decoding="async"
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-black via-black/95 to-black/55" />
-        <div className="absolute inset-y-0 right-0 -z-10 w-[45%] bg-gradient-to-t from-black/70 via-transparent to-black/40" />
+      <section className="relative py-28 px-6 border-b border-white/[0.04]">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.9fr_1.1fr] gap-16 items-start">
           <div>
             <p className="text-[10px] uppercase tracking-[0.28em] text-accent mb-4">Why Four Pillars</p>

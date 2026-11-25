@@ -169,6 +169,17 @@ body {
   .concept-page, .group:hover .concept-page, .group:focus-visible .concept-page { transform: none; transition: none; }
 }
 
+/* Hero background photo (homepage + city landing pages): a slow, barely-there
+   drift so a still image reads as cinematic rather than static. */
+@keyframes hero-kenburns {
+  0% { transform: scale(1) translate3d(0, 0, 0); }
+  100% { transform: scale(1.08) translate3d(-1%, -1%, 0); }
+}
+.hero-kenburns { animation: hero-kenburns 22s ease-out infinite alternate; will-change: transform; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-kenburns { animation: none; }
+}
+
 /* Restaurant landing page: floating dish cut-outs */
 @keyframes dish-float {
   0%, 100% { transform: translate3d(0, 0, 0) rotate(var(--rot, 0deg)); }
