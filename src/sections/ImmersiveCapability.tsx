@@ -1,15 +1,11 @@
 import { Home, Box, Sparkles, Hexagon, Circle, Square, SlidersHorizontal, RotateCw } from 'lucide-react';
-import WordmarkHelix from '../components/WordmarkHelix';
 
 /**
- * Homepage capability pitch: a glowing double-helix of the brand's own
- * letters (FOURPILLARSWEB) staged inside decorative glassmorphic HUD chrome
- * (nav pill, side panel, dock), in the spirit of an "immersive WebGL product
- * viewer" reference the client liked — built with 2D canvas rather than an
- * actual WebGL/Three.js scene, keeping it free and cheap to render on every
- * device while still reading as a 3D, light-catching object. The HUD chrome
- * is purely decorative and desktop-only; mobile gets the helix and copy
- * without the extra chrome.
+ * Homepage capability pitch: "Current", the Blue Ocean bioluminescent ray,
+ * staged as the centerpiece inside decorative glassmorphic HUD chrome (nav
+ * pill, side panel, dock), in the spirit of an "immersive WebGL product
+ * viewer" reference the client liked. The HUD chrome is purely decorative
+ * and desktop-only; mobile gets the ray and copy without the extra chrome.
  */
 export default function ImmersiveCapability() {
   return (
@@ -18,17 +14,6 @@ export default function ImmersiveCapability() {
       className="relative overflow-hidden border-b border-white/[0.06] px-6 py-24 sm:px-10 sm:py-28 lg:px-12"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[#060c1a]" />
-      {/* "Current", the Blue Ocean bioluminescent ray — moved here from the
-          footer, where it was getting lost behind the video background.
-          This section's flat dark backdrop gives it room to actually read. */}
-      <img
-        src="/creatures/current.webp"
-        alt=""
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-[12%] -left-[8%] hidden h-[75%] w-auto max-w-none opacity-[0.22] mix-blend-screen lg:block"
-        loading="lazy"
-        decoding="async"
-      />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-70"
@@ -107,7 +92,8 @@ export default function ImmersiveCapability() {
             <Square className="h-3.5 w-3.5 text-white/70" strokeWidth={1.5} />
           </div>
 
-          {/* Ambient glow behind the helix */}
+          {/* Ambient glow behind the ray — doubles as the bioluminescence
+              "Current" itself is named for. */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-[8%] rounded-full blur-3xl"
@@ -116,8 +102,15 @@ export default function ImmersiveCapability() {
                 'radial-gradient(circle, rgba(53,216,240,0.32) 0%, rgba(168,120,255,0.16) 55%, transparent 75%)',
             }}
           />
-          <div className="relative mx-auto aspect-square w-full max-w-[420px]">
-            <WordmarkHelix />
+          <div className="relative mx-auto flex aspect-square w-full max-w-[420px] items-center justify-center">
+            <img
+              src="/creatures/current.webp"
+              alt=""
+              aria-hidden="true"
+              className="h-[88%] w-auto max-w-none opacity-90 mix-blend-screen drop-shadow-[0_0_60px_rgba(53,216,240,0.45)]"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         </div>
       </div>
