@@ -96,6 +96,14 @@ body {
   pointer-events: none;
 }
 
+/* Flat variant: drops the outer glow bleed (visible as a stray glowing arc
+   when a panel sits over busy imagery/video rather than a plain dark
+   backdrop), keeping only the frosted blur and inner edge highlight. */
+.liquid-glass--flat,
+.liquid-glass-strong--flat {
+  box-shadow: inset 0 1px 1px rgba(var(--color-glow-rgb), 0.16), 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
 .liquid-glass-strong {
   background: rgba(53, 216, 240, 0.02);
   background-blend-mode: luminosity;

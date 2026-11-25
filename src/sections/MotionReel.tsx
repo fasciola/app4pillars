@@ -111,7 +111,7 @@ export default function MotionReel() {
 
               {/* Frosted glass panel: translucent + blurred, not an opaque
                   card — the clip stays visible straight through it. */}
-              <div className="liquid-glass absolute inset-x-5 bottom-5 rounded-2xl p-5 sm:inset-x-6 sm:bottom-6 sm:p-6">
+              <div className="liquid-glass liquid-glass--flat absolute inset-x-5 bottom-5 rounded-2xl p-5 sm:inset-x-6 sm:bottom-6 sm:p-6">
                 <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.24em] text-white/90">
                   <span className={`h-1.5 w-1.5 animate-pulse rounded-full ${dotColors[index % dotColors.length]}`} aria-hidden="true" />
                   {String(index + 1).padStart(2, '0')} · {clip.label}
