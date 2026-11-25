@@ -1,14 +1,15 @@
 import { Home, Box, Sparkles, Hexagon, Circle, Square, SlidersHorizontal, RotateCw } from 'lucide-react';
-import ImmersiveGem from '../components/ImmersiveGem';
+import WordmarkHelix from '../components/WordmarkHelix';
 
 /**
- * Homepage capability pitch: a floating faceted gem staged inside decorative
- * glassmorphic HUD chrome (nav pill, side panel, dock), in the spirit of an
- * "immersive WebGL product viewer" reference the client liked — built with
- * CSS/SVG rather than an actual WebGL/Three.js scene, keeping it free and
- * cheap to render on every device while still reading as a 3D, light-catching
- * object. The HUD chrome is purely decorative and desktop-only; mobile gets
- * the gem and copy without the extra chrome.
+ * Homepage capability pitch: a glowing double-helix of the brand's own
+ * letters (FOURPILLARSWEB) staged inside decorative glassmorphic HUD chrome
+ * (nav pill, side panel, dock), in the spirit of an "immersive WebGL product
+ * viewer" reference the client liked — built with 2D canvas rather than an
+ * actual WebGL/Three.js scene, keeping it free and cheap to render on every
+ * device while still reading as a 3D, light-catching object. The HUD chrome
+ * is purely decorative and desktop-only; mobile gets the helix and copy
+ * without the extra chrome.
  */
 export default function ImmersiveCapability() {
   return (
@@ -106,7 +107,18 @@ export default function ImmersiveCapability() {
             <Square className="h-3.5 w-3.5 text-white/70" strokeWidth={1.5} />
           </div>
 
-          <ImmersiveGem />
+          {/* Ambient glow behind the helix */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-[8%] rounded-full blur-3xl"
+            style={{
+              background:
+                'radial-gradient(circle, rgba(53,216,240,0.32) 0%, rgba(168,120,255,0.16) 55%, transparent 75%)',
+            }}
+          />
+          <div className="relative mx-auto aspect-square w-full max-w-[420px]">
+            <WordmarkHelix />
+          </div>
         </div>
       </div>
     </section>
