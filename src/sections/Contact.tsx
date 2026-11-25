@@ -15,22 +15,16 @@ export default function Contact({ showCta = true }: { showCta?: boolean }) {
     <div className="relative isolate overflow-hidden">
       {/* One continuous artwork layer behind the contact CTA and footer. */}
       <FooterBackgroundVideo />
-      {/* "Drift" and "Current", the Blue Ocean bioluminescent creatures,
-          framing the CTA from either edge as a soft blended glow rather than
-          a sharp cutout — carried through to the closing CTA on every page. */}
+      {/* "Drift", the Blue Ocean bioluminescent creature, framing the CTA
+          from one edge as a soft blended glow rather than a sharp cutout —
+          carried through to the closing CTA on every page. ("Current" used
+          to bleed in from the left here too, but it got lost behind the
+          footer video — moved to the immersive capability section instead.) */}
       <img
         src="/motion/glass-creature-poster.webp"
         alt=""
         aria-hidden="true"
         className="absolute -right-[8%] bottom-0 -z-20 h-[115%] w-auto max-w-none opacity-[0.22] mix-blend-screen blur-[1px] sm:opacity-30"
-        loading="lazy"
-        decoding="async"
-      />
-      <img
-        src="/creatures/current.webp"
-        alt=""
-        aria-hidden="true"
-        className="absolute -left-[10%] top-0 -z-20 h-[85%] w-auto max-w-none -scale-x-100 opacity-[0.16] mix-blend-screen blur-[1px] sm:opacity-20"
         loading="lazy"
         decoding="async"
       />

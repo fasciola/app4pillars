@@ -17,6 +17,17 @@ export default function ImmersiveCapability() {
       className="relative overflow-hidden border-b border-white/[0.06] px-6 py-24 sm:px-10 sm:py-28 lg:px-12"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[#060c1a]" />
+      {/* "Current", the Blue Ocean bioluminescent ray — moved here from the
+          footer, where it was getting lost behind the video background.
+          This section's flat dark backdrop gives it room to actually read. */}
+      <img
+        src="/creatures/current.webp"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-[12%] -left-[8%] hidden h-[75%] w-auto max-w-none opacity-[0.22] mix-blend-screen lg:block"
+        loading="lazy"
+        decoding="async"
+      />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-70"
