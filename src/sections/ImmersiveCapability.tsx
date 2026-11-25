@@ -67,7 +67,7 @@ export default function ImmersiveCapability() {
           </a>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[520px] py-14 lg:py-16">
+        <div className="gem-stage relative mx-auto w-full max-w-[520px] py-14 lg:py-16">
           {/* Decorative HUD chrome — desktop only, purely atmospheric. */}
           <div
             aria-hidden="true"

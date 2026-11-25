@@ -36,7 +36,10 @@ export default function ImmersiveGem() {
       <div className="gem-float absolute inset-0 flex items-center justify-center">
         <div className="gem-spin-stage">
           <div className="gem-spin">
-            <svg viewBox="0 0 200 200" className="h-[58%] w-[58%] drop-shadow-[0_0_45px_rgba(53,216,240,0.5)]">
+            {/* Chunkier "kite cut" silhouette — short flat-ish crown, wide
+                equator, longer tapered pavilion — matching the client's
+                reference clip more closely than a thin, symmetric bipyramid. */}
+            <svg viewBox="0 0 200 200" className="h-[64%] w-[64%] drop-shadow-[0_0_45px_rgba(53,216,240,0.5)]">
               <defs>
                 <linearGradient id="gemA" x1="0" y1="0" x2="1" y2="1">
                   <stop offset="0%" stopColor="#bdeeff" />
@@ -56,34 +59,34 @@ export default function ImmersiveGem() {
                 </linearGradient>
               </defs>
               {/* Top facets (crown) */}
-              <polygon points="100,15 158,100 129,129.4" fill="url(#gemA)" />
-              <polygon points="100,15 129,129.4 71,129.4" fill="url(#gemD)" opacity="0.92" />
-              <polygon points="100,15 71,129.4 42,100" fill="url(#gemA)" opacity="0.8" />
-              <polygon points="100,15 42,100 71,70.6" fill="url(#gemC)" />
-              <polygon points="100,15 71,70.6 129,70.6" fill="url(#gemD)" />
-              <polygon points="100,15 129,70.6 158,100" fill="url(#gemC)" opacity="0.88" />
+              <polygon points="100,22 166,95 133,128" fill="url(#gemA)" />
+              <polygon points="100,22 133,128 67,128" fill="url(#gemD)" opacity="0.92" />
+              <polygon points="100,22 67,128 34,95" fill="url(#gemA)" opacity="0.8" />
+              <polygon points="100,22 34,95 67,62" fill="url(#gemC)" />
+              <polygon points="100,22 67,62 133,62" fill="url(#gemD)" />
+              <polygon points="100,22 133,62 166,95" fill="url(#gemC)" opacity="0.88" />
               {/* Bottom facets (pavilion) */}
-              <polygon points="100,185 158,100 129,129.4" fill="url(#gemB)" />
-              <polygon points="100,185 129,129.4 71,129.4" fill="url(#gemC)" opacity="0.85" />
-              <polygon points="100,185 71,129.4 42,100" fill="url(#gemB)" opacity="0.75" />
-              <polygon points="100,185 42,100 71,70.6" fill="url(#gemA)" opacity="0.7" />
-              <polygon points="100,185 71,70.6 129,70.6" fill="url(#gemC)" opacity="0.8" />
-              <polygon points="100,185 129,70.6 158,100" fill="url(#gemA)" opacity="0.6" />
+              <polygon points="100,192 166,95 133,128" fill="url(#gemB)" />
+              <polygon points="100,192 133,128 67,128" fill="url(#gemC)" opacity="0.85" />
+              <polygon points="100,192 67,128 34,95" fill="url(#gemB)" opacity="0.75" />
+              <polygon points="100,192 34,95 67,62" fill="url(#gemA)" opacity="0.7" />
+              <polygon points="100,192 67,62 133,62" fill="url(#gemC)" opacity="0.8" />
+              <polygon points="100,192 133,62 166,95" fill="url(#gemA)" opacity="0.6" />
               {/* Facet edges, for the cut-gem read */}
               <g stroke="rgba(255,255,255,0.4)" strokeWidth="0.75" fill="none">
-                <polygon points="158,100 129,129.4 71,129.4 42,100 71,70.6 129,70.6 158,100" />
-                <line x1="100" y1="15" x2="158" y2="100" />
-                <line x1="100" y1="15" x2="129" y2="129.4" />
-                <line x1="100" y1="15" x2="71" y2="129.4" />
-                <line x1="100" y1="15" x2="42" y2="100" />
-                <line x1="100" y1="15" x2="71" y2="70.6" />
-                <line x1="100" y1="15" x2="129" y2="70.6" />
-                <line x1="100" y1="185" x2="158" y2="100" />
-                <line x1="100" y1="185" x2="129" y2="129.4" />
-                <line x1="100" y1="185" x2="71" y2="129.4" />
-                <line x1="100" y1="185" x2="42" y2="100" />
-                <line x1="100" y1="185" x2="71" y2="70.6" />
-                <line x1="100" y1="185" x2="129" y2="70.6" />
+                <polygon points="166,95 133,128 67,128 34,95 67,62 133,62 166,95" />
+                <line x1="100" y1="22" x2="166" y2="95" />
+                <line x1="100" y1="22" x2="133" y2="128" />
+                <line x1="100" y1="22" x2="67" y2="128" />
+                <line x1="100" y1="22" x2="34" y2="95" />
+                <line x1="100" y1="22" x2="67" y2="62" />
+                <line x1="100" y1="22" x2="133" y2="62" />
+                <line x1="100" y1="192" x2="166" y2="95" />
+                <line x1="100" y1="192" x2="133" y2="128" />
+                <line x1="100" y1="192" x2="67" y2="128" />
+                <line x1="100" y1="192" x2="34" y2="95" />
+                <line x1="100" y1="192" x2="67" y2="62" />
+                <line x1="100" y1="192" x2="133" y2="62" />
               </g>
             </svg>
           </div>

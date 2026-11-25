@@ -264,6 +264,23 @@ body {
   .gem-spin, .gem-float, .gem-orbit--a, .gem-orbit--b, .gem-orbit--c { animation: none; }
 }
 
+/* Slow "breathing" dolly on the whole composition (chrome + gem), echoing the
+   continuous push-in in the client's reference clip. A true one-directional
+   zoom can't loop seamlessly in CSS, so this eases in and settles back,
+   holding at each end briefly so the motion doesn't read as a bounce. */
+@keyframes gem-stage-breathe {
+  0%, 100% { transform: scale(1); }
+  55% { transform: scale(1.055); }
+  80% { transform: scale(1.055); }
+}
+.gem-stage {
+  animation: gem-stage-breathe 14s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gem-stage { animation: none; }
+}
+
 /* Restaurant landing page: floating dish cut-outs */
 @keyframes dish-float {
   0%, 100% { transform: translate3d(0, 0, 0) rotate(var(--rot, 0deg)); }
