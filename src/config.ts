@@ -1,5 +1,3 @@
-export type BackgroundMode = 'solid' | 'silk' | 'moonlit' | 'rain';
-
 export interface SiteConfig {
   title: string
   description: string
@@ -14,23 +12,6 @@ export interface HeaderConfig {
   navContact: string
   loginLabel: string
   logoutLabel: string
-}
-
-export interface BackgroundOption {
-  id: BackgroundMode
-  label: string
-}
-
-export interface SolidColorOption {
-  color: string
-  label: string
-}
-
-export interface BackgroundConfig {
-  defaultMode: BackgroundMode
-  defaultSolidColor: string
-  options: BackgroundOption[]
-  solidColors: SolidColorOption[]
 }
 
 export interface HeroConfig {
@@ -85,23 +66,6 @@ export const headerConfig: HeaderConfig = {
   navContact: "Contact",
   loginLabel: "Login",
   logoutLabel: "Logout",
-}
-
-export const backgroundConfig: BackgroundConfig = {
-  defaultMode: 'solid',
-  defaultSolidColor: '#000000',
-  options: [
-    { id: 'moonlit', label: "Moonlit" },
-    { id: 'silk', label: "Silk" },
-    { id: 'rain', label: "Rain" },
-    { id: 'solid', label: "Solid" },
-  ],
-  solidColors: [
-    { color: '#000000', label: "Obsidian" },
-    { color: '#1a1a2e', label: "Midnight" },
-    { color: '#1a1308', label: "Amber" },
-    { color: '#0d1f0d', label: "Forest" },
-  ],
 }
 
 export const heroConfig: HeroConfig = {

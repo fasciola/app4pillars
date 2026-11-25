@@ -126,7 +126,12 @@ const FRAG = [
   '}',
 ].join('\n');
 
-export default function MoonlitRipple() {
+interface MoonlitRippleProps {
+  /** Render scoped to the parent element instead of the full viewport. */
+  contained?: boolean;
+}
+
+export default function MoonlitRipple({ contained = false }: MoonlitRippleProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -171,10 +176,13 @@ export default function MoonlitRipple() {
     canvas.addEventListener('mousemove', onMove);
     canvas.addEventListener('mouseleave', onLeave);
     window.addEventListener('resize', onResize);
+    const ro = contained && canvas.parentElement ? new ResizeObserver(onResize) : null;
+    if (ro && canvas.parentElement) ro.observe(canvas.parentElement);
 
     function resize() {
       needsResize = false;
-      const w = window.innerWidth, h = window.innerHeight;
+      const w = contained ? canvas!.clientWidth : window.innerWidth;
+      const h = contained ? canvas!.clientHeight : window.innerHeight;
       canvas!.width = w; canvas!.height = h;
       gl!.viewport(0, 0, w, h);
       gl!.uniform2f(uRes, w, h);
@@ -201,8 +209,13 @@ export default function MoonlitRipple() {
       canvas!.removeEventListener('mouseleave', onLeave);
       window.removeEventListener('resize', onResize);
       document.removeEventListener('visibilitychange', onVis);
+      ro?.disconnect();
     };
-  }, []);
+  }, [contained]);
 
-  return <canvas ref={canvasRef} className="fixed inset-0" style={{ zIndex: 0, width: '100vw', height: '100vh' }} />;
+  return contained ? (
+    <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" style={{ zIndex: 0 }} />
+  ) : (
+    <canvas ref={canvasRef} className="fixed inset-0" style={{ zIndex: 0, width: '100vw', height: '100vh' }} />
+  );
 }

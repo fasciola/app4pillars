@@ -1,6 +1,11 @@
 import { useRef, useEffect } from 'react';
 
-export default function RainOnGlass() {
+interface RainOnGlassProps {
+  /** Render scoped to the parent element instead of the full viewport. */
+  contained?: boolean;
+}
+
+export default function RainOnGlass({ contained = false }: RainOnGlassProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -425,15 +430,18 @@ export default function RainOnGlass() {
     initTex(3, textureBgCanvas);
 
     function resize() {
-      const w = window.innerWidth, h = window.innerHeight;
+      const w = contained ? canvas!.clientWidth : window.innerWidth;
+      const h = contained ? canvas!.clientHeight : window.innerHeight;
       canvas!.width = Math.round(w * dpr); canvas!.height = Math.round(h * dpr);
-      canvas!.style.width = w + 'px'; canvas!.style.height = h + 'px';
+      if (!contained) { canvas!.style.width = w + 'px'; canvas!.style.height = h + 'px'; }
       gl!.viewport(0, 0, canvas!.width, canvas!.height);
       initRaindrops(canvas!.width, canvas!.height, dpr);
     }
 
     const onResize = () => resize();
     window.addEventListener('resize', onResize);
+    const ro = contained && canvas.parentElement ? new ResizeObserver(onResize) : null;
+    if (ro && canvas.parentElement) ro.observe(canvas.parentElement);
     resize();
 
     const onVis = () => { paused = document.hidden; };
@@ -463,8 +471,17 @@ export default function RainOnGlass() {
       destroyed = true;
       window.removeEventListener('resize', onResize);
       document.removeEventListener('visibilitychange', onVis);
+      ro?.disconnect();
     };
-  }, []);
+  }, [contained]);
 
-  return <canvas ref={canvasRef} className="fixed inset-0" style={{ zIndex: 0, width: '100vw', height: '100vh', filter: 'saturate(0.7) brightness(0.55)' }} />;
+  return contained ? (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 h-full w-full"
+      style={{ zIndex: 0, filter: 'saturate(0.7) brightness(0.55)' }}
+    />
+  ) : (
+    <canvas ref={canvasRef} className="fixed inset-0" style={{ zIndex: 0, width: '100vw', height: '100vh', filter: 'saturate(0.7) brightness(0.55)' }} />
+  );
 }

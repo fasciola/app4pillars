@@ -1,8 +1,13 @@
-import type { ReactNode } from 'react';
+import { lazy, Suspense, type ReactNode } from 'react';
+
+const FlowField = lazy(() => import('./FlowField'));
+const MoonlitRipple = lazy(() => import('./MoonlitRipple'));
 
 /**
  * Opening block for inner pages: eyebrow, the page's single H1, an intro line
  * and optional actions, over a quiet dark gradient with the site's fine grid.
+ * `atmosphere` scopes one of the site's ambient canvas effects to just this
+ * section (never the whole page) for a touch of cinematic movement.
  */
 export default function PageHero({
   eyebrow,
@@ -10,17 +15,26 @@ export default function PageHero({
   intro,
   children,
   aside,
+  atmosphere,
 }: {
   eyebrow: string;
   title: ReactNode;
   intro: ReactNode;
   children?: ReactNode;
   aside?: ReactNode;
+  atmosphere?: 'silk' | 'moonlit';
 }) {
   return (
     <section className="relative overflow-hidden border-b border-white/[0.06] px-6 pb-20 pt-36 sm:px-10 sm:pb-24 sm:pt-44 lg:px-12">
+      {atmosphere && (
+        <div className="absolute inset-0 -z-20 opacity-[0.38]" aria-hidden="true">
+          <Suspense fallback={null}>
+            {atmosphere === 'silk' ? <FlowField contained /> : <MoonlitRipple contained />}
+          </Suspense>
+        </div>
+      )}
       <div
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_80%_at_85%_0%,rgba(95,140,255,0.12),transparent_70%),radial-gradient(50%_60%_at_0%_100%,rgba(201,161,90,0.08),transparent_70%)]"
+        className={`pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_80%_at_85%_0%,rgba(95,140,255,0.12),transparent_70%),radial-gradient(50%_60%_at_0%_100%,rgba(201,161,90,0.08),transparent_70%)] ${atmosphere ? 'bg-black/40' : ''}`}
         aria-hidden="true"
       />
       <div

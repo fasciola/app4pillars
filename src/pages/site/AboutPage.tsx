@@ -8,6 +8,7 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
+        atmosphere="moonlit"
         eyebrow="About / Four Pillars Web Design"
         title={
           <>

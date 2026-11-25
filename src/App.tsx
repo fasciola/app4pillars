@@ -1,68 +1,31 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
 import { useLocation } from 'react-router';
-import { backgroundConfig, contactConfig } from './config';
-import type { BackgroundMode } from './config';
+import { contactConfig } from './config';
 import Contact from './sections/Contact';
 import SiteHeader from './components/SiteHeader';
 import Seo from './components/Seo';
 import { findRoute } from './routes';
 
-const SilkCascade = lazy(() => import('./components/FlowField'));
-const MoonlitRipple = lazy(() => import('./components/MoonlitRipple'));
-const RainOnGlass = lazy(() => import('./components/RainOnGlass'));
-
-const BG_KEY = 'fourpillars-bg';
-const BG_COLOR_KEY = 'fourpillars-bg-color';
-const isBgMode = (value: string | null): value is BackgroundMode =>
-  value === 'solid' || value === 'silk' || value === 'moonlit' || value === 'rain';
-
-function readStorage(key: string): string | null {
-  try {
-    return localStorage.getItem(key);
-  } catch {
-    return null;
-  }
-}
-
 /**
  * Site shell: header, the page for the current URL, the closing call to action
  * and footer, and the floating WhatsApp button. Pages are separate URLs that
  * are each prerendered to static HTML (see src/routes.tsx).
+ *
+ * The site's three ambient canvas effects (Silk/FlowField, Moonlit Ripple,
+ * Rain on Glass) are never applied here as a full-page background — each one
+ * lives scoped to a single section (PageHero's `atmosphere` prop, the
+ * homepage pillars section) or inside a RainyGlassCard, never behind the
+ * whole app.
  */
 export default function App() {
   const location = useLocation();
   const route = findRoute(location.pathname);
   const { Page } = route;
 
-  // The animated backgrounds are opt-in from the header toggle; the default is
-  // a plain colour because the canvas effects keep the CPU/GPU busy.
-  const [bg, setBg] = useState<BackgroundMode>(() => {
-    const saved = readStorage(BG_KEY);
-    if (saved === 'black') return 'solid';
-    return isBgMode(saved) ? saved : backgroundConfig.defaultMode;
-  });
-  const [bgColor, setBgColor] = useState(() => readStorage(BG_COLOR_KEY) || backgroundConfig.defaultSolidColor);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(BG_KEY, bg);
-      localStorage.setItem(BG_COLOR_KEY, bgColor);
-    } catch {
-      /* storage unavailable: the choice just won't persist */
-    }
-  }, [bg, bgColor]);
-
   return (
-    <div className="relative min-h-screen" style={bg === 'solid' ? { backgroundColor: bgColor } : { background: '#000' }}>
+    <div className="relative min-h-screen bg-black">
       <Seo config={route.seo} />
 
-      <Suspense fallback={null}>
-        {bg === 'silk' && <SilkCascade />}
-        {bg === 'moonlit' && <MoonlitRipple />}
-        {bg === 'rain' && <RainOnGlass />}
-      </Suspense>
-
-      <SiteHeader currentPath={route.path} bg={bg} setBg={setBg} bgColor={bgColor} setBgColor={setBgColor} />
+      <SiteHeader currentPath={route.path} />
 
       <main className="relative z-10">
         <Page />

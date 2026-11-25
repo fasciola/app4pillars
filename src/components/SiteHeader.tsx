@@ -1,86 +1,13 @@
 import { useEffect, useState } from 'react';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
-import { backgroundConfig } from '../config';
-import type { BackgroundMode } from '../config';
 import { primaryNav } from '../content/site';
-
-interface BackgroundControls {
-  bg: BackgroundMode;
-  setBg: (mode: BackgroundMode) => void;
-  bgColor: string;
-  setBgColor: (color: string) => void;
-}
-
-function BackgroundToggle({ bg, setBg, bgColor, setBgColor }: BackgroundControls) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div className="relative">
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 text-white/55 transition-colors hover:border-white/25 hover:text-white"
-        title="Background effect"
-        aria-label="Change background effect"
-        aria-expanded={open}
-      >
-        <span className="text-xs">&#9680;</span>
-      </button>
-
-      {open && (
-        <>
-          <div className="fixed inset-0 z-50" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 top-10 z-50 min-w-[150px] rounded-lg border border-white/[0.08] bg-[#0d0d0d] py-1 shadow-2xl">
-            {backgroundConfig.options.map((opt) => (
-              <button
-                type="button"
-                key={opt.id}
-                onClick={() => {
-                  setBg(opt.id);
-                  if (opt.id !== 'solid') setOpen(false);
-                }}
-                className={`w-full px-3 py-1.5 text-left text-xs transition-colors ${
-                  bg === opt.id ? 'text-foreground' : 'text-muted hover:text-dim'
-                }`}
-              >
-                {bg === opt.id && <span className="mr-1.5 text-accent">&#183;</span>}
-                {opt.label}
-              </button>
-            ))}
-            {bg === 'solid' && (
-              <div className="mt-1 flex gap-2 border-t border-white/[0.06] px-3 py-2">
-                {backgroundConfig.solidColors.map((c) => (
-                  <button
-                    type="button"
-                    key={c.color}
-                    onClick={() => {
-                      setBgColor(c.color);
-                      setOpen(false);
-                    }}
-                    title={c.label}
-                    aria-label={`${c.label} background`}
-                    className="h-5 w-5 rounded-full transition-transform hover:scale-110"
-                    style={{
-                      backgroundColor: c.color,
-                      boxShadow: bgColor === c.color ? '0 0 0 1.5px #888' : 'inset 0 0 0 1px rgba(255,255,255,0.15)',
-                    }}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
 
 /**
  * Site-wide header. Every item is a real link to its own page, so the menu is
  * crawlable and works without JavaScript. `currentPath` highlights the page
  * you are on.
  */
-export default function SiteHeader({ currentPath, ...bgControls }: BackgroundControls & { currentPath: string }) {
+export default function SiteHeader({ currentPath }: { currentPath: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -129,7 +56,6 @@ export default function SiteHeader({ currentPath, ...bgControls }: BackgroundCon
         </nav>
 
         <div className="flex items-center gap-3">
-          <BackgroundToggle {...bgControls} />
           <a
             href="/contact/"
             className="hidden items-center gap-2 rounded-full border border-white/20 px-5 py-2 text-[12px] font-medium tracking-wide text-foreground transition-colors hover:border-white/40 hover:bg-white/5 sm:inline-flex"

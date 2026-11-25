@@ -2,6 +2,7 @@ import { ArrowRight, CheckCircle2, Code2, Gauge, Search, ShoppingBag, Smartphone
 import Portfolio from '../sections/Portfolio';
 import PracticeCube from '../sections/PracticeCube';
 import HeroBackgroundVideo from '../components/HeroBackgroundVideo';
+import BusinessLabOffices from '../components/BusinessLabOffices';
 import { websiteDesignDubaiFaqs } from '../content/websiteDesignDubaiFaqs';
 import { processSteps, strengths } from '../content/site';
 
@@ -113,12 +114,18 @@ export default function WebsiteDesignDubai() {
             ))}
           </div>
         </div>
-        <div className="mx-auto mt-8 max-w-[1320px]">
+        <div className="mx-auto mt-8 max-w-[1320px] flex flex-wrap gap-x-6 gap-y-2">
           <a
             href="/restaurant-website-design-dubai/"
             className="text-sm text-foreground underline underline-offset-4"
           >
             Website design for restaurants and café groups in Dubai
+          </a>
+          <a href="/website-design-ajman/" className="text-sm text-foreground underline underline-offset-4">
+            Website design in Ajman
+          </a>
+          <a href="/website-design-abu-dhabi/" className="text-sm text-foreground underline underline-offset-4">
+            Website design in Abu Dhabi
           </a>
         </div>
       </section>
@@ -173,6 +180,8 @@ export default function WebsiteDesignDubai() {
       <PracticeCube />
 
       <Portfolio />
+
+      <BusinessLabOffices />
 
       <section className="relative py-28 px-6 border-t border-white/[0.04]">
         <div className="max-w-5xl mx-auto">

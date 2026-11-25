@@ -1,7 +1,10 @@
 import { servicesConfig } from './config';
 import { restaurantFaqs } from './content/restaurantWebsites';
 import { websiteDesignDubaiFaqs } from './content/websiteDesignDubaiFaqs';
+import { websiteDesignAjmanFaqs } from './content/websiteDesignAjmanFaqs';
+import { websiteDesignAbuDhabiFaqs } from './content/websiteDesignAbuDhabiFaqs';
 import { serviceDetails } from './content/site';
+import { businessLabOffices } from './content/businessLab';
 
 export interface SeoPageConfig {
   title: string;
@@ -22,14 +25,28 @@ const organization = {
   logo: 'https://4pillarsweb.online/logo.png',
   image: 'https://4pillarsweb.online/og-image.jpg',
   email: 'info@fourpillarsweb.com',
-  parentOrganization: { '@type': 'Organization', name: 'Business Lab' },
+  parentOrganization: { '@type': 'Organization', name: 'Business Lab', url: 'https://businesslab.ae/' },
+  sameAs: ['https://businesslab.ae/'],
   telephone: '+971567074922',
   description:
     'Website design and digital experience services for businesses in Dubai and across the United Arab Emirates.',
   areaServed: [
     { '@type': 'City', name: 'Dubai' },
+    { '@type': 'City', name: 'Ajman' },
+    { '@type': 'City', name: 'Abu Dhabi' },
     { '@type': 'Country', name: 'United Arab Emirates' },
   ],
+  // Business Lab's two real UAE offices (see src/content/businessLab.ts).
+  location: businessLabOffices.map((office) => ({
+    '@type': 'Place',
+    name: `Business Lab – ${office.city} Office`,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: `${office.name}, ${office.addressLines[0]}`,
+      addressLocality: office.city,
+      addressCountry: 'AE',
+    },
+  })),
   contactPoint: {
     '@type': 'ContactPoint',
     telephone: '+971567074922',
@@ -130,6 +147,126 @@ export const websiteDesignDubaiSeo: SeoPageConfig = {
             position: 2,
             name: 'Website Design Dubai',
             item: 'https://4pillarsweb.online/website-design-dubai/',
+          },
+        ],
+      },
+    ],
+  },
+};
+
+export const websiteDesignAjmanSeo: SeoPageConfig = {
+  title: 'Website Design Ajman | Web Design Company UAE | Four Pillars',
+  description:
+    'Website design in Ajman from Four Pillars, a brand of Business Lab with its own Ajman office. Premium, responsive, SEO-ready websites and e-commerce for Ajman businesses.',
+  canonical: 'https://4pillarsweb.online/website-design-ajman/',
+  image: 'https://4pillarsweb.online/og-website-design-dubai.jpg',
+  imageAlt: 'A website designed by Four Pillars, a Business Lab brand with an office in Ajman',
+  schema: {
+    '@context': 'https://schema.org',
+    '@graph': [
+      organization,
+      {
+        '@type': 'WebPage',
+        '@id': 'https://4pillarsweb.online/website-design-ajman/#webpage',
+        url: 'https://4pillarsweb.online/website-design-ajman/',
+        name: 'Website Design Ajman | Four Pillars',
+        description: 'Website design services for businesses in Ajman, delivered by a brand of Business Lab with its own Ajman office.',
+        isPartOf: { '@id': 'https://4pillarsweb.online/#website' },
+        about: { '@id': 'https://4pillarsweb.online/#organization' },
+        inLanguage: 'en-AE',
+      },
+      {
+        '@type': 'Service',
+        '@id': 'https://4pillarsweb.online/website-design-ajman/#service',
+        name: 'Website Design Ajman',
+        serviceType: 'Website design and web development',
+        provider: { '@id': 'https://4pillarsweb.online/#organization' },
+        areaServed: [
+          { '@type': 'City', name: 'Ajman' },
+          { '@type': 'Country', name: 'United Arab Emirates' },
+        ],
+        url: 'https://4pillarsweb.online/website-design-ajman/',
+        description:
+          'Premium responsive website design, e-commerce design, SEO-ready development and conversion-focused digital experiences for Ajman businesses, backed by Business Lab’s Ajman office.',
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': 'https://4pillarsweb.online/website-design-ajman/#faq',
+        mainEntity: websiteDesignAjmanFaqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://4pillarsweb.online/' },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Website Design Ajman',
+            item: 'https://4pillarsweb.online/website-design-ajman/',
+          },
+        ],
+      },
+    ],
+  },
+};
+
+export const websiteDesignAbuDhabiSeo: SeoPageConfig = {
+  title: 'Website Design Abu Dhabi | Web Design Company UAE | Four Pillars',
+  description:
+    'Website design in Abu Dhabi from Four Pillars, a brand of Business Lab. Premium, responsive, SEO-ready websites and e-commerce for Abu Dhabi businesses, served from our Dubai and Ajman offices.',
+  canonical: 'https://4pillarsweb.online/website-design-abu-dhabi/',
+  image: 'https://4pillarsweb.online/og-website-design-dubai.jpg',
+  imageAlt: 'A website designed by Four Pillars, a Business Lab brand serving Abu Dhabi',
+  schema: {
+    '@context': 'https://schema.org',
+    '@graph': [
+      organization,
+      {
+        '@type': 'WebPage',
+        '@id': 'https://4pillarsweb.online/website-design-abu-dhabi/#webpage',
+        url: 'https://4pillarsweb.online/website-design-abu-dhabi/',
+        name: 'Website Design Abu Dhabi | Four Pillars',
+        description: 'Website design services for businesses in Abu Dhabi, delivered by a brand of Business Lab from its Dubai and Ajman offices.',
+        isPartOf: { '@id': 'https://4pillarsweb.online/#website' },
+        about: { '@id': 'https://4pillarsweb.online/#organization' },
+        inLanguage: 'en-AE',
+      },
+      {
+        '@type': 'Service',
+        '@id': 'https://4pillarsweb.online/website-design-abu-dhabi/#service',
+        name: 'Website Design Abu Dhabi',
+        serviceType: 'Website design and web development',
+        provider: { '@id': 'https://4pillarsweb.online/#organization' },
+        areaServed: [
+          { '@type': 'City', name: 'Abu Dhabi' },
+          { '@type': 'Country', name: 'United Arab Emirates' },
+        ],
+        url: 'https://4pillarsweb.online/website-design-abu-dhabi/',
+        description:
+          'Premium responsive website design, e-commerce design, SEO-ready development and conversion-focused digital experiences for Abu Dhabi businesses, served from Business Lab’s Dubai and Ajman offices.',
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': 'https://4pillarsweb.online/website-design-abu-dhabi/#faq',
+        mainEntity: websiteDesignAbuDhabiFaqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+        })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://4pillarsweb.online/' },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Website Design Abu Dhabi',
+            item: 'https://4pillarsweb.online/website-design-abu-dhabi/',
           },
         ],
       },

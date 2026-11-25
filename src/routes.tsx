@@ -9,6 +9,8 @@ import {
   servicesSeo,
   showcaseSeo,
   websiteDesignDubaiSeo,
+  websiteDesignAjmanSeo,
+  websiteDesignAbuDhabiSeo,
   workSeo,
 } from './seo';
 import HomePage from './pages/site/HomePage';
@@ -19,6 +21,8 @@ import AboutPage from './pages/site/AboutPage';
 import ContactPage from './pages/site/ContactPage';
 import NotFoundPage from './pages/site/NotFoundPage';
 import WebsiteDesignDubai from './pages/WebsiteDesignDubai';
+import WebsiteDesignAjman from './pages/WebsiteDesignAjman';
+import WebsiteDesignAbuDhabi from './pages/WebsiteDesignAbuDhabi';
 import RestaurantWebsitesPage from './pages/site/RestaurantWebsitesPage';
 
 export interface SiteRoute {
@@ -42,6 +46,8 @@ export const routes: SiteRoute[] = [
   { path: '/about/', Page: AboutPage, seo: aboutSeo, closingCta: true },
   { path: '/contact/', Page: ContactPage, seo: contactSeo, closingCta: false },
   { path: '/website-design-dubai/', Page: WebsiteDesignDubai, seo: websiteDesignDubaiSeo, closingCta: true },
+  { path: '/website-design-ajman/', Page: WebsiteDesignAjman, seo: websiteDesignAjmanSeo, closingCta: true },
+  { path: '/website-design-abu-dhabi/', Page: WebsiteDesignAbuDhabi, seo: websiteDesignAbuDhabiSeo, closingCta: true },
   { path: '/restaurant-website-design-dubai/', Page: RestaurantWebsitesPage, seo: restaurantWebsitesSeo, closingCta: true },
 ];
 

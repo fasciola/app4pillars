@@ -10,6 +10,7 @@ export default function ServicesPage() {
   return (
     <>
       <PageHero
+        atmosphere="silk"
         eyebrow="Services / Dubai · UAE"
         title={
           <>

@@ -89,7 +89,18 @@ export default function Contact({ showCta = true }: { showCta?: boolean }) {
             </div>
             <span className="flex flex-col gap-1 text-center lg:text-left">
               <span className="text-xs text-white/55 tracking-wider lg:whitespace-nowrap">{footerConfig.copyright}</span>
-              <span className="text-[11px] text-white/45 tracking-wider">{footerConfig.parentBrand}</span>
+              <span className="text-[11px] text-white/45 tracking-wider">
+                Four Pillars Web Design is a brand of{' '}
+                <a
+                  href="https://businesslab.ae/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline decoration-white/20 underline-offset-2 hover:text-white/75 hover:decoration-white/50"
+                >
+                  Business Lab
+                </a>
+                .
+              </span>
             </span>
           </div>
 

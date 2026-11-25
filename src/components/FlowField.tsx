@@ -223,7 +223,12 @@ const FRAG_SRC = [
   '}',
 ].join('\n');
 
-export default function FlowField() {
+interface FlowFieldProps {
+  /** Render scoped to the parent element instead of the full viewport. */
+  contained?: boolean;
+}
+
+export default function FlowField({ contained = false }: FlowFieldProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -289,15 +294,19 @@ export default function FlowField() {
     canvas.addEventListener('mousemove', onMove);
     canvas.addEventListener('mouseleave', onLeave);
     window.addEventListener('resize', onResize);
+    const ro = contained && canvas.parentElement ? new ResizeObserver(onResize) : null;
+    if (ro && canvas.parentElement) ro.observe(canvas.parentElement);
 
     function resize() {
       needsResize = false;
-      const w = window.innerWidth;
-      const h = window.innerHeight;
+      const w = contained ? canvas!.clientWidth : window.innerWidth;
+      const h = contained ? canvas!.clientHeight : window.innerHeight;
       canvas!.width = w;
       canvas!.height = h;
-      canvas!.style.width = w + 'px';
-      canvas!.style.height = h + 'px';
+      if (!contained) {
+        canvas!.style.width = w + 'px';
+        canvas!.style.height = h + 'px';
+      }
       gl!.viewport(0, 0, w, h);
       gl!.uniform2f(uRes, w, h);
     }
@@ -329,10 +338,13 @@ export default function FlowField() {
       canvas!.removeEventListener('mouseleave', onLeave);
       window.removeEventListener('resize', onResize);
       document.removeEventListener('visibilitychange', onVis);
+      ro?.disconnect();
     };
-  }, []);
+  }, [contained]);
 
-  return (
+  return contained ? (
+    <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" style={{ zIndex: 0 }} />
+  ) : (
     <canvas
       ref={canvasRef}
       className="fixed inset-0"
