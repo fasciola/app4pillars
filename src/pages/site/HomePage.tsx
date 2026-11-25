@@ -7,6 +7,7 @@ import ProcessSteps from '../../sections/ProcessSteps';
 import ConceptGallery from '../../sections/ConceptGallery';
 import DigitalMenu from '../../sections/DigitalMenu';
 import MotionReel from '../../sections/MotionReel';
+import IcedMenu from '../../sections/IcedMenu';
 import ImmersiveCapability from '../../sections/ImmersiveCapability';
 import TechColors from '../../sections/TechColors';
 import { pillars } from '../../content/site';
@@ -20,6 +21,7 @@ export default function HomePage() {
       <Hero />
       <ConceptGallery />
       <MotionReel />
+      <IcedMenu />
       <DigitalMenu />
 
       {/* Positioning statement + the four pillars. A contained "Silk" current
